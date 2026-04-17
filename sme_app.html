@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creator Connect | SME Mobile App</title>
+  
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/mobile.css">
+  
+  <style>
+    /* SME Specific Tweaks */
+    .sme-hero-bg {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--primary-100);
+      padding: 60px var(--space-4) var(--space-4);
+    }
+    .sme-summary-card {
+      background: var(--gradient-primary);
+      color: white;
+      padding: var(--space-4);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
+      margin-bottom: var(--space-4);
+    }
+    .koc-swipe-card {
+      height: 480px;
+      border-radius: var(--radius-2xl);
+      background: white;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      margin: var(--space-4);
+    }
+    .koc-swipe-img {
+      height: 60%;
+      background: linear-gradient(45deg, #a18cd1 0%, #fbc2eb 100%);
+      position: relative;
+    }
+    .koc-swipe-info {
+      padding: var(--space-4);
+      flex: 1;
+    }
+    .swipe-actions {
+      display: flex;
+      justify-content: space-around;
+      padding: var(--space-4);
+      background: var(--bg-surface);
+    }
+    .circle-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--primary-50);
+      background: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="simulator-container">
+    <div class="text-center" style="margin-right: var(--space-10); max-width: 300px;">
+      <h1 class="text-3xl mb-4 gradient-text">SME App<br>Simulator</h1>
+      <p class="text-secondary mb-6">Màn hình giám sát chiến dịch trên di động (On-the-go) dành cho Nhà quản lý Nhãn hàng.</p>
+      <a href="index.html" class="btn btn-outline">⬅ Trở về Đăng nhập</a>
+    </div>
+
+    <!-- The Phone Frame -->
+    <div class="mobile-frame">
+      <div class="mobile-notch"></div>
+      
+      <div class="mobile-content">
+        
+        <!-- View 1: Dashboard (Tổng quan) -->
+        <div id="view-sme-home" class="mobile-view active">
+          <div class="sme-hero-bg">
+            <div class="d-flex justify-between align-center mb-4">
+              <div>
+                <p class="text-xs text-secondary">La Roche-Posay Manager</p>
+                <h2 class="text-lg fw-bold">SME Admin 👋</h2>
+              </div>
+              <div class="avatar avatar-sm" style="background: var(--primary-200);"></div>
+            </div>
+            
+            <div class="sme-summary-card">
+              <p class="text-xs mb-1" style="opacity: 0.9;">Số dư Ví Escrow</p>
+              <h3 class="text-2xl fw-bold mb-3">8,000,000đ</h3>
+              <div class="d-flex justify-between text-xs">
+                <span>Khả dụng: 12.5M</span>
+                <span style="background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 10px;">+ Nạp tiền</span>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3);">
+              <div class="card" style="padding: var(--space-3); border: 1px solid var(--primary-50);">
+                 <p class="text-xs text-secondary">Chiến dịch active</p>
+                 <p class="text-xl fw-bold mt-1">4</p>
+              </div>
+              <div class="card" style="padding: var(--space-3); border: 1px solid var(--primary-50);">
+                 <p class="text-xs text-secondary">Chờ duyệt Video</p>
+                 <p class="text-xl fw-bold mt-1 text-warning">2</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding: var(--space-4);">
+            <div class="d-flex justify-between align-center mb-3">
+              <h3 class="text-md fw-bold">Việc cần làm (To-Do)</h3>
+            </div>
+            
+            <div class="card" style="padding: var(--space-3); margin-bottom: var(--space-3); border-left: 4px solid var(--warning-500);">
+               <p class="text-sm fw-medium">Duyệt Video - Đức Dược Sĩ</p>
+               <p class="text-xs text-secondary mt-1">Hạn chót: Hôm nay</p>
+            </div>
+            <div class="card" style="padding: var(--space-3); border-left: 4px solid var(--escrow-color);">
+               <p class="text-sm fw-medium">Thanh toán Escrow - Hải Nguyễn</p>
+               <p class="text-xs text-secondary mt-1">Hạn chót: 2 ngày tới</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- View 2: MMarketplace / Tìm KOC -->
+        <div id="view-sme-search" class="mobile-view">
+           <div class="mobile-header" style="padding-top: 50px;">
+             <h2 class="text-lg fw-bold">Khám phá KOC</h2>
+           </div>
+           
+           <!-- Swipe Card Layout -->
+           <div class="koc-swipe-card">
+              <div class="koc-swipe-img">
+                 <div style="position: absolute; bottom: 10px; left: 10px; background: rgba(0,0,0,0.5); color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px;">✅ Đã xác minh</div>
+              </div>
+              <div class="koc-swipe-info">
+                 <h3 class="text-xl fw-bold">Thanh Trúc Review</h3>
+                 <p class="text-sm text-secondary mb-3">Food & Lifestyle Vlogger</p>
+                 
+                 <div style="display: flex; gap: var(--space-4); margin-bottom: var(--space-4);">
+                   <div>
+                     <p class="text-xs text-secondary">Followers</p>
+                     <p class="fw-bold">120K</p>
+                   </div>
+                   <div>
+                     <p class="text-xs text-secondary">Rate (TB)</p>
+                     <p class="fw-bold text-primary">1.5M</p>
+                   </div>
+                 </div>
+                 
+                 <div class="d-flex gap-2">
+                    <span class="badge" style="background: var(--bg-surface-hover);">#Food</span>
+                    <span class="badge" style="background: var(--bg-surface-hover);">#StreetFood</span>
+                 </div>
+              </div>
+              
+              <div class="swipe-actions">
+                 <div class="circle-btn" style="color: var(--danger-500);" onclick="showToast('Đã bỏ qua KOL này', 'warning')">✕</div>
+                 <div class="circle-btn" style="color: var(--warning-500);">⭐</div>
+                 <div class="circle-btn" style="color: var(--success-500);" onclick="showToast('Đã gửi lời mời Booking', 'success')">💬</div>
+              </div>
+           </div>
+        </div>
+
+        <!-- View 3: Campaigns -->
+        <div id="view-sme-campaigns" class="mobile-view">
+          <div class="mobile-header" style="padding-top: 50px; border-bottom: 1px solid var(--primary-50);">
+             <h2 class="text-lg fw-bold">Chiến dịch của bạn</h2>
+             <button class="btn btn-ghost btn-sm" onclick="showToast('Tính năng thêm mới (Mobile) đang phát triển', 'warning')">➕</button>
+          </div>
+          
+          <div style="padding: var(--space-4);">
+             <!-- Mobile Campaign Card -->
+             <div class="card" style="padding: var(--space-4); margin-bottom: var(--space-4); border: 1px solid var(--primary-50);">
+               <div class="d-flex justify-between mb-2">
+                 <h4 class="text-md fw-bold">Chống nắng mùa Hè</h4>
+                 <span class="badge badge-primary">Đang tuyển</span>
+               </div>
+               <p class="text-xs text-secondary mb-3">Ngân sách: 15,000,000đ | 5/10 Slots</p>
+               <div style="height: 6px; background: var(--bg-surface-hover); border-radius: 3px;">
+                  <div style="height: 100%; width: 50%; background: var(--primary-500); border-radius: 3px;"></div>
+               </div>
+             </div>
+
+             <div class="card" style="padding: var(--space-4); margin-bottom: var(--space-4); border: 1px solid var(--primary-50);">
+               <div class="d-flex justify-between mb-2">
+                 <h4 class="text-md fw-bold">Sữa Rửa Mặt CeraVe</h4>
+                 <span class="badge badge-warning">Đang chạy</span>
+               </div>
+               <p class="text-xs text-secondary mb-3">Ngân sách: 8,000,000đ | 3/3 Slots</p>
+             </div>
+          </div>
+        </div>
+
+        <!-- View 4: Messages -->
+        <div id="view-sme-messages" class="mobile-view">
+          <div class="mobile-header" style="padding-top: 50px; border-bottom: 1px solid var(--primary-50);">
+            <h2 class="text-lg fw-bold">Chat & Hợp đồng</h2>
+          </div>
+          
+          <div class="mobile-chat-list" style="padding-top: var(--space-2);">
+            
+            <div class="mobile-chat-item">
+              <div class="avatar avatar-md" style="background: linear-gradient(135deg, #0ea5e9, #38bdf8);"></div>
+              <div style="flex:1;">
+                <div class="d-flex justify-between">
+                  <h4 class="fw-bold text-sm">Đức Dược Sĩ</h4>
+                  <span class="text-xs text-tertiary">10:45</span>
+                </div>
+                <p class="text-xs fw-bold text-primary mt-1">KOC đã ký E-Contract!</p>
+              </div>
+            </div>
+
+            <div class="mobile-chat-item">
+              <div class="avatar avatar-md" style="background: linear-gradient(45deg, #fbc2eb 0%, #a18cd1 100%);"></div>
+              <div style="flex:1;">
+                <div class="d-flex justify-between">
+                  <h4 class="fw-bold text-sm">Thanh Trúc</h4>
+                  <span class="text-xs text-tertiary">Hôm qua</span>
+                </div>
+                <p class="text-xs text-secondary mt-1">Mình đã nộp video rồi ạ...</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      
+      <!-- Bottom Navigation -->
+      <nav class="mobile-nav">
+        <div class="nav-item active" data-target="view-sme-home">
+          <div class="nav-item-icon">📊</div>
+          <span>Tổng quan</span>
+        </div>
+        <div class="nav-item" data-target="view-sme-search">
+          <div class="nav-item-icon">🔍</div>
+          <span>Tìm KOC</span>
+        </div>
+        <div class="nav-item" data-target="view-sme-campaigns">
+          <div class="nav-item-icon">📁</div>
+          <span>Dự án</span>
+        </div>
+        <div class="nav-item" data-target="view-sme-messages">
+          <div class="nav-item-icon">💬</div>
+          <span>Tin nhắn</span>
+        </div>
+      </nav>
+
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
