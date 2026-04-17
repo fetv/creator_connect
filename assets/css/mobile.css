@@ -14,7 +14,7 @@
 
 .mobile-frame {
   width: 375px; 
-  height: 812px; /* iPhone X/11 aspect ratio roughly */
+  height: 812px;
   background: var(--bg-surface);
   border-radius: 40px;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), inset 0 0 0 10px #0f172a;
@@ -38,38 +38,43 @@
   z-index: 1000;
 }
 
+/* The content area is the full frame minus nav */
 .mobile-content {
-  flex-grow: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding-bottom: 80px; /* Space for bottom nav */
+  flex: 1;
+  position: relative; /* positioning context for views */
+  overflow: hidden;
   background: #f8fafc;
+  min-height: 0;
 }
 
-/* Hide scrollbar for mobile feel */
-.mobile-content::-webkit-scrollbar {
+/* Hide scrollbar globally for mobile feel */
+.mobile-content::-webkit-scrollbar,
+.mobile-view *::-webkit-scrollbar,
+.mobile-frame *::-webkit-scrollbar {
   display: none;
+  width: 0;
 }
-.mobile-content {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+.mobile-content,
+.mobile-view *,
+.mobile-frame * {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* =========================================================================
    MOBILE BOTTOM NAV
    ========================================================================= */
 .mobile-nav {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  position: relative;
   width: 100%;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(10px);
   border-top: 1px solid var(--primary-100);
   display: flex;
   justify-content: space-around;
-  padding: var(--space-3) 0 var(--space-5) 0; /* Extra padding for home indicator area */
+  padding: 10px 0 14px 0;
   z-index: 100;
+  flex-shrink: 0;
 }
 
 .nav-item {
@@ -157,13 +162,23 @@
   text-align: center;
 }
 
+/* Each view fills the content area completely and scrolls on its own */
 .mobile-view {
   display: none;
-  animation: fadeIn 0.3s ease forwards;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #f8fafc;
+  animation: fadeIn 0.25s ease forwards;
 }
 
 .mobile-view.active {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
 /* =========================================================================
@@ -230,3 +245,46 @@
   align-items: center;
 }
 
+/* =========================================================================
+   MOBILE FORM INPUTS
+   ========================================================================= */
+.mobile-input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--primary-100);
+  background: var(--bg-surface);
+  font-size: 14px;
+  color: var(--text-main);
+  transition: all var(--transition-fast);
+}
+
+.mobile-input:focus {
+  outline: none;
+  border-color: var(--primary-400);
+  box-shadow: 0 0 0 3px var(--primary-50);
+}
+
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-icon span {
+  position: absolute;
+  left: 12px;
+  font-size: 16px;
+}
+
+.input-with-icon .pl-5 {
+  padding-left: 36px;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

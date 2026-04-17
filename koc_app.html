@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="assets/css/variables.css">
   <link rel="stylesheet" href="assets/css/global.css">
   <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/mobile.css">
+  <link rel="stylesheet" href="assets/css/mobile.css?v=20260417c">
 </head>
 <body>
 
@@ -88,48 +88,157 @@
            <div class="portfolio-header" style="padding-top: 60px;">
              <div class="avatar avatar-lg mx-auto mb-3" style="margin: 0 auto; background: linear-gradient(135deg, #0ea5e9, #38bdf8); border: 2px solid white;"></div>
              <h2 class="text-xl">Đức Dược Sĩ <span style="font-size:14px">✅</span></h2>
-             <p class="text-sm opacity-80">Chuyên gia Da liệu | Skincare Reviewer</p>
+             <p class="text-sm opacity-80 mb-3">Chuyên gia Da liễu | Skincare Reviewer</p>
+             <button class="btn btn-outline btn-sm" id="btn-edit-portfolio" style="border-color: rgba(255,255,255,0.3); color: white; background: rgba(255,255,255,0.1); border-radius: 20px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+               <span style="font-size: 14px;">✏️</span> Cập nhật Hồ Sơ
+             </button>
            </div>
-           
-           <div class="portfolio-stats">
-             <div class="portfolio-stat-box">
-               <p class="text-xs text-secondary">Followers</p>
-               <h3 class="text-lg fw-bold">22.5K</h3>
-             </div>
-             <div style="width: 1px; background: var(--primary-50);"></div>
-             <div class="portfolio-stat-box">
-               <p class="text-xs text-secondary">Avg. Views</p>
-               <h3 class="text-lg fw-bold">140K</h3>
-             </div>
-             <div style="width: 1px; background: var(--primary-50);"></div>
-             <div class="portfolio-stat-box">
-               <p class="text-xs text-secondary">Engagement</p>
-               <h3 class="text-lg fw-bold text-success">12.5%</h3>
+
+           <!-- Wallet Balance Card -->
+           <div style="padding: var(--space-4) var(--space-4) var(--space-4);">
+             <div style="background: linear-gradient(135deg, #1e1b4b, #312e81, #4c1d95); border-radius: var(--radius-xl); padding: var(--space-4); display: flex; align-items: center; justify-content: space-between; position: relative; overflow: hidden;">
+               <!-- Decorative circles (pointer-events none so they don't block clicks) -->
+               <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; border-radius: 50%; background: rgba(255,255,255,0.05); pointer-events: none;"></div>
+               <div style="position: absolute; bottom: -30px; right: 40px; width: 70px; height: 70px; border-radius: 50%; background: rgba(255,255,255,0.04); pointer-events: none;"></div>
+
+               <!-- Left: Balance -->
+               <div style="position: relative; z-index: 1;">
+                 <p style="color: rgba(255,255,255,0.6); font-size: 11px; margin-bottom: 4px; letter-spacing: 0.3px;">💼 Số dư khả dụng</p>
+                 <div style="display: flex; align-items: center; gap: 8px;">
+                   <span id="wallet-balance-display" style="color: white; font-size: 20px; font-weight: 700; letter-spacing: 0.5px;">••••••••</span>
+                   <button id="btn-toggle-balance" onclick="(function(){
+                     const el = document.getElementById('wallet-balance-display');
+                     const isHidden = el.innerText.includes('•');
+                     el.innerText = isHidden ? '2.500.000 đ' : '••••••••';
+                     document.getElementById('eye-icon-open').style.display = isHidden ? 'none' : 'block';
+                     document.getElementById('eye-icon-closed').style.display = isHidden ? 'block' : 'none';
+                   })()" style="background: transparent; border: none; cursor: pointer; padding: 2px; display: flex; align-items: center;">
+                     <svg id="eye-icon-closed" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                     <svg id="eye-icon-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                   </button>
+                 </div>
+               </div>
+
+               <!-- Right: Actions -->
+               <div style="display: flex; flex-direction: column; align-items: center; gap: 6px; flex-shrink: 0; position: relative; z-index: 1;">
+                 <button id="btn-open-withdraw" style="background: white; color: #4c1d95; border: none; border-radius: var(--radius-full); padding: 8px 16px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">Rút tiền</button>
+                 <button id="btn-open-transactions" style="background: transparent; border: none; color: rgba(255,255,255,0.6); font-size: 10px; text-decoration: underline; white-space: nowrap; cursor: pointer; padding: 0;">Lịch sử giao dịch</button>
+               </div>
              </div>
            </div>
 
-           <div style="padding: var(--space-4);">
-             <h4 class="text-md mb-3">Rate Card Gợi ý</h4>
-             <div class="card" style="padding: var(--space-3); display: flex; justify-content: space-between; align-items: center;">
-               <div>
-                 <p class="fw-medium text-sm">Video TikTok (1 phút)</p>
-                 <p class="text-xs text-secondary">+ Có giữ bản quyền chạy Ads</p>
-               </div>
-               <p class="fw-bold text-primary">3,000,000đ</p>
+           <!-- Portfolio Platform Tabs -->
+           <div style="background: var(--bg-surface); padding: var(--space-3) var(--space-4) 0; border-bottom: 1px solid var(--primary-100); overflow: visible;">
+             <div style="display: flex; overflow: visible;">
+               <button class="portfolio-tab-btn active" data-ptab="ptab-tiktok" style="flex: 1; padding: 10px 4px 10px; font-size: 11px; font-weight: 600; border: none; background: transparent; cursor: pointer; color: #010101; border-bottom: 2px solid #010101; display: flex; align-items: center; justify-content: center; gap: 4px; overflow: visible;">
+                 <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.83a8.18 8.18 0 0 0 4.78 1.52V6.9a4.85 4.85 0 0 1-1.01-.21z"/></svg>
+                 TikTok
+               </button>
+               <button class="portfolio-tab-btn" data-ptab="ptab-instagram" style="flex: 1; padding: 10px 4px 10px; font-size: 11px; font-weight: 600; border: none; background: transparent; cursor: pointer; color: var(--text-tertiary); border-bottom: 2px solid transparent; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                 <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); border-radius: 3px; color: white; padding: 1px;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                 Instagram
+               </button>
+               <button class="portfolio-tab-btn" data-ptab="ptab-facebook" style="flex: 1; padding: 10px 4px 10px; font-size: 11px; font-weight: 600; border: none; background: transparent; cursor: pointer; color: var(--text-tertiary); border-bottom: 2px solid transparent; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                 <svg width="13" height="13" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                 Facebook
+               </button>
              </div>
-             
-             <h4 class="text-md mb-3 mt-5">Các video nổi bật tự động lấy từ TikTok</h4>
-             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3);">
-                <!-- Placeholder Video Thumbnails -->
-                <div style="height: 200px; background: #e2e8f0; border-radius: var(--radius-lg); position: relative; overflow: hidden;">
-                  <div style="position:absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.5); color:white; padding: 2px 6px; border-radius: 4px; font-size: 10px;">▶ 250K</div>
-                </div>
-                <div style="height: 200px; background: #cbd5e1; border-radius: var(--radius-lg); position: relative; overflow: hidden;">
-                  <div style="position:absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.5); color:white; padding: 2px 6px; border-radius: 4px; font-size: 10px;">▶ 105K</div>
-                </div>
+           </div>
+            
+           <!-- TikTok Tab Content -->
+           <div id="ptab-tiktok" class="portfolio-tab-content">
+             <div class="portfolio-stats">
+               <div class="portfolio-stat-box">
+                 <p class="text-xs text-secondary">Followers</p>
+                 <h3 class="text-lg fw-bold">22.5K</h3>
+               </div>
+               <div style="width: 1px; background: var(--primary-50);"></div>
+               <div class="portfolio-stat-box">
+                 <p class="text-xs text-secondary">Avg. Views</p>
+                 <h3 class="text-lg fw-bold">140K</h3>
+               </div>
+               <div style="width: 1px; background: var(--primary-50);"></div>
+               <div class="portfolio-stat-box">
+                 <p class="text-xs text-secondary">Engagement</p>
+                 <h3 class="text-lg fw-bold text-success">12.5%</h3>
+               </div>
+             </div>
+             <div style="padding: var(--space-4);">
+               <h4 class="text-md mb-3 mt-2">Video nổi bật (TikTok)</h4>
+               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3);">
+                 <div style="height: 200px; background: #e2e8f0; border-radius: var(--radius-lg); position: relative; overflow: hidden;">
+                   <div style="position:absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.5); color:white; padding: 2px 6px; border-radius: 4px; font-size: 10px;">▶ 250K</div>
+                 </div>
+                 <div style="height: 200px; background: #cbd5e1; border-radius: var(--radius-lg); position: relative; overflow: hidden;">
+                   <div style="position:absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.5); color:white; padding: 2px 6px; border-radius: 4px; font-size: 10px;">▶ 105K</div>
+                 </div>
+               </div>
+             </div>
+           </div>
+
+           <!-- Instagram Tab Content -->
+           <div id="ptab-instagram" class="portfolio-tab-content" style="display:none;">
+             <div class="portfolio-stats">
+               <div class="portfolio-stat-box">
+                 <p class="text-xs text-secondary">Followers</p>
+                 <h3 class="text-lg fw-bold">8.2K</h3>
+               </div>
+               <div style="width: 1px; background: var(--primary-50);"></div>
+               <div class="portfolio-stat-box">
+                 <p class="text-xs text-secondary">Tương tác</p>
+                 <h3 class="text-lg fw-bold">18.3%</h3>
+               </div>
+               <div style="width: 1px; background: var(--primary-50);"></div>
+               <div class="portfolio-stat-box">
+                 <p class="text-xs text-secondary">Reach/Post</p>
+                 <h3 class="text-lg fw-bold text-success">12K</h3>
+               </div>
+             </div>
+             <div style="padding: var(--space-4);">
+               <h4 class="text-md mb-3 mt-2">Bài đăng nổi bật (Instagram)</h4>
+               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3);">
+                 <div style="height: 200px; background: linear-gradient(135deg, #fbc2eb50, #a18cd150); border-radius: var(--radius-lg); position: relative; overflow: hidden;">
+                   <div style="position:absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.5); color:white; padding: 2px 6px; border-radius: 4px; font-size: 10px;">❤️ 1.2K</div>
+                 </div>
+                 <div style="height: 200px; background: linear-gradient(135deg, #a18cd150, #fbc2eb50); border-radius: var(--radius-lg); position: relative; overflow: hidden;">
+                   <div style="position:absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.5); color:white; padding: 2px 6px; border-radius: 4px; font-size: 10px;">❤️ 890</div>
+                 </div>
+               </div>
+             </div>
+           </div>
+
+           <!-- Facebook Tab Content -->
+           <div id="ptab-facebook" class="portfolio-tab-content" style="display:none;">
+             <div class="portfolio-stats">
+               <div class="portfolio-stat-box">
+                 <p class="text-xs text-secondary">Followers</p>
+                 <h3 class="text-lg fw-bold">15.4K</h3>
+               </div>
+               <div style="width: 1px; background: var(--primary-50);"></div>
+               <div class="portfolio-stat-box">
+                 <p class="text-xs text-secondary">Avg. Reach</p>
+                 <h3 class="text-lg fw-bold">30K</h3>
+               </div>
+               <div style="width: 1px; background: var(--primary-50);"></div>
+               <div class="portfolio-stat-box">
+                 <p class="text-xs text-secondary">Tương tác</p>
+                 <h3 class="text-lg fw-bold text-success">9.2%</h3>
+               </div>
+             </div>
+             <div style="padding: var(--space-4);">
+               <h4 class="text-md mb-3 mt-2">Bài đăng nổi bật (Facebook)</h4>
+               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3);">
+                 <div style="height: 200px; background: linear-gradient(135deg, #dbeafe, #bfdbfe); border-radius: var(--radius-lg); position: relative; overflow: hidden;">
+                   <div style="position:absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.5); color:white; padding: 2px 6px; border-radius: 4px; font-size: 10px;">👍 3.4K</div>
+                 </div>
+                 <div style="height: 200px; background: linear-gradient(135deg, #bfdbfe, #dbeafe); border-radius: var(--radius-lg); position: relative; overflow: hidden;">
+                   <div style="position:absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.5); color:white; padding: 2px 6px; border-radius: 4px; font-size: 10px;">👍 2.1K</div>
+                 </div>
+               </div>
              </div>
            </div>
         </div>
+
 
         <!-- View 3: Messages -->
         <div id="view-messages" class="mobile-view">
@@ -165,13 +274,465 @@
           </div>
         </div>
 
+        <!-- View 5: Manage Jobs -->
+        <div id="view-manage" class="mobile-view">
+          <div class="mobile-header d-flex justify-between align-center" style="padding-top: 40px; border-bottom: 1px solid var(--primary-100);">
+            <h2 class="text-xl fw-bold">Job c&#7911;a t&#244;i</h2>
+          </div>
+
+          <!-- Status Tabs -->
+          <div style="background: var(--bg-surface); display: flex; border-bottom: 1px solid var(--primary-100);">
+            <button class="manage-tab-btn active" data-mtab="mtab-applying" style="flex: 1; padding: 8px 4px; font-size: 10px; font-weight: 600; border: none; background: transparent; cursor: pointer; color: var(--primary-600); border-bottom: 2px solid var(--primary-500); text-align: center; line-height: 1.3;">⏳ Đang<br>ứng tuyển</button>
+            <button class="manage-tab-btn" data-mtab="mtab-inprogress" style="flex: 1; padding: 8px 4px; font-size: 10px; font-weight: 600; border: none; background: transparent; cursor: pointer; color: var(--text-tertiary); border-bottom: 2px solid transparent; text-align: center; line-height: 1.3;">🎥 Đang<br>thực hiện</button>
+            <button class="manage-tab-btn" data-mtab="mtab-pending" style="flex: 1; padding: 8px 4px; font-size: 10px; font-weight: 600; border: none; background: transparent; cursor: pointer; color: var(--text-tertiary); border-bottom: 2px solid transparent; text-align: center; line-height: 1.3;">📤 Chờ<br>duyệt</button>
+            <button class="manage-tab-btn" data-mtab="mtab-done" style="flex: 1; padding: 8px 4px; font-size: 10px; font-weight: 600; border: none; background: transparent; cursor: pointer; color: var(--text-tertiary); border-bottom: 2px solid transparent; text-align: center; line-height: 1.3;">✅ Hoàn<br>thành</button>
+          </div>
+
+          <!-- Tab: Dang ung tuyen -->
+          <div id="mtab-applying" class="manage-tab-content" style="padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-3);">
+            <!-- Card 1 -->
+            <div style="background: var(--bg-surface); border-radius: var(--radius-xl); overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+              <div style="background: linear-gradient(135deg, #fef3c7, #fff7ed); padding: var(--space-3) var(--space-4); border-bottom: 1px solid #fde68a; display: flex; align-items: center; gap: var(--space-3);">
+                <div style="width: 36px; height: 36px; border-radius: var(--radius-md); background: linear-gradient(135deg, #f59e0b, #ef4444); flex-shrink: 0;"></div>
+                <div style="flex: 1; min-width: 0;">
+                  <h4 class="text-sm fw-bold" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Review Quán Cafe The Local</h4>
+                  <p class="text-xs text-secondary">The Local Cafe</p>
+                </div>
+                <span class="badge" style="background: #fde68a; color: #92400e; font-size: 10px; flex-shrink: 0;">⏳ Chờ duyệt</span>
+              </div>
+              <div style="padding: var(--space-3) var(--space-4);">
+                <div class="d-flex" style="gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-2);">
+                  <span style="background: var(--primary-50); color: var(--primary-600); border-radius: var(--radius-full); padding: 2px 8px; font-size: 10px; font-weight: 600;">🎵 TikTok</span>
+                  <span style="background: #f0fdf4; color: #16a34a; border-radius: var(--radius-full); padding: 2px 8px; font-size: 10px; font-weight: 600;">💰 1.500.000đ</span>
+                </div>
+                <p class="text-xs text-secondary" style="margin-bottom: 4px;">📦 1 Video (&gt;60s) + Gắn link Affiliate</p>
+                <p class="text-xs text-secondary">🗓 Nộp: 15/10/2026 &bull; ⏳ 2 ngày trước</p>
+              </div>
+            </div>
+            <!-- Card 2 -->
+            <div style="background: var(--bg-surface); border-radius: var(--radius-xl); overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+              <div style="background: linear-gradient(135deg, #fef3c7, #fff7ed); padding: var(--space-3) var(--space-4); border-bottom: 1px solid #fde68a; display: flex; align-items: center; gap: var(--space-3);">
+                <div style="width: 36px; height: 36px; border-radius: var(--radius-md); background: linear-gradient(45deg, #fbc2eb, #a18cd1); flex-shrink: 0;"></div>
+                <div style="flex: 1; min-width: 0;">
+                  <h4 class="text-sm fw-bold" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">La Roche-Posay Chống Nắng</h4>
+                  <p class="text-xs text-secondary">La Roche-Posay VN</p>
+                </div>
+                <span class="badge" style="background: #fde68a; color: #92400e; font-size: 10px; flex-shrink: 0;">⏳ Chờ duyệt</span>
+              </div>
+              <div style="padding: var(--space-3) var(--space-4);">
+                <div class="d-flex" style="gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-2);">
+                  <span style="background: var(--primary-50); color: var(--primary-600); border-radius: var(--radius-full); padding: 2px 8px; font-size: 10px; font-weight: 600;">🎵 TikTok</span>
+                  <span style="background: #f0fdf4; color: #16a34a; border-radius: var(--radius-full); padding: 2px 8px; font-size: 10px; font-weight: 600;">💰 1.500.000đ</span>
+                </div>
+                <p class="text-xs text-secondary" style="margin-bottom: 4px;">📦 1 Video Review + Unboxing</p>
+                <p class="text-xs text-secondary">🗓 Nộp: 12/10/2026 &bull; ⏳ 5 ngày trước</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab: Dang thuc hien -->
+          <div id="mtab-inprogress" class="manage-tab-content" style="display:none; padding: var(--space-4);">
+            <div style="background: var(--bg-surface); border-radius: var(--radius-xl); overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+              <div style="background: linear-gradient(135deg, var(--primary-50), #e0f2fe); padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--primary-100); display: flex; align-items: center; gap: var(--space-3);">
+                <div style="width: 36px; height: 36px; border-radius: var(--radius-md); background: linear-gradient(135deg, #10b981, #34d399); flex-shrink: 0;"></div>
+                <div style="flex: 1; min-width: 0;">
+                  <h4 class="text-sm fw-bold">CeraVe Review Sữa Rửa Mặt</h4>
+                  <p class="text-xs text-secondary">CeraVe Việt Nam</p>
+                </div>
+                <span class="badge badge-primary" style="font-size: 10px; flex-shrink: 0;">🎥 Đang làm</span>
+              </div>
+              <div style="padding: var(--space-3) var(--space-4);">
+                <div class="d-flex" style="gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-3);">
+                  <span style="background: var(--primary-50); color: var(--primary-600); border-radius: var(--radius-full); padding: 2px 8px; font-size: 10px; font-weight: 600;">🎵 TikTok</span>
+                  <span style="background: #f0fdf4; color: #16a34a; border-radius: var(--radius-full); padding: 2px 8px; font-size: 10px; font-weight: 600;">💰 2.000.000đ</span>
+                </div>
+                <p class="text-xs text-secondary" style="margin-bottom: var(--space-2);">📦 1 Video (&gt;60s) + Link Affiliate 15%</p>
+                <div style="background: linear-gradient(135deg, #fef2f2, #fff); border: 1px solid #fecaca; border-radius: var(--radius-md); padding: var(--space-3);">
+                  <p class="text-xs text-secondary mb-1">⏰ Deadline nộp video còn lại:</p>
+                  <p class="text-lg fw-bold text-danger" id="manage-countdown" style="letter-spacing: 1px;">05 ngày 14:32:10</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab: Cho duyet -->
+          <div id="mtab-pending" class="manage-tab-content" style="display:none; padding: var(--space-4);">
+            <div style="background: var(--bg-surface); border-radius: var(--radius-xl); overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+              <div style="background: linear-gradient(135deg, #ede9fe, #f5f3ff); padding: var(--space-3) var(--space-4); border-bottom: 1px solid #ddd6fe; display: flex; align-items: center; gap: var(--space-3);">
+                <div style="width: 36px; height: 36px; border-radius: var(--radius-md); background: linear-gradient(135deg, #8b5cf6, #6d28d9); flex-shrink: 0;"></div>
+                <div style="flex: 1; min-width: 0;">
+                  <h4 class="text-sm fw-bold">Biti's Hunter X Collab</h4>
+                  <p class="text-xs text-secondary">Biti's Vietnam</p>
+                </div>
+                <span class="badge" style="background: #ede9fe; color: #7c3aed; font-size: 10px; flex-shrink: 0;">📤 Chờ duyệt</span>
+              </div>
+              <div style="padding: var(--space-3) var(--space-4);">
+                <div class="d-flex" style="gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-2);">
+                  <span style="background: linear-gradient(135deg, #fbc2eb30, #a18cd130); color: #9d174d; border-radius: var(--radius-full); padding: 2px 8px; font-size: 10px; font-weight: 600;">📷 Instagram</span>
+                  <span style="background: #f0fdf4; color: #16a34a; border-radius: var(--radius-full); padding: 2px 8px; font-size: 10px; font-weight: 600;">💰 3.000.000đ</span>
+                </div>
+                <p class="text-xs text-secondary" style="margin-bottom: 4px;">📦 1 Reels + 2 Story mention</p>
+                <p class="text-xs text-secondary">📤 Đã nộp video lúc 09:15, 10/10/2026</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab: Hoan thanh -->
+          <div id="mtab-done" class="manage-tab-content" style="display:none; padding: var(--space-4);">
+            <div style="background: var(--bg-surface); border-radius: var(--radius-xl); overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+              <div style="background: linear-gradient(135deg, #d1fae5, #f0fdf4); padding: var(--space-3) var(--space-4); border-bottom: 1px solid #a7f3d0; display: flex; align-items: center; gap: var(--space-3);">
+                <div style="width: 36px; height: 36px; border-radius: var(--radius-md); background: linear-gradient(135deg, #10b981, #059669); flex-shrink: 0;"></div>
+                <div style="flex: 1; min-width: 0;">
+                  <h4 class="text-sm fw-bold">Vinamilk Summer Review</h4>
+                  <p class="text-xs text-secondary">Vinamilk</p>
+                </div>
+                <span class="badge" style="background: #d1fae5; color: #059669; font-size: 10px; flex-shrink: 0;">✅ Hoàn thành</span>
+              </div>
+              <div style="padding: var(--space-3) var(--space-4);">
+                <div class="d-flex" style="gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-2);">
+                  <span style="background: var(--primary-50); color: var(--primary-600); border-radius: var(--radius-full); padding: 2px 8px; font-size: 10px; font-weight: 600;">🎵 TikTok</span>
+                  <span style="background: #f0fdf4; color: #16a34a; border-radius: var(--radius-full); padding: 2px 8px; font-size: 10px; font-weight: 600;">💰 2.500.000đ</span>
+                </div>
+                <p class="text-xs text-secondary" style="margin-bottom: var(--space-2);">📦 1 Video Review + Livestream</p>
+                <div class="d-flex justify-between align-center" style="background: linear-gradient(135deg, #d1fae5, #ecfdf5); border-radius: var(--radius-md); padding: var(--space-2) var(--space-3);">
+                  <span class="text-xs text-secondary">💰 Thực nhận về ví</span>
+                  <span class="text-md fw-bold" style="color: var(--success-500);">+2.375.000đ</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- View 4: Apply Job -->
+        <div id="view-apply" class="mobile-view">
+          <!-- Sticky Header -->
+          <div class="mobile-header d-flex justify-between align-center" style="padding-top: 40px; border-bottom: 1px solid var(--primary-100); background: var(--bg-surface); flex-shrink: 0;">
+            <button class="btn btn-ghost text-primary p-0" id="btn-back-to-feed" style="font-size: 20px; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">⬅</button>
+            <h2 class="text-md fw-bold mx-auto">Ứng Tuyển</h2>
+            <div style="width: 30px;"></div>
+          </div>
+
+          <!-- Scrollable Content -->
+          <div style="flex: 1; overflow-y: auto; padding: var(--space-4) var(--space-5);">
+            <!-- Header Card -->
+            <div class="card mb-4" style="padding: var(--space-3); background: var(--bg-main); border: 1px solid var(--primary-100); border-left: 4px solid var(--primary-500);">
+              <h3 class="text-md fw-bold mb-2">Review Quán Cafe The Local</h3>
+              <ul class="text-xs text-secondary" style="list-style: none; padding: 0; margin: 0;">
+                <li class="mb-1">📍 Nền tảng đăng: <b>TikTok</b></li>
+                <li class="mb-1">⏰ Hạn chót nộp video: <b class="text-danger">25/10/2026</b></li>
+                <li>📦 Sản phẩm: <b>1 Video (&gt;60s) + Gắn link Affiliate</b></li>
+              </ul>
+              <div style="border-top: 1px dashed var(--primary-100); margin-top: var(--space-2); padding-top: var(--space-2);">
+                <a href="#" id="btn-view-brief" class="text-xs" style="color: var(--primary-500); text-decoration: underline;">Xem lại chi tiết chiến dịch →</a>
+              </div>
+            </div>
+            
+            <!-- Section 1: Portfolio -->
+            <div class="d-flex justify-between align-center mb-4">
+              <h4 class="text-sm fw-bold">1. Hồ sơ đính kèm</h4>
+              <button class="btn btn-ghost btn-sm text-primary" style="font-size: 11px; padding: 2px 6px; height: auto; border: 1px solid var(--primary-100);" onclick="showToast('Đã đồng bộ dữ liệu mới nhất từ MXH!', 'success')">🔄 Đồng bộ</button>
+            </div>
+            
+            <div style="position: relative; margin-top: 15px; margin-bottom: var(--space-4);">
+              <span id="portfolio-auto-badge" class="badge" style="position: absolute; top: -10px; left: 12px; font-size: 10px; background: linear-gradient(45deg, #f59e0b, #ef4444); color: white; padding: 2px 8px; z-index: 10; border: 2px solid var(--bg-main); border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">✨ Auto-select (Khuyên dùng)</span>
+              <select id="portfolio-select" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; z-index: 20; cursor: pointer; appearance: none; -webkit-appearance: none;">
+                <option value="tiktok-food" selected>🎵 TikTok - Ẩm thực (Khuyên dùng)</option>
+                <option value="insta-fashion">📷 Instagram - Thời trang</option>
+                <option value="fb-general">📘 Facebook - General</option>
+              </select>
+              <div class="card d-flex align-center justify-between" style="padding: 16px 12px; background: var(--primary-50); border: 1.5px solid var(--primary-400); border-radius: var(--radius-lg); box-shadow: 0 4px 6px -1px rgba(14, 165, 233, 0.1);">
+                <div class="d-flex align-center gap-3">
+                  <div id="portfolio-avatar-bg" class="avatar avatar-sm" style="background: linear-gradient(135deg, #f59e0b, #ef4444); position: relative;">
+                     <div id="portfolio-icon" style="position: absolute; bottom: -4px; right: -4px; background: black; color: white; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 10px; border: 2px solid var(--primary-50);">🎵</div>
+                  </div>
+                  <div>
+                    <h4 id="portfolio-title" class="text-sm fw-bold" style="color: var(--text-main); margin-bottom: 2px;">TikTok - Ẩm thực</h4>
+                    <p id="portfolio-stats" class="text-xs text-secondary mb-0">120K Followers • 50K View TB</p>
+                  </div>
+                </div>
+                <div class="text-secondary" style="display: flex; align-items: center;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 2: Quotation -->
+            <h4 class="text-sm fw-bold mb-2">2. Mức thù lao (VNĐ)</h4>
+            <p class="text-xs text-secondary mb-2">Job này có giá cố định, bạn không cần phải báo giá.</p>
+            <div class="form-group mb-2">
+              <input type="text" class="mobile-input fw-bold text-primary" id="apply-budget-input" value="1.500.000đ" readonly style="font-size: 16px; background-color: var(--bg-surface-hover); cursor: not-allowed; text-align: center;">
+            </div>
+            <div class="card" style="background: var(--primary-50); border: none; padding: var(--space-3); margin-bottom: var(--space-4);">
+              <div class="d-flex justify-between text-xs mb-1">
+                <span class="text-secondary">Phí nền tảng (5%):</span>
+                <span class="fw-bold text-danger" id="fee-amount">- 75.000đ</span>
+              </div>
+              <div class="d-flex justify-between text-sm mt-2 pt-2" style="border-top: 1px dashed var(--primary-200);">
+                <span class="fw-bold">Thực nhận:</span>
+                <span class="fw-bold text-primary" id="net-amount">1.425.000đ</span>
+              </div>
+            </div>
+
+            <!-- Section 3: Cover Letter -->
+            <h4 class="text-sm fw-bold mb-2">3. Lời chào (Cover Letter)</h4>
+            <div class="form-group mb-4">
+              <textarea class="mobile-input" rows="4" placeholder="Hãy chia sẻ lý do tại sao bạn phù hợp với chiến dịch này, ý tưởng video của bạn là gì..." style="resize: none; font-family: inherit;"></textarea>
+            </div>
+          </div>
+
+          <!-- Sticky Footer -->
+          <div style="flex-shrink: 0; padding: var(--space-4) var(--space-5); border-top: 1px solid var(--primary-100); background: var(--bg-surface);">
+            <label class="d-flex align-start gap-2 mb-2 cursor-pointer">
+              <input type="checkbox" class="apply-checkbox" style="width: 16px; height: 16px; margin-top: 2px; accent-color: var(--primary-500);">
+              <span class="text-xs text-secondary" style="line-height: 1.4; flex: 1;">Tôi đã đọc kỹ Yêu cầu công việc (Brief) và cam kết thực hiện đúng tiến độ.</span>
+            </label>
+            <label class="d-flex align-start gap-2 mb-3 cursor-pointer">
+              <input type="checkbox" class="apply-checkbox" style="width: 16px; height: 16px; margin-top: 2px; accent-color: var(--primary-500);">
+              <span class="text-xs text-secondary" style="line-height: 1.4; flex: 1;">Tôi đồng ý với Chính sách Ví tạm giữ của Creator Connect.</span>
+            </label>
+            <button class="btn btn-primary w-full" id="btn-confirm-apply" style="border-radius: var(--radius-full); font-size: 16px; padding: 12px; opacity: 0.5; pointer-events: none;" disabled>🚀 Gửi Ứng Tuyển</button>
+          </div>
+
+          <!-- Apply Success Sheet (Inside View) -->
+          <div class="bottom-sheet-overlay" id="applySuccessSheet" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 0; transform: none; z-index: 200;">
+            <div class="bottom-sheet">
+              <div class="bottom-sheet-drag"></div>
+              <div class="text-center">
+                <div style="font-size: 40px; margin-bottom: var(--space-4);">🎉</div>
+                <h3 class="text-xl mb-2">Ứng tuyển thành công!</h3>
+                <p class="text-secondary text-sm mb-6">Bạn đã gửi Portfolio đến nhãn hàng. Nhà tuyển dụng sẽ xem xét và phản hồi qua phần Tin nhắn.</p>
+                <button class="btn btn-primary close-sheet" style="width: 100%; border-radius: var(--radius-full);">Tuyệt vời, quay lại Feed</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- View 6: Withdraw -->
+        <div id="view-withdraw" class="mobile-view">
+          <!-- Sticky Header -->
+          <div style="padding: 44px 20px 16px; border-bottom: 1px solid rgba(99,102,241,0.12); background: white; position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;">
+            <button class="btn-back-to-portfolio" style="background: #f0f0f8; border: none; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; color: #4c1d95;">←</button>
+            <h2 style="font-size: 16px; font-weight: 700; color: #1e1b4b; margin: 0;">Rút tiền về thẻ</h2>
+            <div style="width: 36px;"></div>
+          </div>
+
+          <!-- Scrollable Content -->
+          <div style="flex: 1; overflow-y: auto; padding: 20px 20px 120px;">
+
+            <!-- Balance Hero Banner -->
+            <div style="background: linear-gradient(135deg, #1e1b4b, #4c1d95); border-radius: 20px; padding: 24px 20px; margin-bottom: 20px; text-align: center; position: relative; overflow: hidden;">
+              <div style="position: absolute; top: -30px; left: -30px; width: 120px; height: 120px; border-radius: 50%; background: rgba(255,255,255,0.05); pointer-events: none;"></div>
+              <div style="position: absolute; bottom: -20px; right: -20px; width: 90px; height: 90px; border-radius: 50%; background: rgba(255,255,255,0.06); pointer-events: none;"></div>
+              <p style="color: rgba(255,255,255,0.6); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; position: relative;">Số dư khả dụng</p>
+              <h1 style="color: white; font-size: 32px; font-weight: 800; margin-bottom: 4px; position: relative;">2.500.000đ</h1>
+              <p style="color: rgba(255,255,255,0.4); font-size: 11px; position: relative;">≈ Có thể rút toàn bộ</p>
+            </div>
+
+            <!-- Amount Input Section -->
+            <div style="background: white; border-radius: 16px; padding: 20px; margin-bottom: 16px; box-shadow: 0 2px 12px rgba(99,102,241,0.08);">
+              <p style="font-size: 11px; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;">💸 Số tiền muốn rút</p>
+              <div style="position: relative;">
+                <input type="number" placeholder="0" value="2500000"
+                  style="width: 100%; border: none; outline: none; font-size: 28px; font-weight: 800; color: #1e1b4b; background: transparent; padding: 0; box-sizing: border-box;"
+                />
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 10px; padding-top: 12px; border-top: 1px solid #e5e7eb;">
+                  <span style="font-size: 11px; color: #9ca3af;">Tối thiểu: 100.000đ</span>
+                  <button style="background: #ede9fe; color: #6d28d9; border: none; border-radius: 20px; padding: 4px 12px; font-size: 11px; font-weight: 700; cursor: pointer;">Rút toàn bộ</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bank Account Form (hidden by default) -->
+            <div id="withdraw-bank-form" style="display: none; background: white; border-radius: 16px; padding: 20px; margin-bottom: 16px; box-shadow: 0 2px 12px rgba(99,102,241,0.08);">
+              <p style="font-size: 11px; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px;">🏦 Thêm tài khoản nhận tiền</p>
+              <div style="margin-bottom: 14px;">
+                <label style="font-size: 11px; font-weight: 600; color: #6b7280; display: block; margin-bottom: 6px;">Ngân hàng</label>
+                <input type="text" class="mobile-input" placeholder="VD: Vietcombank" style="background: #f9fafb;">
+              </div>
+              <div style="margin-bottom: 14px;">
+                <label style="font-size: 11px; font-weight: 600; color: #6b7280; display: block; margin-bottom: 6px;">Số tài khoản</label>
+                <input type="text" class="mobile-input" placeholder="1903xxxxxxxxxx" style="background: #f9fafb;">
+              </div>
+              <div style="margin-bottom: 16px;">
+                <label style="font-size: 11px; font-weight: 600; color: #6b7280; display: block; margin-bottom: 6px;">Tên chủ tài khoản</label>
+                <input type="text" class="mobile-input" placeholder="NGUYEN VAN A" style="background: #f9fafb; text-transform: uppercase;">
+              </div>
+              <button id="btn-save-bank" style="width: 100%; background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; border: none; border-radius: 12px; padding: 13px; font-size: 14px; font-weight: 700; cursor: pointer;">Lưu thông tin ngân hàng</button>
+            </div>
+
+            <!-- Bank Account Display -->
+            <div id="withdraw-bank-display" style="background: white; border-radius: 16px; padding: 20px; margin-bottom: 16px; box-shadow: 0 2px 12px rgba(99,102,241,0.08);">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+                <p style="font-size: 11px; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: 0.5px; margin: 0;">🏦 Tài khoản nhận tiền</p>
+                <button id="btn-edit-bank" style="background: #ede9fe; color: #6d28d9; border: none; border-radius: 8px; padding: 4px 10px; font-size: 11px; font-weight: 600; cursor: pointer;">Thay đổi</button>
+              </div>
+              <div style="display: flex; align-items: center; gap: 14px; background: #f5f3ff; border-radius: 12px; padding: 14px;">
+                <div style="width: 46px; height: 46px; background: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); font-weight: 800; font-size: 12px; color: #059669; flex-shrink: 0;">VCB</div>
+                <div>
+                  <p style="font-size: 14px; font-weight: 700; color: #1e1b4b; margin-bottom: 2px;">Vietcombank</p>
+                  <p style="font-size: 12px; color: #6b7280; margin: 0;">1903 **** **** 889 • NGUYEN VAN A</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Fee Summary -->
+            <div style="background: white; border-radius: 16px; padding: 20px; box-shadow: 0 2px 12px rgba(99,102,241,0.08);">
+              <p style="font-size: 11px; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px;">📋 Tổng kết</p>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed #e5e7eb;">
+                <span style="font-size: 13px; color: #6b7280;">Số tiền rút</span>
+                <span style="font-size: 13px; font-weight: 600; color: #1e1b4b;">2.500.000đ</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed #e5e7eb;">
+                <span style="font-size: 13px; color: #6b7280;">Phí rút tiền</span>
+                <span style="font-size: 13px; font-weight: 600; color: #10b981;">0đ (Miễn phí)</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0 0;">
+                <span style="font-size: 14px; font-weight: 700; color: #1e1b4b;">Thực nhận</span>
+                <span style="font-size: 18px; font-weight: 800; color: #059669;">2.500.000đ</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Sticky Footer Button -->
+          <div style="padding: 16px 20px 24px; background: white; border-top: 1px solid #e5e7eb; flex-shrink: 0;">
+            <button style="width: 100%; background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; border: none; border-radius: 14px; padding: 16px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(99,102,241,0.4);"
+              onclick="showToast('Tạo lệnh rút tiền thành công!', 'success'); setTimeout(() => document.querySelector('.btn-back-to-portfolio').click(), 1500);">
+              ✅ Xác nhận Rút tiền
+            </button>
+            <p style="text-align: center; font-size: 11px; color: #9ca3af; margin-top: 10px; margin-bottom: 0;">Thời gian xử lý: 1–3 ngày làm việc</p>
+          </div>
+        </div>
+
+
+        <!-- View 7: Transactions -->
+        <div id="view-transactions" class="mobile-view">
+          <div class="mobile-header d-flex justify-between align-center" style="padding-top: 40px; border-bottom: 1px solid var(--primary-100); background: var(--bg-surface); position: sticky; top: 0; z-index: 100;">
+            <button class="btn btn-ghost text-primary p-0 btn-back-to-portfolio" style="font-size: 20px; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">⬅</button>
+            <h2 class="text-md fw-bold mx-auto">Lịch sử giao dịch</h2>
+            <div style="width: 30px;"></div>
+          </div>
+
+          <!-- Transaction List -->
+          <div style="padding: var(--space-4);">
+            <p class="text-xs fw-bold text-secondary mb-3">THÁNG 10, 2026</p>
+            
+            <div class="card mb-3" style="border: none; padding: var(--space-3); display: flex; align-items: center; justify-content: space-between;">
+              <div class="d-flex align-center gap-3">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: #d1fae5; color: #10b981; display: flex; align-items: center; justify-content: center; font-size: 18px;">⬇️</div>
+                <div>
+                  <h4 class="text-sm fw-bold">Thu nhập: Vinamilk Summer</h4>
+                  <p class="text-xs text-secondary mb-0">15/10/2026 • 14:30</p>
+                </div>
+              </div>
+              <span class="text-md fw-bold text-success">+2.375.000đ</span>
+            </div>
+
+            <div class="card mb-3" style="border: none; padding: var(--space-3); display: flex; align-items: center; justify-content: space-between;">
+              <div class="d-flex align-center gap-3">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: #fef3c7; color: #f59e0b; display: flex; align-items: center; justify-content: center; font-size: 18px;">⬆️</div>
+                <div>
+                  <h4 class="text-sm fw-bold">Rút tiền về Vietcombank</h4>
+                  <p class="text-xs text-secondary mb-0">16/10/2026 • 09:15 <span style="color: #f59e0b; margin-left: 4px;">(Đang xử lý)</span></p>
+                </div>
+              </div>
+              <span class="text-md fw-bold">-2.375.000đ</span>
+            </div>
+            
+            <p class="text-xs fw-bold text-secondary mb-3 mt-4">THÁNG 09, 2026</p>
+
+            <div class="card mb-3" style="border: none; padding: var(--space-3); display: flex; align-items: center; justify-content: space-between;">
+              <div class="d-flex align-center gap-3">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: #d1fae5; color: #10b981; display: flex; align-items: center; justify-content: center; font-size: 18px;">⬇️</div>
+                <div>
+                  <h4 class="text-sm fw-bold">Thu nhập: L'Oreal Paris</h4>
+                  <p class="text-xs text-secondary mb-0">20/09/2026 • 10:00</p>
+                </div>
+              </div>
+              <span class="text-md fw-bold text-success">+3.500.000đ</span>
+            </div>
+          </div>
+        </div>
+        <!-- View 8: Edit Profile -->
+        <div id="view-edit-profile" class="mobile-view">
+          <div style="padding: 44px 20px 16px; border-bottom: 1px solid rgba(99,102,241,0.12); background: white; position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;">
+            <button class="btn-back-to-portfolio" style="background: #f0f0f8; border: none; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; color: #4c1d95;">←</button>
+            <h2 style="font-size: 16px; font-weight: 700; color: #1e1b4b; margin: 0;">Cập nhật Hồ Sơ</h2>
+            <div style="width: 36px;"></div>
+          </div>
+
+          <div style="flex: 1; overflow-y: auto; padding: 20px;">
+
+            <!-- Basic Info -->
+            <div style="background: white; border-radius: 16px; padding: 20px; margin-bottom: 16px; box-shadow: 0 2px 12px rgba(99,102,241,0.08);">
+              <p style="font-size: 11px; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px;">👤 Thông tin cơ bản</p>
+              <div style="margin-bottom: 14px;">
+                <label style="font-size: 11px; font-weight: 600; color: #6b7280; display: block; margin-bottom: 6px;">Tên hiển thị</label>
+                <input type="text" class="mobile-input" value="Đức Dược Sĩ" style="background: #f9fafb;">
+              </div>
+              <div style="margin-bottom: 0;">
+                <label style="font-size: 11px; font-weight: 600; color: #6b7280; display: block; margin-bottom: 6px;">Chức danh / Lĩnh vực</label>
+                <input type="text" class="mobile-input" value="Chuyên gia Da liễu | Skincare Reviewer" style="background: #f9fafb;">
+              </div>
+            </div>
+
+            <!-- Social Links -->
+            <div style="background: white; border-radius: 16px; padding: 20px; margin-bottom: 16px; box-shadow: 0 2px 12px rgba(99,102,241,0.08);">
+              <p style="font-size: 11px; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px;">🔗 Liên kết mạng xã hội</p>
+              <div style="margin-bottom: 14px;">
+                <label style="font-size: 11px; font-weight: 600; color: #6b7280; display: block; margin-bottom: 6px;">TikTok</label>
+                <input type="text" class="mobile-input" value="tiktok.com/@ducduocsi" style="background: #f9fafb;">
+              </div>
+              <div style="margin-bottom: 14px;">
+                <label style="font-size: 11px; font-weight: 600; color: #6b7280; display: block; margin-bottom: 6px;">Instagram</label>
+                <input type="text" class="mobile-input" placeholder="instagram.com/yourname" style="background: #f9fafb;">
+              </div>
+              <div style="margin-bottom: 0;">
+                <label style="font-size: 11px; font-weight: 600; color: #6b7280; display: block; margin-bottom: 6px;">Facebook</label>
+                <input type="text" class="mobile-input" placeholder="facebook.com/yourname" style="background: #f9fafb;">
+              </div>
+            </div>
+
+            <!-- Legal Info -->
+            <div style="background: white; border-radius: 16px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(99,102,241,0.08);">
+              <p style="font-size: 11px; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">🪪 Thông tin pháp lý</p>
+              <p style="font-size: 10px; color: #9ca3af; margin-bottom: 16px;">Dùng để ký E-Contract</p>
+              <div style="margin-bottom: 14px;">
+                <label style="font-size: 11px; font-weight: 600; color: #6b7280; display: block; margin-bottom: 6px;">Họ và tên thật (theo CCCD) <span style="color:red">*</span></label>
+                <input type="text" class="mobile-input" placeholder="NGUYEN VAN A" style="background: #f9fafb; text-transform: uppercase;">
+              </div>
+              <div style="margin-bottom: 14px;">
+                <label style="font-size: 11px; font-weight: 600; color: #6b7280; display: block; margin-bottom: 6px;">Số CMND / CCCD <span style="color:red">*</span></label>
+                <input type="text" class="mobile-input" placeholder="Nhập 12 số CCCD" style="background: #f9fafb;">
+              </div>
+              <div style="margin-bottom: 0;">
+                <label style="font-size: 11px; font-weight: 600; color: #6b7280; display: block; margin-bottom: 6px;">Mã số thuế cá nhân (Tuỳ chọn)</label>
+                <input type="text" class="mobile-input" placeholder="Phục vụ xuất hoá đơn / khấu trừ" style="background: #f9fafb;">
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Sticky Save Button -->
+          <div style="padding: 16px 20px 24px; background: white; border-top: 1px solid #e5e7eb; flex-shrink: 0;">
+            <button id="btn-save-portfolio" style="width: 100%; background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; border: none; border-radius: 14px; padding: 16px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(99,102,241,0.4);">
+              💾 Lưu thay đổi
+            </button>
+          </div>
+        </div>
+
       </div>
-      
-      <!-- Bottom Navigation -->
+
+      <!-- Bottom Navigation (4 tabs) -->
       <nav class="mobile-nav">
         <div class="nav-item active" data-target="view-feed">
           <div class="nav-item-icon">🏠</div>
           <span>Việc Làm</span>
+        </div>
+        <div class="nav-item" data-target="view-manage">
+          <div class="nav-item-icon">💼</div>
+          <span>Quản lý</span>
         </div>
         <div class="nav-item" data-target="view-messages">
           <div class="nav-item-icon">💬</div>
@@ -179,7 +740,7 @@
         </div>
         <div class="nav-item" data-target="view-portfolio">
           <div class="nav-item-icon">👤</div>
-          <span>Hồ Sơ (CV)</span>
+          <span>Hồ Sơ</span>
         </div>
       </nav>
 
@@ -187,18 +748,111 @@
   </div>
 
   <!-- Bottom Sheet Overlays targeting within Simulator -->
-  <div class="bottom-sheet-overlay" id="applySuccessSheet" style="border-radius: 40px; overflow: hidden; width: 375px; height: 812px; left: 50%; top: 50%; transform: translate(-50%, -50%); position: fixed;">
-    <div class="bottom-sheet">
+  <!-- 1. Edit Portfolio Sheet -->
+  <div class="bottom-sheet-overlay" id="editPortfolioSheet" style="border-radius: 40px; overflow: hidden; width: 375px; height: 812px; left: 50%; top: 50%; transform: translate(-50%, -50%); position: fixed;">
+    <div class="bottom-sheet" style="height: 80%; display: flex; flex-direction: column;">
       <div class="bottom-sheet-drag"></div>
-      <div class="text-center">
-        <div style="font-size: 40px; margin-bottom: var(--space-4);">🎉</div>
-        <h3 class="text-xl mb-2">Ứng tuyển thành công!</h3>
-        <p class="text-secondary text-sm mb-6">Bạn đã gửi Portfolio đến nhãn hàng. Nhà tuyển dụng sẽ xem xét và phản hồi qua phần Tin nhắn.</p>
-        <button class="btn btn-primary close-sheet" style="width: 100%; border-radius: var(--radius-full);">Tuyệt vời, quay lại Feed</button>
+      <h3 class="text-lg fw-bold mb-4 text-center">Cập nhật Hồ Sơ</h3>
+      
+      <div style="flex-grow: 1; overflow-y: auto; padding-right: 4px;" class="hide-scrollbar">
+        <!-- Section 1: Basic Info -->
+        <h4 class="text-sm fw-bold text-primary mb-2 mt-2">Thông tin Cơ bản & MXH</h4>
+        <div class="form-group mb-3">
+          <label class="text-xs fw-bold mb-1 d-block">Tên hiển thị</label>
+          <input type="text" class="mobile-input" value="Đức Dược Sĩ">
+        </div>
+        <div class="form-group mb-3">
+          <label class="text-xs fw-bold mb-1 d-block">Chức danh / Lĩnh vực</label>
+          <input type="text" class="mobile-input" value="Chuyên gia Da liễu | Skincare Reviewer">
+        </div>
+        <div class="form-group mb-3">
+          <label class="text-xs fw-bold mb-1 d-block">Liên kết TikTok</label>
+          <div class="input-with-icon">
+            <span>🎵</span>
+            <input type="text" class="mobile-input pl-5" value="tiktok.com/@ducduocsi">
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label class="text-xs fw-bold mb-1 d-block">Liên kết Facebook</label>
+          <div class="input-with-icon">
+            <span>📘</span>
+            <input type="text" class="mobile-input pl-5" placeholder="facebook.com/yourname">
+          </div>
+        </div>
+        <div class="form-group mb-4">
+          <label class="text-xs fw-bold mb-1 d-block">Liên kết Instagram</label>
+          <div class="input-with-icon">
+            <span>📷</span>
+            <input type="text" class="mobile-input pl-5" placeholder="instagram.com/yourname">
+          </div>
+        </div>
+
+        <!-- Section 2: Legal Info -->
+        <h4 class="text-sm fw-bold text-primary mb-2 mt-4 pt-3" style="border-top: 1px dashed var(--primary-100);">Thông tin Pháp lý (Dùng ký E-Contract)</h4>
+        <div class="form-group mb-3">
+          <label class="text-xs fw-bold mb-1 d-block">Họ và tên thật (Theo CCCD) <span style="color:red">*</span></label>
+          <input type="text" class="mobile-input" placeholder="VD: NGUYEN VAN A">
+        </div>
+        <div class="form-group mb-3">
+          <label class="text-xs fw-bold mb-1 d-block">Số CMND / CCCD <span style="color:red">*</span></label>
+          <input type="text" class="mobile-input" placeholder="Nhập 12 số CCCD">
+        </div>
+        <div class="form-group mb-4">
+          <label class="text-xs fw-bold mb-1 d-block">Mã số thuế cá nhân (Tuỳ chọn)</label>
+          <input type="text" class="mobile-input" placeholder="Phục vụ xuất hoá đơn/khấu trừ">
+        </div>
+        </div>
+      </div>
+
+      <div class="mt-3 pt-3" style="border-top: 1px solid var(--primary-100);">
+        <button class="btn btn-primary w-full" id="btn-save-portfolio" style="border-radius: var(--radius-full);">Lưu thay đổi</button>
       </div>
     </div>
   </div>
 
-  <script src="assets/js/main.js"></script>
+  <!-- Brief Detail Sheet -->
+  <div class="bottom-sheet-overlay" id="briefSheet" style="border-radius: 40px; overflow: hidden; width: 375px; height: 812px; left: 50%; top: 50%; transform: translate(-50%, -50%); position: fixed;">
+    <div class="bottom-sheet" style="height: 85%; display: flex; flex-direction: column; padding: 0;">
+      <div class="bottom-sheet-drag" style="margin-top: var(--space-4);"></div>
+      <div class="d-flex justify-between align-center px-5 pb-3" style="padding: 0 var(--space-5) var(--space-3);">
+        <h3 class="text-md fw-bold">Chi tiết Chiến dịch</h3>
+        <button class="close-sheet" style="background: var(--bg-surface-hover); border: none; width: 30px; height: 30px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 16px;">✕</button>
+      </div>
+      <div style="flex-grow: 1; overflow-y: auto; padding: 0 var(--space-5) var(--space-5);" class="hide-scrollbar">
+        <div class="card mb-3" style="background: linear-gradient(135deg, #fbc2eb20, #a18cd120); border: none;">
+          <h4 class="text-sm fw-bold mb-1">📋 Tên chiến dịch</h4>
+          <p class="text-xs text-secondary">Review Quán Cafe The Local – Bộ sưu tập Hè 2026</p>
+        </div>
+        <h4 class="text-xs fw-bold text-primary mb-2 mt-3">🎯 Mục tiêu chiến dịch</h4>
+        <p class="text-xs text-secondary mb-3">Tăng nhận diện thương hiệu tại thị trường TP.HCM. Mục tiêu đạt tối thiểu <b>500K lượt xem</b> trong 7 ngày đầu sau khi đăng.</p>
+        <h4 class="text-xs fw-bold text-primary mb-2">📦 Yêu cầu sản phẩm nội dung</h4>
+        <ul class="text-xs text-secondary mb-3" style="padding-left: 16px; line-height: 1.8;">
+          <li>1 Video TikTok dài <b>tối thiểu 60 giây</b></li>
+          <li>Gắn link <b>Affiliate</b> vào phần mô tả video</li>
+          <li>Sử dụng hashtag <b>#TheLocalCafe #CreatorConnect</b></li>
+          <li>Không được nhắc đến đối thủ cạnh tranh</li>
+        </ul>
+        <h4 class="text-xs fw-bold text-primary mb-2">🎬 Gợi ý kịch bản</h4>
+        <p class="text-xs text-secondary mb-3">Mở đầu bằng cảnh không khí quán → giới thiệu 1-2 món đặc trưng → trải nghiệm thật sự của bạn → Call-to-action đến link affiliate cuối video.</p>
+        <h4 class="text-xs fw-bold text-primary mb-2">⏰ Timeline</h4>
+        <div class="card" style="border: none; background: var(--primary-50); padding: var(--space-3);">
+          <div class="d-flex justify-between text-xs mb-2" style="padding: var(--space-2) 0; border-bottom: 1px dashed var(--primary-200);">
+            <span class="text-secondary">📩 Nhận Brief</span>
+            <span class="fw-bold">01/10/2026</span>
+          </div>
+          <div class="d-flex justify-between text-xs mb-2" style="padding: var(--space-2) 0; border-bottom: 1px dashed var(--primary-200);">
+            <span class="text-secondary">🎬 Deadline quay dựng</span>
+            <span class="fw-bold">20/10/2026</span>
+          </div>
+          <div class="d-flex justify-between text-xs" style="padding: var(--space-2) 0;">
+            <span class="text-secondary">📤 Deadline nộp video</span>
+            <span class="fw-bold text-danger">25/10/2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js?v=20260417c"></script>
 </body>
 </html>

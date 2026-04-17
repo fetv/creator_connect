@@ -85,6 +85,29 @@
           </div>
         </div>
 
+        <!-- Chart Section Placeholder -->
+        <div class="card mb-6" style="padding: var(--space-6);">
+          <div class="d-flex justify-between align-center mb-4">
+            <h3 class="text-xl fw-medium">Phân tích Hiệu suất</h3>
+            <select class="form-control" style="width: 150px; padding: var(--space-2);"><option>7 ngày qua</option><option>Tháng này</option></select>
+          </div>
+          <!-- Fake Chart Bar/Lines using CSS -->
+          <div style="height: 250px; display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-4); padding-top: var(--space-4); border-bottom: 1px solid var(--primary-100); border-left: 1px solid var(--primary-100);">
+             <div style="width: 100%; height: 40%; background: var(--primary-200); border-radius: 4px 4px 0 0; transition: height 0.5s;"></div>
+             <div style="width: 100%; height: 60%; background: var(--primary-300); border-radius: 4px 4px 0 0; transition: height 0.5s;"></div>
+             <div style="width: 100%; height: 35%; background: var(--primary-200); border-radius: 4px 4px 0 0; transition: height 0.5s;"></div>
+             <div style="width: 100%; height: 80%; background: var(--gradient-primary); border-radius: 4px 4px 0 0; transition: height 0.5s; position: relative;">
+               <div style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%); background: var(--text-primary); color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold;">Đỉnh</div>
+             </div>
+             <div style="width: 100%; height: 50%; background: var(--primary-400); border-radius: 4px 4px 0 0; transition: height 0.5s;"></div>
+             <div style="width: 100%; height: 70%; background: var(--primary-500); border-radius: 4px 4px 0 0; transition: height 0.5s;"></div>
+             <div style="width: 100%; height: 90%; background: var(--gradient-vibrant); border-radius: 4px 4px 0 0; transition: height 0.5s;"></div>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-top: var(--space-2); color: var(--text-tertiary); font-size: var(--text-xs);">
+             <span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span>
+          </div>
+        </div>
+
         <!-- Ongoing Campaign Management -->
         <div class="mb-6">
           <div class="d-flex justify-between align-center mb-4">
@@ -92,62 +115,70 @@
             <a href="#" class="text-sm text-primary">Xem tất cả ></a>
           </div>
 
-          <div class="card">
-            <!-- Table Header (CSS Grid for simplicity) -->
-            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; padding: var(--space-4) var(--space-5); border-bottom: 2px solid var(--primary-50); background: var(--bg-surface-hover); font-size: var(--text-sm); font-weight: var(--font-weight-medium); color: var(--text-secondary);">
-              <div>KOC / KOL</div>
-              <div>Chiến dịch</div>
-              <div>Chi phí (Escrow)</div>
-              <div>Trạng thái</div>
-              <div class="text-right">Hành động</div>
-            </div>
+          <div class="card table-wrapper">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>KOC / KOL</th>
+                  <th>Chiến dịch</th>
+                  <th>Chi phí (Escrow)</th>
+                  <th>Trạng thái</th>
+                  <th class="text-right">Hành động</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Row 1 -->
+                <tr>
+                  <td>
+                    <div class="d-flex align-center gap-3">
+                      <div class="avatar avatar-sm" style="background: linear-gradient(45deg, #fbc2eb 0%, #a18cd1 100%);"></div>
+                      <div>
+                        <p class="fw-medium">Thanh Trúc</p>
+                        <p class="text-xs text-secondary">food.reviewer</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-sm">Review Quán Lẩu Mới</td>
+                  <td class="text-sm fw-medium">1,500,000đ</td>
+                  <td><span class="badge badge-warning">Chờ nộp Video</span></td>
+                  <td class="text-right"><button class="btn btn-outline btn-sm">Nhắc nhở</button></td>
+                </tr>
 
-            <!-- Table Rows -->
-            <!-- Row 1 -->
-            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; padding: var(--space-4) var(--space-5); border-bottom: 1px solid var(--primary-50); align-items: center; transition: background var(--transition-fast);" class="hover-bg-light">
-              <div class="d-flex align-center gap-3">
-                <div class="avatar avatar-sm" style="background: linear-gradient(45deg, #fbc2eb 0%, #a18cd1 100%);"></div>
-                <div>
-                  <p class="fw-medium">Thanh Trúc</p>
-                  <p class="text-xs text-secondary">food.reviewer</p>
-                </div>
-              </div>
-              <div class="text-sm">Review Quán Lẩu Mới</div>
-              <div class="text-sm fw-medium">1,500,000đ</div>
-              <div><span class="badge badge-warning">Chờ nộp Video</span></div>
-              <div class="text-right"><button class="btn btn-outline btn-sm">Nhắc nhở</button></div>
-            </div>
+                <!-- Row 2 -->
+                <tr>
+                  <td>
+                    <div class="d-flex align-center gap-3">
+                      <div class="avatar avatar-sm" style="background: linear-gradient(135deg, #0ea5e9, #38bdf8);"></div>
+                      <div>
+                        <p class="fw-medium">Đức Dược Sĩ</p>
+                        <p class="text-xs text-secondary">duc.skincare</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-sm">Kem chống nắng mùa hè</td>
+                  <td class="text-sm fw-medium">3,000,000đ</td>
+                  <td><span class="badge badge-escrow">Chờ Duyệt Video</span></td>
+                  <td class="text-right"><button class="btn btn-primary btn-sm">Xem & Duyệt</button></td>
+                </tr>
 
-            <!-- Row 2 -->
-            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; padding: var(--space-4) var(--space-5); border-bottom: 1px solid var(--primary-50); align-items: center; transition: background var(--transition-fast);" class="hover-bg-light">
-              <div class="d-flex align-center gap-3">
-                <div class="avatar avatar-sm" style="background: linear-gradient(135deg, #0ea5e9, #38bdf8);"></div>
-                <div>
-                  <p class="fw-medium">Đức Dược Sĩ</p>
-                  <p class="text-xs text-secondary">duc.skincare</p>
-                </div>
-              </div>
-              <div class="text-sm">Kem chống nắng mùa hè</div>
-              <div class="text-sm fw-medium">3,000,000đ</div>
-              <div><span class="badge badge-escrow">Chờ Duyệt Video</span></div>
-              <div class="text-right"><button class="btn btn-primary btn-sm">Xem & Duyệt</button></div>
-            </div>
-
-            <!-- Row 3 -->
-            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; padding: var(--space-4) var(--space-5); align-items: center; transition: background var(--transition-fast);" class="hover-bg-light">
-              <div class="d-flex align-center gap-3">
-                <div class="avatar avatar-sm" style="background: linear-gradient(45deg, #84fab0 0%, #8fd3f4 100%);"></div>
-                <div>
-                  <p class="fw-medium">Hải Nguyễn</p>
-                  <p class="text-xs text-secondary">hai.tech</p>
-                </div>
-              </div>
-              <div class="text-sm">Sạc dự phòng 20000mAh</div>
-              <div class="text-sm fw-medium text-secondary">800,000đ</div>
-              <div><span class="badge badge-success">Đã giải ngân</span></div>
-              <div class="text-right"><button class="btn btn-ghost btn-sm">Xem Review</button></div>
-            </div>
-
+                <!-- Row 3 -->
+                <tr>
+                  <td>
+                    <div class="d-flex align-center gap-3">
+                      <div class="avatar avatar-sm" style="background: linear-gradient(45deg, #84fab0 0%, #8fd3f4 100%);"></div>
+                      <div>
+                        <p class="fw-medium">Hải Nguyễn</p>
+                        <p class="text-xs text-secondary">hai.tech</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-sm">Sạc dự phòng 20000mAh</td>
+                  <td class="text-sm fw-medium text-secondary">800,000đ</td>
+                  <td><span class="badge badge-success">Đã giải ngân</span></td>
+                  <td class="text-right"><button class="btn btn-ghost btn-sm">Xem Review</button></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 

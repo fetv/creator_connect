@@ -164,32 +164,123 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Logic 7: Mobile Bottom Sheet Logic (Apply Job)
+  // Logic 7: Mobile Bottom Sheet Logic (Apply Job & Portfolio)
   const applyBtns = document.querySelectorAll('.btn-apply');
-  const applySheet = document.getElementById('applySuccessSheet');
+  const applySuccessSheet = document.getElementById('applySuccessSheet');
+  const viewApply = document.getElementById('view-apply');
+  const viewFeed = document.getElementById('view-feed');
+  const btnBackToFeed = document.getElementById('btn-back-to-feed');
+  
+  const editPortfolioSheet = document.getElementById('editPortfolioSheet');
+  const btnEditPortfolio = document.getElementById('btn-edit-portfolio');
+  const btnReviewEdit = document.getElementById('btn-review-edit');
+  const btnConfirmApply = document.getElementById('btn-confirm-apply');
+  const btnSavePortfolio = document.getElementById('btn-save-portfolio');
+  
   const closeSheetBtns = document.querySelectorAll('.close-sheet');
+  const allSheets = document.querySelectorAll('.bottom-sheet-overlay');
 
-  if(applyBtns.length > 0 && applySheet) {
+  // Helper to close all sheets
+  const closeAllSheets = () => {
+    allSheets.forEach(sheet => sheet.classList.remove('active'));
+  };
+
+  // 1. Click Apply -> Open Apply View
+  if(applyBtns.length > 0 && viewApply) {
     applyBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        applySheet.classList.add('active');
+        // Use showSubView if defined, otherwise fallback
+        if (typeof showSubView === 'function') {
+          showSubView(viewApply);
+        } else {
+          document.querySelectorAll('.mobile-view').forEach(view => view.classList.remove('active'));
+          viewApply.classList.add('active');
+          if (document.querySelector('.mobile-nav')) {
+            document.querySelector('.mobile-nav').style.display = 'none';
+          }
+        }
       });
     });
+  }
 
-    closeSheetBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        applySheet.classList.remove('active');
-      });
-    });
-
-    // Close on overlay click
-    applySheet.addEventListener('click', (e) => {
-      if(e.target === applySheet) {
-        applySheet.classList.remove('active');
+  // Back button in Apply View
+  if(btnBackToFeed && viewApply && viewFeed) {
+    btnBackToFeed.addEventListener('click', () => {
+      viewApply.classList.remove('active');
+      viewFeed.classList.add('active');
+      if (document.querySelector('.mobile-nav')) {
+        document.querySelector('.mobile-nav').style.display = '';
       }
     });
   }
+
+  // 2. Click Confirm Apply -> Open Success
+  if(btnConfirmApply && applySuccessSheet) {
+    btnConfirmApply.addEventListener('click', () => {
+      applySuccessSheet.classList.add('active');
+      
+      setTimeout(() => {
+        applySuccessSheet.classList.remove('active');
+        // Auto return to feed
+        if (viewApply) viewApply.classList.remove('active');
+        if (viewFeed) viewFeed.classList.add('active');
+        if (document.querySelector('.mobile-nav')) document.querySelector('.mobile-nav').style.display = '';
+        
+        // Reset check boxes
+        const agreeCheckboxes = document.querySelectorAll('.apply-checkbox');
+        agreeCheckboxes.forEach(cb => cb.checked = false);
+        btnConfirmApply.disabled = true;
+        btnConfirmApply.style.opacity = '0.5';
+        btnConfirmApply.style.pointerEvents = 'none';
+      }, 2500); // 2.5s delay to read success message
+    });
+  }
+
+  // 3. Click Edit Portfolio -> Navigate to Edit Profile View
+  const viewEditProfile = document.getElementById('view-edit-profile');
+  const mobileNav = document.querySelector('.mobile-nav');
+
+  const showSubView = (targetView) => {
+    document.querySelectorAll('.mobile-view').forEach(v => v.classList.remove('active'));
+    if (targetView) targetView.classList.add('active');
+    if (mobileNav) mobileNav.style.display = 'none';
+  };
+
+  const backToPortfolio = () => {
+    document.querySelectorAll('.mobile-view').forEach(v => v.classList.remove('active'));
+    const vPortfolio = document.getElementById('view-portfolio');
+    if (vPortfolio) vPortfolio.classList.add('active');
+    if (mobileNav) mobileNav.style.display = '';
+  };
+
+  if (btnEditPortfolio) {
+    btnEditPortfolio.addEventListener('click', () => showSubView(viewEditProfile));
+  }
+  if (btnReviewEdit) {
+    btnReviewEdit.addEventListener('click', () => showSubView(viewEditProfile));
+  }
+
+  // 4. Click Save Portfolio -> Go back, Show Toast
+  if (btnSavePortfolio) {
+    btnSavePortfolio.addEventListener('click', () => {
+      backToPortfolio();
+      if (typeof showToast === 'function') showToast('Cập nhật hồ sơ thành công!', 'success');
+    });
+  }
+
+  // Close buttons and overlay click
+  closeSheetBtns.forEach(btn => {
+    btn.addEventListener('click', closeAllSheets);
+  });
+
+  allSheets.forEach(sheet => {
+    sheet.addEventListener('click', (e) => {
+      if(e.target === sheet) {
+        sheet.classList.remove('active');
+      }
+    });
+  });
 
   // Logic 8: Handle Chat Input
   const chatInput = document.getElementById('chat-input-field');
@@ -232,6 +323,247 @@ document.addEventListener('DOMContentLoaded', () => {
       if(e.key === 'Enter') {
         chatSendBtn.click();
       }
+    });
+  }
+
+  // Logic 9: Apply Form Validation & Calculation
+  const applyBudgetInput = document.getElementById('apply-budget-input');
+  const feeAmountEl = document.getElementById('fee-amount');
+  const netAmountEl = document.getElementById('net-amount');
+  const agreeCheckboxes = document.querySelectorAll('.apply-checkbox');
+
+  const validateApplyForm = () => {
+    if(!btnConfirmApply) return;
+    
+    let allChecked = true;
+    agreeCheckboxes.forEach(cb => {
+      if (!cb.checked) allChecked = false;
+    });
+
+    const budgetVal = applyBudgetInput ? parseFloat(applyBudgetInput.value) : 0;
+    
+    if (allChecked && budgetVal > 0) {
+      btnConfirmApply.disabled = false;
+      btnConfirmApply.style.opacity = '1';
+      btnConfirmApply.style.pointerEvents = 'auto';
+    } else {
+      btnConfirmApply.disabled = true;
+      btnConfirmApply.style.opacity = '0.5';
+      btnConfirmApply.style.pointerEvents = 'none';
+    }
+  };
+
+  if (applyBudgetInput) {
+    applyBudgetInput.addEventListener('input', (e) => {
+      const val = parseFloat(e.target.value) || 0;
+      const fee = val * 0.1; // 10%
+      const net = val - fee;
+      
+      if(feeAmountEl) feeAmountEl.innerText = `- ${fee.toLocaleString('vi-VN')}đ`;
+      if(netAmountEl) netAmountEl.innerText = `${net.toLocaleString('vi-VN')}đ`;
+      
+      validateApplyForm();
+    });
+  }
+
+  if (agreeCheckboxes.length > 0) {
+    agreeCheckboxes.forEach(cb => cb.addEventListener('change', validateApplyForm));
+  }
+
+  // Logic 10: KOC Public Profile View (SME App)
+  const btnViewKocProfile = document.getElementById('btn-view-koc-profile');
+  const viewKocProfile = document.getElementById('view-koc-profile');
+  
+  if (btnViewKocProfile && viewKocProfile) {
+    btnViewKocProfile.addEventListener('click', () => {
+      if (typeof showSubView === 'function') {
+        showSubView(viewKocProfile);
+      } else {
+        document.querySelectorAll('.mobile-view').forEach(view => view.classList.remove('active'));
+        viewKocProfile.classList.add('active');
+        if (document.querySelector('.mobile-nav')) {
+          document.querySelector('.mobile-nav').style.display = 'none';
+        }
+      }
+    });
+  }
+
+  // Logic 10b: Back button from KOC Profile
+  const btnBackToSearch = document.querySelector('.btn-back-to-search');
+  const viewSmeSearch = document.getElementById('view-sme-search');
+  if (btnBackToSearch && viewKocProfile && viewSmeSearch) {
+    btnBackToSearch.addEventListener('click', () => {
+      viewKocProfile.classList.remove('active');
+      viewSmeSearch.classList.add('active');
+      if (document.querySelector('.mobile-nav')) {
+        document.querySelector('.mobile-nav').style.display = '';
+      }
+    });
+  }
+
+  // Handle Profile Tabs
+  const profileTabBtns = document.querySelectorAll('.profile-tab-btn');
+  const profileTabContents = document.querySelectorAll('.profile-tab-content');
+
+  if (profileTabBtns.length > 0) {
+    profileTabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Reset all buttons
+        profileTabBtns.forEach(b => {
+          b.classList.remove('active');
+          b.style.borderBottomColor = 'transparent';
+          b.style.color = 'var(--text-secondary)';
+        });
+        
+        // Active clicked button
+        btn.classList.add('active');
+        btn.style.borderBottomColor = 'var(--primary-500)';
+        btn.style.color = 'var(--primary-600)';
+
+        // Hide all contents
+        profileTabContents.forEach(content => {
+          content.style.display = 'none';
+          content.classList.remove('active');
+        });
+
+        // Show target content
+        const targetId = btn.getAttribute('data-tab');
+        const targetContent = document.getElementById(targetId);
+        if (targetContent) {
+          targetContent.style.display = 'block';
+          setTimeout(() => {
+            targetContent.classList.add('active');
+          }, 10);
+        }
+      });
+    });
+  }
+
+  // Logic 11: Portfolio Select Change
+  const portfolioSelect = document.getElementById('portfolio-select');
+  if (portfolioSelect) {
+    portfolioSelect.addEventListener('change', (e) => {
+      const val = e.target.value;
+      const title = document.getElementById('portfolio-title');
+      const stats = document.getElementById('portfolio-stats');
+      const icon = document.getElementById('portfolio-icon');
+      const avatarBg = document.getElementById('portfolio-avatar-bg');
+      const badge = document.getElementById('portfolio-auto-badge');
+
+      if (val === 'tiktok-food') {
+        if(title) title.innerText = 'TikTok - Ẩm thực';
+        if(stats) stats.innerText = '120K Followers • 50K View TB';
+        if(icon) icon.innerText = '🎵';
+        if(avatarBg) avatarBg.style.background = 'linear-gradient(135deg, #f59e0b, #ef4444)';
+        if(badge) badge.style.display = 'block';
+      } else if (val === 'insta-fashion') {
+        if(title) title.innerText = 'Instagram - Thời trang';
+        if(stats) stats.innerText = '85K Followers • 15% Tương tác';
+        if(icon) icon.innerText = '📷';
+        if(avatarBg) avatarBg.style.background = 'linear-gradient(135deg, #ec4899, #8b5cf6)';
+        if(badge) badge.style.display = 'none';
+      } else if (val === 'fb-general') {
+        if(title) title.innerText = 'Facebook - General';
+        if(stats) stats.innerText = '50K Followers • 20K View TB';
+        if(icon) icon.innerText = '📘';
+        if(avatarBg) avatarBg.style.background = 'linear-gradient(135deg, #3b82f6, #2563eb)';
+        if(badge) badge.style.display = 'none';
+      }
+    });
+  }
+
+  // Logic 12: Portfolio Platform Tabs (TikTok / Instagram)
+  const portfolioTabBtns = document.querySelectorAll('.portfolio-tab-btn');
+  if (portfolioTabBtns.length > 0) {
+    portfolioTabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-ptab');
+        portfolioTabBtns.forEach(b => {
+          b.classList.remove('active');
+          b.style.borderBottomColor = 'transparent';
+          b.style.color = 'var(--text-tertiary)';
+        });
+        btn.classList.add('active');
+        btn.style.borderBottomColor = 'var(--primary-500)';
+        btn.style.color = 'var(--primary-600)';
+        document.querySelectorAll('.portfolio-tab-content').forEach(c => c.style.display = 'none');
+        const target = document.getElementById(targetId);
+        if (target) target.style.display = 'block';
+      });
+    });
+  }
+
+  // Logic 13: Manage Job Status Tabs
+  const manageTabBtns = document.querySelectorAll('.manage-tab-btn');
+  if (manageTabBtns.length > 0) {
+    manageTabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-mtab');
+        manageTabBtns.forEach(b => {
+          b.classList.remove('active');
+          b.style.borderBottomColor = 'transparent';
+          b.style.color = 'var(--text-tertiary)';
+        });
+        btn.classList.add('active');
+        btn.style.borderBottomColor = 'var(--primary-500)';
+        btn.style.color = 'var(--primary-600)';
+        document.querySelectorAll('.manage-tab-content').forEach(c => c.style.display = 'none');
+        const target = document.getElementById(targetId);
+        if (target) target.style.display = 'block';
+      });
+    });
+  }
+
+  // Logic 14: View Brief Sheet
+  const btnViewBrief = document.getElementById('btn-view-brief');
+  const briefSheet = document.getElementById('briefSheet');
+  if (btnViewBrief && briefSheet) {
+    btnViewBrief.addEventListener('click', (e) => {
+      e.preventDefault();
+      briefSheet.classList.add('active');
+    });
+  }
+  // Logic 15: Withdraw & Transactions Views (with nav hide/show)
+  const btnWithdraw = document.getElementById('btn-open-withdraw');
+  const btnTransactions = document.getElementById('btn-open-transactions');
+  const viewWithdraw = document.getElementById('view-withdraw');
+  const viewTransactions = document.getElementById('view-transactions');
+  const btnsBackToPortfolio = document.querySelectorAll('.btn-back-to-portfolio');
+
+  if (btnWithdraw && viewWithdraw) {
+    btnWithdraw.addEventListener('click', () => showSubView(viewWithdraw));
+  }
+
+  if (btnTransactions && viewTransactions) {
+    btnTransactions.addEventListener('click', (e) => {
+      e.preventDefault();
+      showSubView(viewTransactions);
+    });
+  }
+
+  if (btnsBackToPortfolio.length > 0) {
+    btnsBackToPortfolio.forEach(btn => {
+      btn.addEventListener('click', () => backToPortfolio());
+    });
+  }
+
+  const btnEditBank = document.getElementById('btn-edit-bank');
+  const btnSaveBank = document.getElementById('btn-save-bank');
+  const withdrawBankForm = document.getElementById('withdraw-bank-form');
+  const withdrawBankDisplay = document.getElementById('withdraw-bank-display');
+
+  if (btnEditBank && withdrawBankForm && withdrawBankDisplay) {
+    btnEditBank.addEventListener('click', () => {
+      withdrawBankDisplay.style.display = 'none';
+      withdrawBankForm.style.display = 'block';
+    });
+  }
+
+  if (btnSaveBank && withdrawBankForm && withdrawBankDisplay) {
+    btnSaveBank.addEventListener('click', () => {
+      withdrawBankForm.style.display = 'none';
+      withdrawBankDisplay.style.display = 'block';
+      showToast('Cập nhật thông tin ngân hàng thành công!', 'success');
     });
   }
 
