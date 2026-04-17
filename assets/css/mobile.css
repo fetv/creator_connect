@@ -1,0 +1,232 @@
+/* =========================================================================
+   MOBILE SIMULATOR WRAPPER
+   ========================================================================= */
+.simulator-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--bg-main);
+  padding: var(--space-4);
+  background-image: radial-gradient(var(--primary-200) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.mobile-frame {
+  width: 375px; 
+  height: 812px; /* iPhone X/11 aspect ratio roughly */
+  background: var(--bg-surface);
+  border-radius: 40px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), inset 0 0 0 10px #0f172a;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Smartphone Notch */
+.mobile-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 25px;
+  background: #0f172a;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  z-index: 1000;
+}
+
+.mobile-content {
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 80px; /* Space for bottom nav */
+  background: #f8fafc;
+}
+
+/* Hide scrollbar for mobile feel */
+.mobile-content::-webkit-scrollbar {
+  display: none;
+}
+.mobile-content {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* =========================================================================
+   MOBILE BOTTOM NAV
+   ========================================================================= */
+.mobile-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--primary-100);
+  display: flex;
+  justify-content: space-around;
+  padding: var(--space-3) 0 var(--space-5) 0; /* Extra padding for home indicator area */
+  z-index: 100;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-tertiary);
+  text-decoration: none;
+  font-size: 10px;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.nav-item.active {
+  color: var(--primary-600);
+}
+
+.nav-item-icon {
+  font-size: 20px;
+}
+
+/* =========================================================================
+   MOBILE APP COMPONENTS (Job Feed, Portfolio)
+   ========================================================================= */
+.mobile-header {
+  padding: var(--space-5) var(--space-4) var(--space-3);
+  background: var(--bg-surface);
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.job-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4);
+  margin: var(--space-4);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--primary-50);
+}
+
+.job-card .header {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.job-card .brand-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+
+.job-card .budget {
+  color: var(--escrow-color);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-md);
+}
+
+.portfolio-header {
+  background: var(--gradient-primary);
+  padding: var(--space-8) var(--space-4) var(--space-6);
+  color: white;
+  text-align: center;
+}
+
+.portfolio-stats {
+  display: flex;
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin: calc(-1 * var(--space-4)) var(--space-4) var(--space-4);
+  box-shadow: var(--shadow-md);
+  justify-content: space-around;
+  position: relative;
+  z-index: 10;
+}
+
+.portfolio-stat-box {
+  text-align: center;
+}
+
+.mobile-view {
+  display: none;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.mobile-view.active {
+  display: block;
+}
+
+/* =========================================================================
+   BOTTOM SHEET (MOBILE MODAL)
+   ========================================================================= */
+.bottom-sheet-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 23, 42, 0.6);
+  z-index: 2000;
+  border-radius: 40px;
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-normal);
+}
+
+.bottom-sheet-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.bottom-sheet {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  background: var(--bg-surface);
+  border-top-left-radius: var(--radius-2xl);
+  border-top-right-radius: var(--radius-2xl);
+  padding: var(--space-6) var(--space-5);
+  box-shadow: 0 -10px 25px rgba(0,0,0,0.1);
+  transition: bottom var(--transition-normal);
+  z-index: 2001;
+}
+
+.bottom-sheet-overlay.active .bottom-sheet {
+  bottom: 0;
+}
+
+.bottom-sheet-drag {
+  width: 40px;
+  height: 4px;
+  background: var(--primary-100);
+  border-radius: 2px;
+  margin: 0 auto var(--space-4);
+}
+
+/* =========================================================================
+   MOBILE IN-APP CHAT
+   ========================================================================= */
+.mobile-chat-list {
+  padding: var(--space-2);
+}
+
+.mobile-chat-item {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  margin-bottom: var(--space-2);
+  box-shadow: var(--shadow-sm);
+  align-items: center;
+}
+

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creator Connect | Tin nhắn & Hợp đồng</title>
+  
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/layouts.css">
+</head>
+<body>
+
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2 class="text-xl gradient-text">Creator Connect</h2>
+      </div>
+      <nav class="sidebar-menu">
+        <a href="dashboard.html" class="menu-item"><span style="font-size: 1.25rem;">📊</span> Dashboard</a>
+        <a href="search.html" class="menu-item"><span style="font-size: 1.25rem;">🔍</span> Khám phá KOC/KOL</a>
+        <a href="campaigns.html" class="menu-item"><span style="font-size: 1.25rem;">📁</span> Quản lý Chiến dịch</a>
+        <a href="escrow.html" class="menu-item"><span style="font-size: 1.25rem;">💳</span> Ví tạm giữ</a>
+        <a href="messages.html" class="menu-item active"><span style="font-size: 1.25rem;">💬</span> Tin nhắn & Hợp đồng</a>
+      </nav>
+    </aside>
+
+    <main class="main-content" style="padding: var(--space-4);">
+      
+      <div class="chat-layout">
+        
+        <!-- Sidebar Chat List -->
+        <div class="chat-sidebar">
+          <div class="chat-sidebar-header">
+            <input type="text" class="form-control" placeholder="Tìm kiếm tin nhắn...">
+          </div>
+          <div class="chat-list">
+            
+            <div class="chat-contact active">
+              <div class="avatar avatar-sm" style="background: linear-gradient(135deg, #0ea5e9, #38bdf8);"></div>
+              <div style="flex: 1;">
+                <div class="d-flex justify-between">
+                  <p class="fw-semibold text-sm">Đức Dược Sĩ</p>
+                  <p class="text-xs text-tertiary">10:45</p>
+                </div>
+                <p class="text-xs text-secondary mt-1">Hợp đồng đã gửi, bạn chờ xíu nha.</p>
+              </div>
+            </div>
+
+            <div class="chat-contact">
+              <div class="avatar avatar-sm" style="background: linear-gradient(45deg, #fbc2eb 0%, #a18cd1 100%);"></div>
+              <div style="flex: 1;">
+                <div class="d-flex justify-between">
+                  <p class="fw-semibold text-sm">Thanh Trúc Review</p>
+                  <p class="text-xs text-tertiary">Hôm qua</p>
+                </div>
+                <p class="text-xs text-secondary mt-1">Ok ạ, mình đã nhận Brief rồi.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Chat Workspace -->
+        <div class="chat-main">
+          
+          <div class="chat-header">
+            <div class="d-flex align-center gap-3">
+              <div class="avatar" style="background: linear-gradient(135deg, #0ea5e9, #38bdf8);"></div>
+              <div>
+                <h3 class="text-md">Đức Dược Sĩ</h3>
+                <p class="text-xs text-success">Đang trực tuyến</p>
+              </div>
+            </div>
+            <div class="d-flex gap-2">
+              <button class="btn btn-outline btn-sm" onclick="showToast('Đã tạo bản nháp Hợp đồng điện tử', 'success')">Tạo E-Contract</button>
+              <button class="btn btn-ghost btn-sm">Chi tiết KOC</button>
+            </div>
+          </div>
+
+          <div class="chat-messages">
+            <!-- Normal Message -->
+            <div class="message received">
+              <div class="message-bubble">
+                Chào bên bạn, mình đã xem kịch bản của campaign Sữa Rửa Mặt. Mình có thể thêm đoạn test độ pH không ạ?
+              </div>
+              <span class="text-xs text-tertiary mt-1">10:30</span>
+            </div>
+
+            <div class="message sent">
+              <div class="message-bubble">
+                Dạ hoàn toàn được bạn nhé. Miễn sao nêu bật được độ lành tính của sản phẩm. Bạn check hợp đồng E-contract dưới đây nha, nếu ok thì nhấn ký điện tử nhé!
+              </div>
+              <span class="text-xs text-tertiary mt-1" style="align-self: flex-end;">10:35</span>
+            </div>
+
+            <!-- Smart Contract Card Sent in chat -->
+            <div class="message sent" style="width: 100%; max-width: 450px;">
+              <div class="e-contract-block">
+                 <div class="d-flex justify-between align-center mb-3 border-bottom pb-2" style="border-bottom: 1px dashed var(--primary-100);">
+                   <div class="d-flex align-center gap-2">
+                      <span style="font-size: 1.5rem;">📜</span>
+                      <h4 class="fw-medium">Hợp đồng Điện tử Nhanh</h4>
+                   </div>
+                   <span class="badge badge-warning" id="contract-status">Chờ KOC Ký</span>
+                 </div>
+                 
+                 <div class="text-sm text-secondary mb-2"><strong>Mã số:</strong> CC-A093</div>
+                 <div class="text-sm text-secondary mb-2"><strong>Công việc:</strong> Quay 1 video TikTok ngắn 60s, test độ pH sản phẩm mới.</div>
+                 <div class="text-sm text-secondary mb-4"><strong>Tổng chi trả (Bao gồm VAT):</strong> <br> <span class="text-lg fw-bold text-primary mt-1 d-block">3,000,000 VNĐ</span></div>
+                 
+                 <div class="d-flex gap-2">
+                   <button class="btn btn-primary btn-sm" id="btn-sign-contract" style="flex: 1;">Xác nhận chữ ký số E-sign</button>
+                 </div>
+                 <p class="text-xs text-tertiary mt-2 text-center text-secondary">
+                    Khi bạn nhấn ký, số tiền 3,000,000đ sẽ được đóng băng bởi nền tảng CreatorConnect.
+                 </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="chat-input-area">
+             <button class="btn btn-ghost" style="padding: 0 var(--space-3);">📎</button>
+             <input type="text" id="chat-input-field" class="form-control" style="border-radius: var(--radius-full); background: var(--bg-surface-hover);" placeholder="Nhập tin nhắn hoặc đính kèm Brief...">
+             <button id="chat-send-btn" class="btn btn-primary" style="border-radius: var(--radius-full); padding: 0 var(--space-5);">Gửi 🚀</button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

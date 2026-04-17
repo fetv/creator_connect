@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creator Connect | KOC Mobile App</title>
+  
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/mobile.css">
+</head>
+<body>
+
+  <div class="simulator-container">
+    <div class="text-center" style="margin-right: var(--space-10); max-width: 300px;">
+      <h1 class="text-3xl mb-4 gradient-text">KOC App<br>Simulator</h1>
+      <p class="text-secondary mb-6">Trải nghiệm màn hình di động dành riêng cho các nhà sáng tạo nội dung (KOC/KOL) với giao diện vuốt chạm mượt mà.</p>
+      <a href="index.html" class="btn btn-outline">⬅ Quay lại Bản Web SME</a>
+    </div>
+
+    <!-- The Phone Frame -->
+    <div class="mobile-frame">
+      <div class="mobile-notch"></div>
+      
+      <div class="mobile-content">
+        
+        <!-- View 1: Job Feed (Khám phá) -->
+        <div id="view-feed" class="mobile-view active">
+          <div class="mobile-header d-flex justify-between align-center" style="padding-top: 40px;">
+            <div>
+              <p class="text-xs text-secondary">Chào buổi sáng,</p>
+              <h2 class="text-lg fw-bold">Đức Dược Sĩ 👋</h2>
+            </div>
+            <div class="avatar avatar-sm" style="background: linear-gradient(135deg, #0ea5e9, #38bdf8);"></div>
+          </div>
+
+          <!-- Search Bar -->
+          <div style="padding: 0 var(--space-4) var(--space-2);">
+            <div style="background: var(--bg-surface-hover); border-radius: var(--radius-full); padding: var(--space-2) var(--space-3); display: flex; align-items: center; gap: var(--space-2);">
+              <span class="text-tertiary">🔍</span>
+              <input type="text" placeholder="Tìm chiến dịch phù hợp..." style="background: transparent; width: 100%; font-size: var(--text-sm);">
+            </div>
+          </div>
+
+          <!-- Tags -->
+          <div style="padding: var(--space-3) var(--space-4); display: flex; gap: var(--space-2); overflow-x: auto; scrollbar-width: none;">
+            <span class="badge badge-primary" style="padding: 6px 12px; white-space: nowrap;">Gợi ý cho bạn</span>
+            <span class="badge" style="background: var(--bg-surface); padding: 6px 12px; white-space: nowrap;">Skincare</span>
+            <span class="badge" style="background: var(--bg-surface); padding: 6px 12px; white-space: nowrap;">Thu nhập cao</span>
+          </div>
+
+          <!-- Job Cards Feed -->
+          <div class="job-card">
+             <div class="header">
+               <div class="brand-logo" style="background: linear-gradient(45deg, #fbc2eb 0%, #a18cd1 100%);"></div>
+               <div>
+                 <h4 class="text-sm fw-bold">La Roche-Posay</h4>
+                 <p class="text-xs text-secondary">Chiến dịch chống nắng</p>
+               </div>
+             </div>
+             <p class="text-xs text-secondary mb-3">Tìm KOC chuyên phân tích thành phần mỹ phẩm, nhận sp sau 2 ngày.</p>
+             <div class="d-flex justify-between align-center border-top" style="border-top: 1px dashed var(--primary-50); padding-top: var(--space-3);">
+                <div class="budget">1,500,000đ</div>
+                <button class="btn btn-primary btn-apply" style="padding: 6px 16px; font-size: 12px; border-radius: var(--radius-full);">Ứng tuyển</button>
+             </div>
+          </div>
+
+          <div class="job-card">
+             <div class="header">
+               <div class="brand-logo" style="background: linear-gradient(135deg, #10b981, #34d399);"></div>
+               <div>
+                 <h4 class="text-sm fw-bold">CeraVe Việt Nam</h4>
+                 <p class="text-xs text-secondary">Review Sữa Rửa Mặt</p>
+               </div>
+             </div>
+             <p class="text-xs text-secondary mb-3">Yêu cầu video TikTok > 60s, gắn link Affiliate hoa hồng 15%.</p>
+             <div class="d-flex justify-between align-center border-top" style="border-top: 1px dashed var(--primary-50); padding-top: var(--space-3);">
+                <div class="budget">2,000,000đ</div>
+                <button class="btn btn-primary btn-apply" style="padding: 6px 16px; font-size: 12px; border-radius: var(--radius-full);">Ứng tuyển</button>
+             </div>
+          </div>
+
+        </div>
+
+        <!-- View 2: Portfolio -->
+        <div id="view-portfolio" class="mobile-view">
+           <div class="portfolio-header" style="padding-top: 60px;">
+             <div class="avatar avatar-lg mx-auto mb-3" style="margin: 0 auto; background: linear-gradient(135deg, #0ea5e9, #38bdf8); border: 2px solid white;"></div>
+             <h2 class="text-xl">Đức Dược Sĩ <span style="font-size:14px">✅</span></h2>
+             <p class="text-sm opacity-80">Chuyên gia Da liệu | Skincare Reviewer</p>
+           </div>
+           
+           <div class="portfolio-stats">
+             <div class="portfolio-stat-box">
+               <p class="text-xs text-secondary">Followers</p>
+               <h3 class="text-lg fw-bold">22.5K</h3>
+             </div>
+             <div style="width: 1px; background: var(--primary-50);"></div>
+             <div class="portfolio-stat-box">
+               <p class="text-xs text-secondary">Avg. Views</p>
+               <h3 class="text-lg fw-bold">140K</h3>
+             </div>
+             <div style="width: 1px; background: var(--primary-50);"></div>
+             <div class="portfolio-stat-box">
+               <p class="text-xs text-secondary">Engagement</p>
+               <h3 class="text-lg fw-bold text-success">12.5%</h3>
+             </div>
+           </div>
+
+           <div style="padding: var(--space-4);">
+             <h4 class="text-md mb-3">Rate Card Gợi ý</h4>
+             <div class="card" style="padding: var(--space-3); display: flex; justify-content: space-between; align-items: center;">
+               <div>
+                 <p class="fw-medium text-sm">Video TikTok (1 phút)</p>
+                 <p class="text-xs text-secondary">+ Có giữ bản quyền chạy Ads</p>
+               </div>
+               <p class="fw-bold text-primary">3,000,000đ</p>
+             </div>
+             
+             <h4 class="text-md mb-3 mt-5">Các video nổi bật tự động lấy từ TikTok</h4>
+             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3);">
+                <!-- Placeholder Video Thumbnails -->
+                <div style="height: 200px; background: #e2e8f0; border-radius: var(--radius-lg); position: relative; overflow: hidden;">
+                  <div style="position:absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.5); color:white; padding: 2px 6px; border-radius: 4px; font-size: 10px;">▶ 250K</div>
+                </div>
+                <div style="height: 200px; background: #cbd5e1; border-radius: var(--radius-lg); position: relative; overflow: hidden;">
+                  <div style="position:absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.5); color:white; padding: 2px 6px; border-radius: 4px; font-size: 10px;">▶ 105K</div>
+                </div>
+             </div>
+           </div>
+        </div>
+
+        <!-- View 3: Messages -->
+        <div id="view-messages" class="mobile-view">
+          <div class="mobile-header d-flex justify-between align-center" style="padding-top: 40px; border-bottom: 1px solid var(--primary-50);">
+            <h2 class="text-xl fw-bold">Tin Nhắn</h2>
+            <button class="btn btn-ghost btn-sm" style="font-size: 18px;">✏️</button>
+          </div>
+          
+          <div class="mobile-chat-list" style="padding-top: var(--space-4);">
+            <div class="mobile-chat-item">
+              <div class="avatar avatar-md" style="background: linear-gradient(45deg, #fbc2eb 0%, #a18cd1 100%); position: relative;">
+                 <span style="position:absolute; bottom:0; right:0; width:12px; height:12px; background:var(--success-500); border-radius:50%; border:2px solid white;"></span>
+              </div>
+              <div style="flex:1;">
+                <div class="d-flex justify-between">
+                  <h4 class="fw-bold text-sm">SME Admin (La Roche-Posay)</h4>
+                  <span class="text-xs text-tertiary">10:45</span>
+                </div>
+                <p class="text-xs text-secondary mt-1">Dạ hoàn toàn được bạn nhé...</p>
+              </div>
+            </div>
+
+            <div class="mobile-chat-item">
+              <div class="avatar avatar-md" style="background: linear-gradient(135deg, #10b981, #34d399);"></div>
+              <div style="flex:1;">
+                <div class="d-flex justify-between">
+                  <h4 class="fw-bold text-sm">CeraVe Việt Nam</h4>
+                  <span class="text-xs text-tertiary">Hôm qua</span>
+                </div>
+                <p class="text-xs fw-bold text-primary mt-1">Bạn vừa nhận được Hợp Đồng E-Contract mới!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      
+      <!-- Bottom Navigation -->
+      <nav class="mobile-nav">
+        <div class="nav-item active" data-target="view-feed">
+          <div class="nav-item-icon">🏠</div>
+          <span>Việc Làm</span>
+        </div>
+        <div class="nav-item" data-target="view-messages">
+          <div class="nav-item-icon">💬</div>
+          <span>Tin nhắn <span class="badge" style="background:#ef4444; color:white; width: 6px; height:6px; padding:0; position:absolute; border-radius:50%; margin-left: 12px; margin-top: -18px;"></span></span>
+        </div>
+        <div class="nav-item" data-target="view-portfolio">
+          <div class="nav-item-icon">👤</div>
+          <span>Hồ Sơ (CV)</span>
+        </div>
+      </nav>
+
+    </div>
+  </div>
+
+  <!-- Bottom Sheet Overlays targeting within Simulator -->
+  <div class="bottom-sheet-overlay" id="applySuccessSheet" style="border-radius: 40px; overflow: hidden; width: 375px; height: 812px; left: 50%; top: 50%; transform: translate(-50%, -50%); position: fixed;">
+    <div class="bottom-sheet">
+      <div class="bottom-sheet-drag"></div>
+      <div class="text-center">
+        <div style="font-size: 40px; margin-bottom: var(--space-4);">🎉</div>
+        <h3 class="text-xl mb-2">Ứng tuyển thành công!</h3>
+        <p class="text-secondary text-sm mb-6">Bạn đã gửi Portfolio đến nhãn hàng. Nhà tuyển dụng sẽ xem xét và phản hồi qua phần Tin nhắn.</p>
+        <button class="btn btn-primary close-sheet" style="width: 100%; border-radius: var(--radius-full);">Tuyệt vời, quay lại Feed</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

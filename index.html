@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creator Connect | Nền tảng kết nối KOC/KOL</title>
+  
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/layouts.css">
+</head>
+<body>
+
+  <div class="auth-layout">
+    <!-- Hero Section (Brand Value) -->
+    <div class="auth-hero">
+      <div class="text-center" style="position: relative; z-index: 10;">
+        <h1 class="text-4xl mb-4 animate-fade-in" style="font-weight: 700;">Creator Connect</h1>
+        <p class="text-lg fw-medium animate-fade-in" style="animation-delay: 0.2s; opacity: 0.9;">
+          Kết nối minh bạch - Hợp tác thành công
+        </p>
+        
+        <div class="glass-panel" style="margin-top: var(--space-8); padding: var(--space-6); border-radius: var(--radius-xl); text-align: left; animation-delay: 0.4s;">
+          <h3 class="mb-3 text-xl">Tính năng nổi bật</h3>
+          <ul style="display: flex; flex-direction: column; gap: var(--space-3);">
+            <li class="d-flex align-center gap-3">
+              <span class="badge badge-primary" style="padding: 6px;">✓</span> 
+              Bảo chứng giao dịch (Ví tạm giữ an toàn)
+            </li>
+            <li class="d-flex align-center gap-3">
+              <span class="badge badge-primary" style="padding: 6px;">✓</span> 
+              Xác thực ROI của Nano/Micro KOC
+            </li>
+            <li class="d-flex align-center gap-3">
+              <span class="badge badge-primary" style="padding: 6px;">✓</span> 
+              Automated E-contract nhanh chóng
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Login Form Section -->
+    <div class="auth-form-container">
+      <div class="auth-form-wrapper">
+        <h2 class="text-2xl mb-2">Đăng nhập hệ thống</h2>
+        <p class="text-secondary mb-6">Xin chào, vui lòng chọn phân quyền của bạn để tiếp tục.</p>
+
+        <!-- Role Selection Tabs -->
+        <div class="d-flex mb-6 role-tabs glass-panel" style="padding: var(--space-1); border-radius: var(--radius-lg); background: var(--bg-surface-hover);">
+          <button class="btn role-btn active" style="flex: 1; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); background: var(--bg-surface); color: var(--primary-600);">Nhãn hàng (SME)</button>
+          <button class="btn btn-ghost role-btn" onclick="window.location.href='koc_app.html'" style="flex: 1; border-radius: var(--radius-md);">KOC / KOL</button>
+        </div>
+
+        <form action="dashboard.html" method="GET">
+          <div class="form-group">
+            <label class="form-label" for="email">Tài khoản Email</label>
+            <input type="email" id="email" class="form-control" placeholder="admin@example.com" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="password">Mật khẩu</label>
+            <input type="password" id="password" class="form-control" placeholder="••••••••" required>
+          </div>
+
+          <div class="d-flex justify-between align-center mb-6 mt-4">
+            <label class="d-flex align-center gap-2 text-sm text-secondary cursor-pointer">
+              <input type="checkbox"> Ghi nhớ đăng nhập
+            </label>
+            <a href="#" class="text-sm">Quên mật khẩu?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">
+            Đăng nhập vào Dashboard
+          </button>
+        </form>
+
+        <p class="text-center text-sm text-secondary mt-6">
+          Chưa có tài khoản? <a href="#">Đăng ký ngay</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creator Connect | Khám phá KOC/KOL</title>
+  
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/layouts.css">
+</head>
+<body>
+
+  <div class="dashboard-layout">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2 class="text-xl gradient-text">Creator Connect</h2>
+      </div>
+      <nav class="sidebar-menu">
+        <a href="dashboard.html" class="menu-item"><span style="font-size: 1.25rem;">📊</span> Dashboard</a>
+        <a href="search.html" class="menu-item active"><span style="font-size: 1.25rem;">🔍</span> Khám phá KOC/KOL</a>
+        <a href="campaigns.html" class="menu-item"><span style="font-size: 1.25rem;">📁</span> Quản lý Chiến dịch</a>
+        <a href="escrow.html" class="menu-item"><span style="font-size: 1.25rem;">💳</span> Ví tạm giữ (Escrow)</a>
+        <a href="messages.html" class="menu-item"><span style="font-size: 1.25rem;">💬</span> Tin nhắn & Hợp đồng</a>
+      </nav>
+      <div style="padding: var(--space-4); border-top: 1px solid var(--primary-100); margin-top: auto; cursor: pointer;" onclick="showToast('Tính năng Quản lý Tài khoản (Settings) đang được cập nhật', 'warning')">
+        <div class="d-flex align-center gap-3">
+          <div class="avatar avatar-sm bg-primary" style="background: var(--primary-100);"></div>
+          <div>
+            <p class="text-sm fw-semibold">SME Admin</p>
+            <p class="text-xs text-secondary">Tài khoản Premium</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      
+      <!-- Header -->
+      <header class="top-header">
+        <div style="flex: 1; max-width: 500px;">
+          <input type="text" class="form-control" placeholder="Tìm kiếm tên, hashtag, chuyên môn..." style="border-radius: var(--radius-full); background: var(--bg-surface-hover);">
+        </div>
+        <div class="d-flex align-center gap-4">
+          <button class="btn btn-ghost" style="padding: var(--space-2);">+</button>
+          <button class="btn btn-primary btn-sm">Tạo Chiến Dịch Mới</button>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <div class="content-area">
+        <div class="d-flex justify-between align-center mb-6">
+          <div>
+            <h1 class="text-2xl mb-1">Khám phá KOC/KOL</h1>
+            <p class="text-secondary">Tìm kiếm những gương mặt sáng giá nhất cho chiến dịch của bạn.</p>
+          </div>
+        </div>
+
+        <div class="marketplace-layout">
+          <!-- Filters -->
+          <aside class="filters-sidebar">
+            <h3 class="text-lg mb-4">Bộ lọc thông minh</h3>
+            
+            <div class="form-group">
+              <label class="form-label">Ngành hàng</label>
+              <select class="form-control">
+                <option>Tất cả</option>
+                <option>Dược mỹ phẩm / Skincare</option>
+                <option>Ẩm thực / F&B</option>
+                <option>Thời trang</option>
+                <option>Công nghệ</option>
+              </select>
+            </div>
+
+            <div class="form-group mt-4">
+              <label class="form-label">Khoảng giá (Rate card)</label>
+              <div class="d-flex gap-2">
+                <input type="number" class="form-control" placeholder="Từ" style="padding: 8px;">
+                <input type="number" class="form-control" placeholder="Đến" style="padding: 8px;">
+              </div>
+            </div>
+
+            <div class="form-group mt-4">
+              <label class="form-label">Phân khúc Followers</label>
+              <label class="d-flex align-center gap-2 mb-2 text-sm"><input type="checkbox" checked> Nano (1k - 10k)</label>
+              <label class="d-flex align-center gap-2 mb-2 text-sm"><input type="checkbox" checked> Micro (10k - 50k)</label>
+              <label class="d-flex align-center gap-2 mb-2 text-sm"><input type="checkbox"> Macro (Trên 50k)</label>
+            </div>
+
+            <button class="btn btn-primary" style="width: 100%; margin-top: var(--space-4);">Áp dụng bộ lọc</button>
+          </aside>
+
+          <!-- KOC Grid -->
+          <div class="koc-grid">
+            <!-- Card 1 -->
+            <div class="card koc-card">
+              <div class="koc-cover">
+                 <div class="badge badge-success" style="position: absolute; top: var(--space-3); right: var(--space-3);">Đã xác minh</div>
+                 <div class="koc-avatar-wrapper">
+                    <!-- Placeholder avatar using generic shapes/colors -->
+                    <div class="avatar avatar-lg" style="background: linear-gradient(45deg, #fbc2eb 0%, #a18cd1 100%);"></div>
+                 </div>
+              </div>
+              <div class="koc-info">
+                 <h3 class="text-lg">Thanh Trúc (Trúc Ăn Sập)</h3>
+                 <p class="text-sm text-secondary mb-2">Food Reviewer | Ẩm thực đường phố</p>
+                 <div class="d-flex gap-2 mb-3">
+                    <span class="badge" style="background: #e11d48; color: white;">TikTok</span>
+                    <span class="badge" style="background: #2563eb; color: white;">Facebook</span>
+                 </div>
+                 <div class="text-sm fw-medium" style="color: var(--escrow-color);">Rate: 1,500,000đ / Video</div>
+                 
+                 <div class="koc-stats">
+                    <div class="stat-item" style="flex: 1;">
+                      <span class="stat-value">45K</span>
+                      <span class="stat-label">Followers</span>
+                    </div>
+                    <div class="stat-item" style="flex: 1;">
+                      <span class="stat-value text-success">15.2%</span>
+                      <span class="stat-label">Engagement</span>
+                    </div>
+                 </div>
+
+                 <button class="btn btn-primary btn-sm mt-4" style="width: 100%;" onclick="showToast('Đã gửi lời mời hợp tác đến Thanh Trúc', 'success')">Mời Booking</button>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card koc-card">
+              <div class="koc-cover" style="background: linear-gradient(135deg, #0ea5e9, #38bdf8);">
+                 <div class="badge badge-success" style="position: absolute; top: var(--space-3); right: var(--space-3);">Đã xác minh</div>
+                 <div class="koc-avatar-wrapper">
+                    <!-- Placeholder avatar -->
+                    <div class="avatar avatar-lg" style="background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);"></div>
+                 </div>
+              </div>
+              <div class="koc-info">
+                 <h3 class="text-lg">Đức Dược Sĩ</h3>
+                 <p class="text-sm text-secondary mb-2">Skincare | Phân tích thành phần</p>
+                 <div class="d-flex gap-2 mb-3">
+                    <span class="badge" style="background: #e11d48; color: white;">TikTok</span>
+                 </div>
+                 <div class="text-sm fw-medium" style="color: var(--escrow-color);">Rate: 3,000,000đ / Video</div>
+                 
+                 <div class="koc-stats">
+                    <div class="stat-item" style="flex: 1;">
+                      <span class="stat-value">22K</span>
+                      <span class="stat-label">Followers</span>
+                    </div>
+                    <div class="stat-item" style="flex: 1;">
+                      <span class="stat-value text-success">12.5%</span>
+                      <span class="stat-label">Engagement</span>
+                    </div>
+                 </div>
+
+                 <button class="btn btn-primary btn-sm mt-4" style="width: 100%;" onclick="showToast('Đã gửi lời mời hợp tác đến Đức Dược Sĩ', 'success')">Mời Booking</button>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card koc-card">
+              <div class="koc-cover" style="background: linear-gradient(135deg, #10b981, #34d399);">
+                 <div class="koc-avatar-wrapper">
+                    <div class="avatar avatar-lg" style="background: linear-gradient(45deg, #84fab0 0%, #8fd3f4 100%);"></div>
+                 </div>
+              </div>
+              <div class="koc-info">
+                 <h3 class="text-lg">Hải Nguyễn Tech</h3>
+                 <p class="text-sm text-secondary mb-2">Review Phụ kiện công nghệ</p>
+                 <div class="d-flex gap-2 mb-3">
+                    <span class="badge" style="background: #e11d48; color: white;">TikTok</span>
+                    <span class="badge" style="background: #ea580c; color: white;">Shopee Video</span>
+                 </div>
+                 <div class="text-sm fw-medium" style="color: var(--escrow-color);">Rate: 800,000đ / Video</div>
+                 
+                 <div class="koc-stats">
+                    <div class="stat-item" style="flex: 1;">
+                      <span class="stat-value">8K</span>
+                      <span class="stat-label">Followers</span>
+                    </div>
+                    <div class="stat-item" style="flex: 1;">
+                      <span class="stat-value text-success">18.4%</span>
+                      <span class="stat-label">Engagement</span>
+                    </div>
+                 </div>
+
+                 <button class="btn btn-outline btn-sm mt-4" style="width: 100%;" onclick="showToast('Đã gửi lời mời hợp tác đến Hải Nguyễn', 'success')">Mời Booking</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

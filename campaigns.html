@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creator Connect | Quản lý Chiến dịch</title>
+  
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/layouts.css">
+</head>
+<body>
+
+  <div class="dashboard-layout">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2 class="text-xl gradient-text">Creator Connect</h2>
+      </div>
+      <nav class="sidebar-menu">
+        <a href="dashboard.html" class="menu-item"><span style="font-size: 1.25rem;">📊</span> Dashboard</a>
+        <a href="search.html" class="menu-item"><span style="font-size: 1.25rem;">🔍</span> Khám phá KOC/KOL</a>
+        <a href="campaigns.html" class="menu-item active"><span style="font-size: 1.25rem;">📁</span> Quản lý Chiến dịch</a>
+        <a href="escrow.html" class="menu-item d-flex justify-between" style="width: 100%;">
+           <div><span style="font-size: 1.25rem;">💳</span> Ví tạm giữ</div>
+           <span class="badge badge-warning">Cần duyệt</span>
+        </a>
+        <a href="messages.html" class="menu-item"><span style="font-size: 1.25rem;">💬</span> Tin nhắn & Hợp đồng</a>
+      </nav>
+      <div style="padding: var(--space-4); border-top: 1px solid var(--primary-100); margin-top: auto;">
+        <div class="d-flex align-center gap-3">
+          <div class="avatar avatar-sm bg-primary" style="background: var(--primary-100);"></div>
+          <div>
+            <p class="text-sm fw-semibold">SME Admin</p>
+            <p class="text-xs text-secondary">Tài khoản Premium</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      
+      <!-- Header -->
+      <header class="top-header">
+        <h2 class="text-lg fw-medium">Chiến dịch của bạn</h2>
+        <div class="d-flex align-center gap-4">
+          <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="createCampaignModal">+ Đăng Chiến Dịch Mới</button>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <div class="content-area">
+        
+        <div class="d-flex justify-between align-center mb-6">
+          <div class="d-flex gap-2 filter-tabs">
+            <button class="btn btn-sm btn-primary filter-btn">Tất cả</button>
+            <button class="btn btn-sm btn-ghost filter-btn">Đang tuyển (2)</button>
+            <button class="btn btn-sm btn-ghost filter-btn">Đang chạy (4)</button>
+            <button class="btn btn-sm btn-ghost filter-btn">Đã hoàn thành</button>
+          </div>
+          <div style="width: 300px;">
+             <input type="text" class="form-control" placeholder="Tìm kiếm chiến dịch...">
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="table-wrapper">
+             <table class="table">
+               <thead>
+                 <tr>
+                   <th>Tên chiến dịch</th>
+                   <th>Ngành hàng</th>
+                   <th>Ngân sách dự kiến</th>
+                   <th>Số lượng KOC chốt</th>
+                   <th>Trạng thái</th>
+                   <th class="text-right">Hành động</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>
+                     <p class="fw-medium text-primary">Chiến dịch Review Mỹ Phẩm Hè</p>
+                     <p class="text-xs text-secondary">Hạn chót: 30/05/2026</p>
+                   </td>
+                   <td>Skincare</td>
+                   <td class="fw-medium">15,000,000đ</td>
+                   <td>5/10 người</td>
+                   <td><span class="badge badge-primary">Đang tuyển</span></td>
+                   <td class="text-right">
+                     <button class="btn btn-outline btn-sm">Xem chi tiết</button>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <p class="fw-medium text-primary">Quảng bá Lẩu Nướng King BBQ</p>
+                     <p class="text-xs text-secondary">Hạn chót: 15/05/2026</p>
+                   </td>
+                   <td>Ẩm thực / F&B</td>
+                   <td class="fw-medium">8,000,000đ</td>
+                   <td>3/3 người</td>
+                   <td><span class="badge badge-warning">Đang chạy</span></td>
+                   <td class="text-right">
+                     <button class="btn btn-outline btn-sm">Xem tiến độ</button>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <p class="fw-medium text-primary">Sạc dự phòng 20000mAh Anker</p>
+                     <p class="text-xs text-secondary">Hạn chót: 01/05/2026</p>
+                   </td>
+                   <td>Công nghệ</td>
+                   <td class="fw-medium">5,000,000đ</td>
+                   <td>5/5 người</td>
+                   <td><span class="badge badge-success">Đã hoàn thành</span></td>
+                   <td class="text-right">
+                     <button class="btn btn-ghost btn-sm">Báo cáo</button>
+                   </td>
+                 </tr>
+               </tbody>
+             </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal Tạo Chiến Dịch -->
+  <div class="modal-overlay" id="createCampaignModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="text-xl">Tạo Chiến Dịch Mới</h3>
+        <button class="btn btn-ghost modal-close" style="padding: var(--space-2); font-size: 1.5rem;">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label class="form-label">Tên chiến dịch</label>
+            <input type="text" class="form-control" placeholder="Ví dụ: Giới thiệu BST Xuân Hè">
+          </div>
+          <div class="d-flex gap-4">
+            <div class="form-group" style="flex: 1;">
+              <label class="form-label">Ngành hàng</label>
+              <select class="form-control"><option>Thời trang</option><option>Mỹ phẩm</option><option>Công nghệ</option></select>
+            </div>
+            <div class="form-group" style="flex: 1;">
+              <label class="form-label">Nền tảng yêu cầu</label>
+              <select class="form-control"><option>TikTok</option><option>Facebook Reels</option><option>Shopee Video</option></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Mô tả Brief & Yêu cầu công việc</label>
+            <textarea class="form-control" rows="4" placeholder="Viết các yêu cầu chi tiết về kịch bản, lời thoại, hashtag..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Ngân sách (Chưa bao gồm Ví tạm giữ)</label>
+            <input type="number" class="form-control" placeholder="10,000,000">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost modal-close">Hủy</button>
+        <button class="btn btn-primary modal-close" onclick="showToast('Đã xuất bản chiến dịch thành công!', 'success')">Xuất bản Chiến dịch</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
