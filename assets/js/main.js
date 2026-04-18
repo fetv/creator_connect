@@ -606,3 +606,29 @@ function showToast(message, type = 'success') {
   }, 3000);
 }
 
+// Logic 11: Mobile Login Screen Switching
+document.addEventListener('DOMContentLoaded', () => {
+  // KOC App Login
+  const btnKocLogin = document.getElementById('btn-koc-login');
+  if(btnKocLogin) {
+    btnKocLogin.addEventListener('click', () => {
+      document.getElementById('view-koc-login').classList.remove('active');
+      document.getElementById('view-feed').classList.add('active');
+      const nav = document.getElementById('koc-mobile-nav');
+      if(nav) nav.style.display = 'flex';
+      showToast('Đăng nhập KOC thành công!', 'success');
+    });
+  }
+
+  // SME App Login
+  const btnSmeLogin = document.getElementById('btn-sme-login');
+  if(btnSmeLogin) {
+    btnSmeLogin.addEventListener('click', () => {
+      document.getElementById('view-sme-login').classList.remove('active');
+      document.getElementById('view-sme-home').classList.add('active');
+      const nav = document.getElementById('sme-mobile-nav');
+      if(nav) nav.style.display = 'flex';
+      showToast('Đăng nhập Quản trị thành công!', 'success');
+    });
+  }
+});

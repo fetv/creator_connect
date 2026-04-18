@@ -44,14 +44,8 @@
     <!-- Login Form Section -->
     <div class="auth-form-container">
       <div class="auth-form-wrapper">
-        <h2 class="text-2xl mb-2">Đăng nhập hệ thống</h2>
-        <p class="text-secondary mb-6">Xin chào, vui lòng chọn phân quyền của bạn để tiếp tục.</p>
-
-        <!-- Role Selection Tabs -->
-        <div class="d-flex mb-6 role-tabs glass-panel" style="padding: var(--space-1); border-radius: var(--radius-lg); background: var(--bg-surface-hover);">
-          <button class="btn role-btn active" style="flex: 1; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); background: var(--bg-surface); color: var(--primary-600);">Nhãn hàng (SME)</button>
-          <button class="btn btn-ghost role-btn" onclick="window.location.href='koc_app.html'" style="flex: 1; border-radius: var(--radius-md);">KOC / KOL</button>
-        </div>
+        <h2 class="text-2xl mb-2">Đăng nhập Dashboard</h2>
+        <p class="text-secondary mb-6">Xin chào Nhà quảng cáo, vui lòng đăng nhập để quản lý chiến dịch.</p>
 
         <form action="dashboard.html" method="GET">
           <div class="form-group">
@@ -72,14 +66,22 @@
           </div>
 
           <div class="d-flex flex-column gap-3 mt-4">
-             <button type="submit" class="btn btn-primary" style="width: 100%;">Đăng nhập (SME Web Dashboard)</button>
-             <button type="button" class="btn btn-outline" style="width: 100%; border: 1px solid var(--primary-100);" onclick="window.location.href='sme_app.html'">Đăng nhập (SME Mobile App)</button>
+             <button type="submit" class="btn btn-primary" style="width: 100%;">Đăng nhập vào Web Dashboard</button>
           </div>
         </form>
 
         <p class="text-center text-sm text-secondary mt-6">
           Chưa có tài khoản? <a href="#">Đăng ký ngay</a>
         </p>
+
+        <!-- Ecosystem Portal Links -->
+        <div style="margin-top: var(--space-8); padding-top: var(--space-4); border-top: 1px dashed var(--primary-100);">
+          <p class="text-center text-xs text-tertiary mb-3">Mô phỏng Ứng dụng Di động (Dành cho Demo)</p>
+          <div class="d-flex justify-center gap-4">
+            <a href="sme_app.html" class="text-sm fw-medium text-primary d-flex align-center gap-1">📱 SME App</a>
+            <a href="koc_app.html" class="text-sm fw-medium text-primary d-flex align-center gap-1">📱 KOC App</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

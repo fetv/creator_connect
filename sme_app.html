@@ -81,8 +81,30 @@
       
       <div class="mobile-content">
         
+        <!-- View 0: Login -->
+        <div id="view-sme-login" class="mobile-view active" style="background: var(--bg-surface); display: flex; flex-direction: column;">
+           <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: var(--space-6);">
+             <div class="text-center mb-8">
+               <h1 class="text-4xl mb-2 fw-bold gradient-text">Creator Connect</h1>
+               <p class="text-sm text-secondary">Nền tảng Quản lý KOC/KOL (SME)</p>
+             </div>
+             
+             <div class="form-group mb-4">
+               <label class="form-label">Tài khoản Email</label>
+               <input type="email" class="form-control" placeholder="admin@example.com">
+             </div>
+             <div class="form-group mb-6">
+               <label class="form-label">Mật khẩu</label>
+               <input type="password" class="form-control" placeholder="••••••••">
+             </div>
+             <button id="btn-sme-login" class="btn btn-primary" style="width: 100%; box-shadow: var(--shadow-primary);">Đăng Nhập Quản Trị</button>
+             
+             <p class="text-center text-sm mt-6 text-secondary">Hỗ trợ đối tác: <a href="#" class="text-primary fw-bold">Liên hệ Zalo</a></p>
+           </div>
+        </div>
+
         <!-- View 1: Dashboard (Tổng quan) -->
-        <div id="view-sme-home" class="mobile-view active">
+        <div id="view-sme-home" class="mobile-view">
           <!-- Scrollable Content -->
           <div style="flex: 1; overflow-y: auto;">
             <div class="sme-hero-bg">
@@ -132,46 +154,156 @@
           </div>
         </div>
 
-        <!-- View 2: MMarketplace / Tìm KOC -->
+        <!-- View 2: Marketplace / Tìm KOC -->
         <div id="view-sme-search" class="mobile-view">
-           <!-- Sticky Header -->
-           <div class="mobile-header d-flex justify-between align-center" style="padding-top: 40px; border-bottom: 1px solid var(--primary-100); background: var(--bg-surface); flex-shrink: 0;">
-             <h2 class="text-md fw-bold mx-auto">Khám phá KOC</h2>
-           </div>
-           
-           <!-- Swipe Card Layout (Non-scrollable, flex-1) -->
-           <div style="flex: 1; display: flex; align-items: center; justify-content: center; background: #f0f0f8;">
-             <div class="koc-swipe-card" style="width: 90%; max-width: 340px; margin: 0;">
-                <div class="koc-swipe-img">
-                   <div style="position: absolute; bottom: 10px; left: 10px; background: rgba(0,0,0,0.5); color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px;">✅ Đã xác minh</div>
-                </div>
-                <div class="koc-swipe-info" id="btn-view-koc-profile" style="cursor: pointer;">
-                   <h3 class="text-xl fw-bold">Thanh Trúc Review <span style="font-size: 14px; font-weight: normal; color: var(--primary-600);">(Xem chi tiết)</span></h3>
-                   <p class="text-sm text-secondary mb-3">Food & Lifestyle Vlogger</p>
-                   
-                   <div style="display: flex; gap: var(--space-4); margin-bottom: var(--space-4);">
-                     <div>
-                       <p class="text-xs text-secondary">Followers</p>
-                       <p class="fw-bold">120K</p>
-                     </div>
-                     <div>
-                       <p class="text-xs text-secondary">Rate (TB)</p>
-                       <p class="fw-bold text-primary">1.5M</p>
-                     </div>
-                   </div>
-                   
-                   <div class="d-flex gap-2">
-                      <span class="badge" style="background: var(--bg-surface-hover);">#Food</span>
-                      <span class="badge" style="background: var(--bg-surface-hover);">#StreetFood</span>
-                   </div>
-                </div>
-                
-                <div class="swipe-actions">
-                   <div class="circle-btn" style="color: var(--danger-500);" onclick="showToast('Đã bỏ qua KOL này', 'warning')">✕</div>
-                   <div class="circle-btn" style="color: var(--warning-500);">⭐</div>
-                   <div class="circle-btn" style="color: var(--success-500);" onclick="showToast('Đã gửi lời mời Booking', 'success')">💬</div>
-                </div>
+           <!-- Sticky Header + Search -->
+           <div style="flex-shrink: 0; background: var(--bg-surface); border-bottom: 1px solid var(--primary-100);">
+             <div class="mobile-header d-flex justify-between align-center" style="padding-top: 40px;">
+               <h2 class="text-md fw-bold mx-auto">Tìm KOC / KOL</h2>
              </div>
+             <!-- Search Bar -->
+             <div style="padding: 0 var(--space-4) var(--space-3);">
+               <div style="position: relative;">
+                 <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 15px; pointer-events: none;">&#128269;</span>
+                 <input type="text" placeholder="Tìm theo tên, lĩnh vực..." style="width: 100%; padding: 10px 12px 10px 36px; border-radius: var(--radius-full); border: 1.5px solid var(--primary-200); background: var(--bg-surface-hover); font-size: 13px; box-sizing: border-box; outline: none; font-family: var(--font-body);">
+               </div>
+             </div>
+             <!-- Filter Chips -->
+             <div style="display: flex; gap: 8px; padding: 0 var(--space-4) var(--space-3); overflow-x: auto; scrollbar-width: none;">
+               <button class="btn btn-primary btn-sm" style="white-space: nowrap; border-radius: var(--radius-full); font-size: 11px; padding: 4px 14px;">Tất cả</button>
+               <button class="btn btn-ghost btn-sm" style="white-space: nowrap; border-radius: var(--radius-full); font-size: 11px; padding: 4px 14px; background: var(--bg-surface-hover);">Ẩm thực</button>
+               <button class="btn btn-ghost btn-sm" style="white-space: nowrap; border-radius: var(--radius-full); font-size: 11px; padding: 4px 14px; background: var(--bg-surface-hover);">Làm đẹp</button>
+               <button class="btn btn-ghost btn-sm" style="white-space: nowrap; border-radius: var(--radius-full); font-size: 11px; padding: 4px 14px; background: var(--bg-surface-hover);">Công nghệ</button>
+               <button class="btn btn-ghost btn-sm" style="white-space: nowrap; border-radius: var(--radius-full); font-size: 11px; padding: 4px 14px; background: var(--bg-surface-hover);">Lifestyle</button>
+             </div>
+           </div>
+
+           <!-- Scrollable KOC List -->
+           <div style="flex: 1; overflow-y: auto; padding: var(--space-3) var(--space-4); display: flex; flex-direction: column; gap: var(--space-3);">
+
+             <p class="text-xs text-secondary">Tìm thấy <strong>24 KOC/KOL</strong> phù hợp</p>
+
+             <!-- KOC Card 1 -->
+             <div id="btn-view-koc-profile" class="card" style="padding: var(--space-4); cursor: pointer; border: 1px solid var(--primary-100); transition: box-shadow 0.2s;">
+               <div class="d-flex gap-3 align-center mb-3">
+                 <div style="position: relative; flex-shrink: 0;">
+                   <div class="avatar" style="background: linear-gradient(135deg, #fbc2eb, #a18cd1); width: 52px; height: 52px;"></div>
+                   <span style="position: absolute; bottom: 0; right: 0; background: var(--success-500); border-radius: 50%; width: 14px; height: 14px; border: 2px solid white; display: block;"></span>
+                 </div>
+                 <div style="flex: 1; min-width: 0;">
+                   <div class="d-flex justify-between align-center">
+                     <h4 class="fw-bold text-sm">Thanh Trúc Review ✅</h4>
+                     <span class="badge badge-success" style="font-size: 10px;">Đang rảnh</span>
+                   </div>
+                   <p class="text-xs text-secondary">Food &amp; Lifestyle Vlogger</p>
+                 </div>
+               </div>
+               <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: var(--space-3);">
+                 <div style="background: var(--primary-50); border-radius: 8px; padding: 6px 4px; text-align: center;">
+                   <p class="fw-bold text-sm" style="color: var(--primary-600);">120K</p>
+                   <p class="text-xs text-secondary">Followers</p>
+                 </div>
+                 <div style="background: var(--primary-50); border-radius: 8px; padding: 6px 4px; text-align: center;">
+                   <p class="fw-bold text-sm" style="color: var(--success-500);">12.5%</p>
+                   <p class="text-xs text-secondary">Eng. Rate</p>
+                 </div>
+                 <div style="background: var(--primary-50); border-radius: 8px; padding: 6px 4px; text-align: center;">
+                   <p class="fw-bold text-sm" style="color: var(--escrow-color);">1.5Mđ</p>
+                   <p class="text-xs text-secondary">Giá/Video</p>
+                 </div>
+               </div>
+               <div class="d-flex gap-2 mb-3" style="flex-wrap: wrap;">
+                 <span style="background: #fff3e0; color: #e65100; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 600;">#TikTok</span>
+                 <span style="background: #e3f2fd; color: #1565c0; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 600;">#Facebook</span>
+                 <span style="background: var(--primary-50); color: var(--primary-700); font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 600;">#Food</span>
+               </div>
+               <div class="d-flex gap-2">
+                 <button class="btn btn-outline btn-sm" style="flex: 1; font-size: 11px;" onclick="event.stopPropagation(); showToast('Đã lưu vào yêu thích!', 'success')">⭐ Lưu</button>
+                 <button class="btn btn-primary btn-sm" style="flex: 2; font-size: 11px;" onclick="event.stopPropagation(); showToast('Đã gửi lời mời Booking đến Thanh Trúc!', 'success')">&#128232; Mời Booking</button>
+               </div>
+             </div>
+
+             <!-- KOC Card 2 -->
+             <div class="card" style="padding: var(--space-4); border: 1px solid var(--primary-100);">
+               <div class="d-flex gap-3 align-center mb-3">
+                 <div style="position: relative; flex-shrink: 0;">
+                   <div class="avatar" style="background: linear-gradient(135deg, #0ea5e9, #38bdf8); width: 52px; height: 52px;"></div>
+                   <span style="position: absolute; bottom: 0; right: 0; background: var(--success-500); border-radius: 50%; width: 14px; height: 14px; border: 2px solid white; display: block;"></span>
+                 </div>
+                 <div style="flex: 1; min-width: 0;">
+                   <div class="d-flex justify-between align-center">
+                     <h4 class="fw-bold text-sm">Đức Dược Sĩ ✅</h4>
+                     <span class="badge badge-success" style="font-size: 10px;">Đang rảnh</span>
+                   </div>
+                   <p class="text-xs text-secondary">Skincare &amp; Dược mỹ phẩm</p>
+                 </div>
+               </div>
+               <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: var(--space-3);">
+                 <div style="background: var(--primary-50); border-radius: 8px; padding: 6px 4px; text-align: center;">
+                   <p class="fw-bold text-sm" style="color: var(--primary-600);">85K</p>
+                   <p class="text-xs text-secondary">Followers</p>
+                 </div>
+                 <div style="background: var(--primary-50); border-radius: 8px; padding: 6px 4px; text-align: center;">
+                   <p class="fw-bold text-sm" style="color: var(--success-500);">18.3%</p>
+                   <p class="text-xs text-secondary">Eng. Rate</p>
+                 </div>
+                 <div style="background: var(--primary-50); border-radius: 8px; padding: 6px 4px; text-align: center;">
+                   <p class="fw-bold text-sm" style="color: var(--escrow-color);">3Mđ</p>
+                   <p class="text-xs text-secondary">Giá/Video</p>
+                 </div>
+               </div>
+               <div class="d-flex gap-2 mb-3" style="flex-wrap: wrap;">
+                 <span style="background: #fff3e0; color: #e65100; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 600;">#TikTok</span>
+                 <span style="background: #f3e5f5; color: #7b1fa2; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 600;">#Skincare</span>
+               </div>
+               <div class="d-flex gap-2">
+                 <button class="btn btn-outline btn-sm" style="flex: 1; font-size: 11px;" onclick="showToast('Đã lưu vào yêu thích!', 'success')">⭐ Lưu</button>
+                 <button class="btn btn-primary btn-sm" style="flex: 2; font-size: 11px;" onclick="showToast('Đã gửi lời mời Booking đến Đức Dược Sĩ!', 'success')">&#128232; Mời Booking</button>
+               </div>
+             </div>
+
+             <!-- KOC Card 3 -->
+             <div class="card" style="padding: var(--space-4); border: 1px solid var(--primary-100);">
+               <div class="d-flex gap-3 align-center mb-3">
+                 <div style="position: relative; flex-shrink: 0;">
+                   <div class="avatar" style="background: linear-gradient(135deg, #84fab0, #8fd3f4); width: 52px; height: 52px;"></div>
+                   <span style="position: absolute; bottom: 0; right: 0; background: var(--warning-500); border-radius: 50%; width: 14px; height: 14px; border: 2px solid white; display: block;"></span>
+                 </div>
+                 <div style="flex: 1; min-width: 0;">
+                   <div class="d-flex justify-between align-center">
+                     <h4 class="fw-bold text-sm">Kiên Hoàng Tech ✅</h4>
+                     <span class="badge badge-warning" style="font-size: 10px;">Bận việc</span>
+                   </div>
+                   <p class="text-xs text-secondary">Tech Review &amp; Gadgets</p>
+                 </div>
+               </div>
+               <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: var(--space-3);">
+                 <div style="background: var(--primary-50); border-radius: 8px; padding: 6px 4px; text-align: center;">
+                   <p class="fw-bold text-sm" style="color: var(--primary-600);">210K</p>
+                   <p class="text-xs text-secondary">Followers</p>
+                 </div>
+                 <div style="background: var(--primary-50); border-radius: 8px; padding: 6px 4px; text-align: center;">
+                   <p class="fw-bold text-sm" style="color: var(--success-500);">9.7%</p>
+                   <p class="text-xs text-secondary">Eng. Rate</p>
+                 </div>
+                 <div style="background: var(--primary-50); border-radius: 8px; padding: 6px 4px; text-align: center;">
+                   <p class="fw-bold text-sm" style="color: var(--escrow-color);">5Mđ</p>
+                   <p class="text-xs text-secondary">Giá/Video</p>
+                 </div>
+               </div>
+               <div class="d-flex gap-2 mb-3" style="flex-wrap: wrap;">
+                 <span style="background: #e8f5e9; color: #2e7d32; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 600;">#YouTube</span>
+                 <span style="background: #fff3e0; color: #e65100; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 600;">#TikTok</span>
+                 <span style="background: var(--primary-50); color: var(--primary-700); font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 600;">#Tech</span>
+               </div>
+               <div class="d-flex gap-2">
+                 <button class="btn btn-outline btn-sm" style="flex: 1; font-size: 11px;" onclick="showToast('Đã lưu vào yêu thích!', 'success')">⭐ Lưu</button>
+                 <button class="btn btn-ghost btn-sm" style="flex: 2; font-size: 11px;" onclick="showToast('Kiên Hoàng đang bận, đã đặt lịch nhắc!', 'warning')">⏰ Đặt lịch sau</button>
+               </div>
+             </div>
+
+             <!-- Load More -->
+             <button class="btn btn-ghost" style="width: 100%; font-size: 13px; color: var(--primary-600);" onclick="showToast('Đang tải thêm KOC...', 'success')">Xem thêm KOC &#8595;</button>
            </div>
         </div>
 
@@ -318,7 +450,7 @@
       </div>
       
       <!-- Bottom Navigation -->
-      <nav class="mobile-nav">
+      <nav id="sme-mobile-nav" class="mobile-nav" style="display: none;">
         <div class="nav-item active" data-target="view-sme-home">
           <div class="nav-item-icon">📊</div>
           <span>Tổng quan</span>
