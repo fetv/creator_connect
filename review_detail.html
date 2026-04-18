@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creator Connect | Duyệt Video Chiến Dịch</title>
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/layouts.css">
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2 class="text-xl gradient-text">Creator Connect</h2>
+      </div>
+      <nav class="sidebar-menu">
+        <a href="dashboard.html" class="menu-item active"><span style="font-size: 1.25rem;">📊</span> Dashboard</a>
+        <a href="search.html" class="menu-item"><span style="font-size: 1.25rem;">🔍</span> Khám phá KOC/KOL</a>
+        <a href="campaigns.html" class="menu-item"><span style="font-size: 1.25rem;">📁</span> Quản lý chiến dịch</a>
+        <a href="escrow.html" class="menu-item d-flex justify-between">
+          <div><span style="font-size: 1.25rem;">💳</span> Ví tạm giữ</div>
+          <span class="badge badge-warning">Cần duyệt</span>
+        </a>
+        <a href="messages.html" class="menu-item"><span style="font-size: 1.25rem;">💬</span> Tin nhắn & Hợp đồng</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-header">
+        <div>
+          <p class="text-xs text-secondary">Duyệt nghiệm thu theo từng KOC trong chiến dịch</p>
+          <h2 class="text-lg fw-medium">Review Video | Đức Dược Sĩ</h2>
+        </div>
+        <div class="d-flex align-center gap-3">
+          <a href="dashboard.html" class="btn btn-ghost btn-sm">← Quay lại Dashboard</a>
+          <button class="btn btn-outline btn-sm" onclick="showToast('Đã gửi yêu cầu chỉnh sửa cho KOC', 'warning')">Yêu cầu chỉnh sửa</button>
+          <button class="btn btn-primary btn-sm" onclick="showToast('Đã duyệt video và kích hoạt giải ngân 3.000.000đ', 'success')">Duyệt & Giải ngân</button>
+        </div>
+      </header>
+
+      <div class="content-area">
+        <div class="page-shell">
+          <section class="page-header-card">
+            <div class="d-flex justify-between align-center" style="gap: var(--space-6); flex-wrap: wrap;">
+              <div>
+                <p class="text-sm text-secondary mb-2">Chiến dịch đang xét duyệt</p>
+                <h1 class="text-3xl mb-2">Kem chống nắng mùa hè</h1>
+                <p class="text-secondary">Mục tiêu: tăng tỷ lệ chuyển đổi TikTok Shop cho nhóm khách hàng nữ 18-28 tuổi.</p>
+              </div>
+              <div class="d-flex gap-3">
+                <span class="badge badge-escrow">Escrow: 3.000.000đ</span>
+                <span class="badge badge-warning">Đang chờ SME duyệt</span>
+              </div>
+            </div>
+          </section>
+
+          <div style="display: grid; grid-template-columns: minmax(0, 1.8fr) minmax(320px, 1fr); gap: var(--space-6); align-items: start;">
+            <div class="page-shell">
+              <section class="section-card">
+                <div class="section-body">
+                  <div class="d-flex justify-between align-center mb-4">
+                    <div>
+                      <h3 class="text-xl mb-1">Tổng quan hiệu suất bài đăng</h3>
+                      <p class="text-secondary">Trang này giúp bạn xem đủ thông số hiệu quả sau đăng trước khi đánh giá kết quả chiến dịch.</p>
+                    </div>
+                    <a href="messages.html" class="btn btn-outline btn-sm">Mở chat trao đổi</a>
+                  </div>
+
+                  <div class="metric-grid">
+                    <div class="metric-card">
+                      <div class="metric-label">Tỷ lệ đạt brief</div>
+                      <div class="metric-value">92%</div>
+                      <div class="metric-note">Đã đạt 11/12 tiêu chí nội dung</div>
+                    </div>
+                    <div class="metric-card">
+                      <div class="metric-label">Thời lượng video</div>
+                      <div class="metric-value">68s</div>
+                      <div class="metric-note">Yêu cầu tối thiểu 60s</div>
+                    </div>
+                    <div class="metric-card">
+                      <div class="metric-label">Lượt xem hiện tại</div>
+                      <div class="metric-value">148K</div>
+                      <div class="metric-note">Sau 48 giờ đăng bài trên TikTok</div>
+                    </div>
+                    <div class="metric-card">
+                      <div class="metric-label">CTR về shop</div>
+                      <div class="metric-value">3.6%</div>
+                      <div class="metric-note">Cao hơn baseline chiến dịch 0.8%</div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="section-card">
+                <div class="section-body">
+                  <h3 class="text-xl mb-4">Thông số của KOL trong chính chiến dịch này</h3>
+                  <div class="metric-grid">
+                    <div class="metric-card">
+                      <div class="metric-label">Giá booking</div>
+                      <div class="metric-value">3.000.000đ</div>
+                      <div class="metric-note">Theo hợp đồng #CC-A093</div>
+                    </div>
+                    <div class="metric-card">
+                      <div class="metric-label">Số revision đã dùng</div>
+                      <div class="metric-value">1/2</div>
+                      <div class="metric-note">Còn 1 lần chỉnh sửa trong hợp đồng</div>
+                    </div>
+                    <div class="metric-card">
+                      <div class="metric-label">Nộp bài đúng hạn</div>
+                      <div class="metric-value">+8h</div>
+                      <div class="metric-note">Nộp trước deadline 8 tiếng</div>
+                    </div>
+                    <div class="metric-card">
+                      <div class="metric-label">Điểm phù hợp thương hiệu</div>
+                      <div class="metric-value">8.9/10</div>
+                      <div class="metric-note">Dựa trên persona nữ trẻ và tone voice khoa học</div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <aside class="page-shell sticky-summary">
+              <section class="info-panel">
+                <div class="d-flex align-center gap-3 mb-4">
+                  <div class="avatar avatar-lg" style="background: linear-gradient(135deg, #0ea5e9, #38bdf8);"></div>
+                  <div>
+                    <h3 class="text-lg">Đức Dược Sĩ</h3>
+                    <p class="text-sm text-secondary">Skincare Reviewer | TikTok 22.5K followers</p>
+                  </div>
+                </div>
+                <div class="detail-list">
+                  <div class="detail-row">
+                    <span class="text-sm text-secondary">ER trung bình</span>
+                    <span class="fw-medium text-success">12.5%</span>
+                  </div>
+                  <div class="detail-row">
+                    <span class="text-sm text-secondary">View TB video</span>
+                    <span class="fw-medium">140K</span>
+                  </div>
+                  <div class="detail-row">
+                    <span class="text-sm text-secondary">Tệp khán giả chính</span>
+                    <span class="fw-medium">Nữ 18-28</span>
+                  </div>
+                  <div class="detail-row">
+                    <span class="text-sm text-secondary">Lần hợp tác với brand</span>
+                    <span class="fw-medium">Lần 2</span>
+                  </div>
+                </div>
+                <a href="koc_profile.html" class="btn btn-outline btn-sm" style="width: 100%; margin-top: var(--space-4);">Xem portfolio đầy đủ</a>
+              </section>
+
+              <section class="info-panel">
+                <h3 class="text-lg mb-4">Hiệu quả sau đăng</h3>
+                <div class="asset-grid">
+                  <div class="asset-card">
+                    <p class="fw-medium mb-1">Lượt xem</p>
+                    <p class="text-sm text-secondary">148.200 views sau 48 giờ, vượt mức trung bình portfolio 5.8%.</p>
+                  </div>
+                  <div class="asset-card">
+                    <p class="fw-medium mb-1">Tương tác</p>
+                    <p class="text-sm text-secondary">12.400 lượt tim • 486 bình luận • 1.920 lượt lưu.</p>
+                  </div>
+                  <div class="asset-card">
+                    <p class="fw-medium mb-1">Hiệu quả chuyển đổi</p>
+                    <p class="text-sm text-secondary">5.320 lượt click về shop • CTR 3.6% • 126 đơn hàng ghi nhận.</p>
+                  </div>
+                  <div class="asset-card">
+                    <p class="fw-medium mb-1">Link bài đăng</p>
+                    <p class="text-sm text-secondary">TikTok đã lên bài thành công, có thể dùng làm căn cứ đánh giá nghiệm thu.</p>
+                  </div>
+                </div>
+              </section>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

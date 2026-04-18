@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creator Connect | Chi Tiết Chiến Dịch</title>
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/layouts.css">
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2 class="text-xl gradient-text">Creator Connect</h2>
+      </div>
+      <nav class="sidebar-menu">
+        <a href="dashboard.html" class="menu-item"><span style="font-size: 1.25rem;">📊</span> Dashboard</a>
+        <a href="search.html" class="menu-item"><span style="font-size: 1.25rem;">🔍</span> Khám phá KOC/KOL</a>
+        <a href="campaigns.html" class="menu-item active"><span style="font-size: 1.25rem;">📁</span> Quản lý chiến dịch</a>
+        <a href="escrow.html" class="menu-item"><span style="font-size: 1.25rem;">💳</span> Ví tạm giữ</a>
+        <a href="messages.html" class="menu-item"><span style="font-size: 1.25rem;">💬</span> Tin nhắn & Hợp đồng</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-header">
+        <div>
+          <h2 class="text-lg fw-medium">Chi tiết chiến dịch</h2>
+        </div>
+        <div class="d-flex align-center gap-3">
+          <a href="campaigns.html" class="btn btn-ghost btn-sm">← Quay lại danh sách</a>
+          <button class="btn btn-outline btn-sm" onclick="showToast('Đã mở bản nháp chỉnh sửa chiến dịch', 'warning')">Chỉnh sửa brief</button>
+          <button class="btn btn-primary btn-sm" onclick="showToast('Đã chia sẻ link chiến dịch cho team nội bộ', 'success')">Chia sẻ chiến dịch</button>
+        </div>
+      </header>
+
+      <div class="content-area">
+        <div class="page-shell">
+          <section class="page-header-card">
+            <div class="d-flex justify-between align-center" style="gap: var(--space-6); flex-wrap: wrap;">
+              <div>
+                <p class="text-sm text-secondary mb-2">Skincare • TikTok • Mega Sale mùa hè</p>
+                <h1 class="text-3xl mb-2">Chiến dịch Review Mỹ Phẩm Hè</h1>
+                <p class="text-secondary">Tuyển KOC có chuyên môn về skincare để tạo video review tăng chuyển đổi TikTok Shop trước mùa sale.</p>
+              </div>
+              <div class="d-flex gap-3">
+                <span class="badge badge-warning">Đang chạy</span>
+                <span class="badge badge-escrow">Ngân sách escrow đã khóa: 9.000.000đ</span>
+              </div>
+            </div>
+          </section>
+
+          <div style="display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(320px, 1fr); gap: var(--space-6); align-items: start;">
+            <div class="page-shell">
+              <section class="section-card">
+                <div class="section-body">
+                  <h3 class="text-xl mb-4">Tổng quan chiến dịch</h3>
+                  <div class="metric-grid">
+                    <div class="metric-card">
+                      <div class="metric-label">Ngân sách dự kiến</div>
+                      <div class="metric-value">15.000.000đ</div>
+                      <div class="metric-note">Chưa gồm 5% phí nền tảng</div>
+                    </div>
+                    <div class="metric-card">
+                      <div class="metric-label">Slot KOC cần tuyển</div>
+                      <div class="metric-value">10</div>
+                      <div class="metric-note">Đã chốt 5, đang xét 7 hồ sơ</div>
+                    </div>
+                    <div class="metric-card">
+                      <div class="metric-label">KPI mục tiêu</div>
+                      <div class="metric-value">500K</div>
+                      <div class="metric-note">Lượt xem trong 7 ngày đầu</div>
+                    </div>
+                    <div class="metric-card">
+                      <div class="metric-label">Deadline nộp bài</div>
+                      <div class="metric-value">30/05</div>
+                      <div class="metric-note">Yêu cầu duyệt trước 22:00</div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="section-card">
+                <div class="section-body">
+                  <h3 class="text-xl mb-4">Brief chi tiết</h3>
+                  <div class="detail-list">
+                    <div class="asset-card">
+                      <p class="fw-medium mb-1">Mục tiêu nội dung</p>
+                      <p class="text-sm text-secondary">Làm nổi bật khả năng chống nắng, finish trên da và tính phù hợp cho da nhạy cảm.</p>
+                    </div>
+                    <div class="asset-card">
+                      <p class="fw-medium mb-1">Yêu cầu bắt buộc</p>
+                      <p class="text-sm text-secondary">1 video TikTok tối thiểu 60 giây, có cảnh texture, test trên da thật, gắn hashtag thương hiệu và CTA mua hàng.</p>
+                    </div>
+                    <div class="asset-card">
+                      <p class="fw-medium mb-1">Điều khoản nội dung</p>
+                      <p class="text-sm text-secondary">Không đưa claim vượt chứng nhận, không so sánh trực tiếp với đối thủ, revision tối đa 2 lần.</p>
+                    </div>
+                    <div class="asset-card">
+                      <p class="fw-medium mb-1">Quyền sử dụng nội dung</p>
+                      <p class="text-sm text-secondary">Brand được repost trên kênh owned media 30 ngày. Nếu chạy ads cần phụ lục riêng.</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="section-card">
+                <div class="section-body">
+                  <h3 class="text-xl mb-4">Tiến độ thực thi</h3>
+                  <div class="timeline-list">
+                    <div class="timeline-item">
+                      <div>
+                        <p class="fw-medium">07/05 - Xuất bản chiến dịch</p>
+                        <p class="text-sm text-secondary">Campaign đã lên sàn và bắt đầu nhận hồ sơ.</p>
+                      </div>
+                      <span class="badge badge-success">Hoàn thành</span>
+                    </div>
+                    <div class="timeline-item">
+                      <div>
+                        <p class="fw-medium">10/05 - Chốt shortlist</p>
+                        <p class="text-sm text-secondary">5 KOC đã ký hợp đồng, 7 hồ sơ đang chờ duyệt thêm.</p>
+                      </div>
+                      <span class="badge badge-warning">Đang diễn ra</span>
+                    </div>
+                    <div class="timeline-item">
+                      <div>
+                        <p class="fw-medium">15/05 - Nạp escrow đợt 1</p>
+                        <p class="text-sm text-secondary">Khóa ngân sách cho các KOC đã ký hợp đồng.</p>
+                      </div>
+                      <span class="badge badge-primary">Kế hoạch</span>
+                    </div>
+                    <div class="timeline-item">
+                      <div>
+                        <p class="fw-medium">30/05 - Nghiệm thu video</p>
+                        <p class="text-sm text-secondary">SME duyệt và giải ngân theo từng KOC hoàn thành.</p>
+                      </div>
+                      <span class="badge badge-primary">Kế hoạch</span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="section-card">
+                <div class="section-body">
+                  <div class="d-flex justify-between align-center mb-4" style="gap: var(--space-4); flex-wrap: wrap;">
+                    <div>
+                      <h3 class="text-xl mb-1">KOC/KOL trong chiến dịch</h3>
+                      <p class="text-sm text-secondary">Theo dõi rõ người đã tham gia chính thức và người còn đang chờ duyệt.</p>
+                    </div>
+                    <span class="badge badge-primary">Tổng 12 hồ sơ đang xử lý</span>
+                  </div>
+
+                  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-5); align-items: start;">
+                    <div class="info-panel">
+                      <div class="d-flex justify-between align-center mb-4">
+                        <h4 class="text-lg">Đã tham gia</h4>
+                        <span class="badge badge-success">5 KOC</span>
+                      </div>
+                      <div class="detail-list">
+                        <div class="detail-row">
+                          <div class="d-flex align-center gap-3">
+                            <div class="avatar avatar-sm" style="background: linear-gradient(135deg, #0ea5e9, #38bdf8);"></div>
+                            <div>
+                              <p class="fw-medium">Đức Dược Sĩ</p>
+                              <p class="text-xs text-secondary">Đã ký hợp đồng • Chờ duyệt video</p>
+                            </div>
+                          </div>
+                          <a href="review_detail.html" class="btn btn-outline btn-sm">Xem tiến trình</a>
+                        </div>
+                        <div class="detail-row">
+                          <div class="d-flex align-center gap-3">
+                            <div class="avatar avatar-sm" style="background: linear-gradient(45deg, #fbc2eb, #a18cd1);"></div>
+                            <div>
+                              <p class="fw-medium">Thanh Trúc Review</p>
+                              <p class="text-xs text-secondary">Đã ký hợp đồng • Đang quay dựng</p>
+                            </div>
+                          </div>
+                          <a href="review_detail.html" class="btn btn-outline btn-sm">Xem tiến trình</a>
+                        </div>
+                        <div class="detail-row">
+                          <div class="d-flex align-center gap-3">
+                            <div class="avatar avatar-sm" style="background: linear-gradient(45deg, #84fab0, #8fd3f4);"></div>
+                            <div>
+                              <p class="fw-medium">Hải Nguyễn Tech</p>
+                              <p class="text-xs text-secondary">Đã ký hợp đồng • Chờ nhận sản phẩm</p>
+                            </div>
+                          </div>
+                          <a href="review_detail.html" class="btn btn-outline btn-sm">Xem tiến trình</a>
+                        </div>
+                        <div class="detail-row">
+                          <div class="d-flex align-center gap-3">
+                            <div class="avatar avatar-sm" style="background: linear-gradient(135deg, #f97316, #fb7185);"></div>
+                            <div>
+                              <p class="fw-medium">Linh Beauty Lab</p>
+                              <p class="text-xs text-secondary">Đã ký hợp đồng • Chờ SME gửi sản phẩm</p>
+                            </div>
+                          </div>
+                          <a href="review_detail.html" class="btn btn-outline btn-sm">Xem tiến trình</a>
+                        </div>
+                        <div class="detail-row">
+                          <div class="d-flex align-center gap-3">
+                            <div class="avatar avatar-sm" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);"></div>
+                            <div>
+                              <p class="fw-medium">Mai Skin Diary</p>
+                              <p class="text-xs text-secondary">Đã ký hợp đồng • Đã nhận brief</p>
+                            </div>
+                          </div>
+                          <a href="review_detail.html" class="btn btn-outline btn-sm">Xem tiến trình</a>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="info-panel">
+                      <div class="d-flex justify-between align-center mb-4">
+                        <h4 class="text-lg">Đang chờ duyệt</h4>
+                        <span class="badge badge-warning">7 hồ sơ</span>
+                      </div>
+                      <div class="detail-list">
+                        <div class="detail-row">
+                          <div class="d-flex align-center gap-3">
+                            <div class="avatar avatar-sm" style="background: linear-gradient(135deg, #22c55e, #14b8a6);"></div>
+                            <div>
+                              <p class="fw-medium">Thu Hà Skincare</p>
+                              <p class="text-xs text-secondary">22K followers • Rate 2.200.000đ/video</p>
+                            </div>
+                          </div>
+                          <div class="d-flex gap-2">
+                            <a href="koc_profile.html" class="btn btn-outline btn-sm">Xem hồ sơ</a>
+                            <button class="btn btn-primary btn-sm" onclick="showToast('Đã chấp nhận hồ sơ Thu Hà Skincare', 'success')">Chấp nhận</button>
+                            <button class="btn btn-ghost btn-sm" onclick="showToast('Đã từ chối hồ sơ Thu Hà Skincare', 'warning')">Từ chối</button>
+                          </div>
+                        </div>
+                        <div class="detail-row">
+                          <div class="d-flex align-center gap-3">
+                            <div class="avatar avatar-sm" style="background: linear-gradient(135deg, #f59e0b, #ef4444);"></div>
+                            <div>
+                              <p class="fw-medium">Ngọc Trâm Review</p>
+                              <p class="text-xs text-secondary">18K followers • Rate 1.800.000đ/video</p>
+                            </div>
+                          </div>
+                          <div class="d-flex gap-2">
+                            <a href="koc_profile.html" class="btn btn-outline btn-sm">Xem hồ sơ</a>
+                            <button class="btn btn-primary btn-sm" onclick="showToast('Đã chấp nhận hồ sơ Ngọc Trâm Review', 'success')">Chấp nhận</button>
+                            <button class="btn btn-ghost btn-sm" onclick="showToast('Đã từ chối hồ sơ Ngọc Trâm Review', 'warning')">Từ chối</button>
+                          </div>
+                        </div>
+                        <div class="detail-row">
+                          <div class="d-flex align-center gap-3">
+                            <div class="avatar avatar-sm" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);"></div>
+                            <div>
+                              <p class="fw-medium">Bảo Nhi Routine</p>
+                              <p class="text-xs text-secondary">15K followers • Chuyên da nhạy cảm</p>
+                            </div>
+                          </div>
+                          <div class="d-flex gap-2">
+                            <a href="koc_profile.html" class="btn btn-outline btn-sm">Xem hồ sơ</a>
+                            <button class="btn btn-primary btn-sm" onclick="showToast('Đã chấp nhận hồ sơ Bảo Nhi Routine', 'success')">Chấp nhận</button>
+                            <button class="btn btn-ghost btn-sm" onclick="showToast('Đã từ chối hồ sơ Bảo Nhi Routine', 'warning')">Từ chối</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <aside class="page-shell sticky-summary">
+              <section class="info-panel">
+                <h3 class="text-lg mb-4">Trạng thái tuyển chọn</h3>
+                <div class="detail-list">
+                  <div class="detail-row">
+                    <span class="text-sm text-secondary">Hồ sơ nhận được</span>
+                    <span class="fw-medium">24</span>
+                  </div>
+                  <div class="detail-row">
+                    <span class="text-sm text-secondary">Đã shortlist</span>
+                    <span class="fw-medium">12</span>
+                  </div>
+                  <div class="detail-row">
+                    <span class="text-sm text-secondary">Đã ký hợp đồng</span>
+                    <span class="fw-medium">5</span>
+                  </div>
+                  <div class="detail-row">
+                    <span class="text-sm text-secondary">Đang chờ phản hồi</span>
+                    <span class="fw-medium">7</span>
+                  </div>
+                </div>
+              </section>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

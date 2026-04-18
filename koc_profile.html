@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creator Connect | Portfolio KOC/KOL</title>
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/layouts.css">
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2 class="text-xl gradient-text">Creator Connect</h2>
+      </div>
+      <nav class="sidebar-menu">
+        <a href="dashboard.html" class="menu-item"><span style="font-size: 1.25rem;">📊</span> Dashboard</a>
+        <a href="search.html" class="menu-item active"><span style="font-size: 1.25rem;">🔍</span> Khám phá KOC/KOL</a>
+        <a href="campaigns.html" class="menu-item"><span style="font-size: 1.25rem;">📁</span> Quản lý Chiến dịch</a>
+        <a href="escrow.html" class="menu-item"><span style="font-size: 1.25rem;">💳</span> Ví tạm giữ</a>
+        <a href="messages.html" class="menu-item"><span style="font-size: 1.25rem;">💬</span> Tin nhắn & Hợp đồng</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-header">
+        <div>
+          <p class="text-xs text-secondary">Portfolio công khai dành cho SME xem trước khi booking</p>
+          <h2 class="text-lg fw-medium">Hồ sơ KOC/KOL</h2>
+        </div>
+        <div class="d-flex align-center gap-3">
+          <a href="search.html" class="btn btn-ghost btn-sm">← Quay lại Khám phá</a>
+          <button class="btn btn-primary btn-sm" onclick="showToast('Đã gửi lời mời booking đến Đức Dược Sĩ', 'success')">Mời Booking</button>
+        </div>
+      </header>
+
+      <div class="content-area">
+        <div class="page-shell">
+          <section class="page-header-card">
+            <div class="d-flex justify-between align-center" style="gap: var(--space-6); flex-wrap: wrap;">
+              <div class="d-flex align-center gap-4">
+                <div class="avatar avatar-xl" style="background: linear-gradient(135deg, #0ea5e9, #38bdf8);"></div>
+                <div>
+                  <div class="d-flex align-center gap-3 mb-2">
+                    <h1 class="text-3xl">Đức Dược Sĩ</h1>
+                    <span class="badge badge-success">Đã xác minh</span>
+                  </div>
+                  <p class="text-lg text-secondary mb-2">Chuyên gia Da liễu | Skincare Reviewer</p>
+                  <p class="text-secondary">Đồng bộ với thông tin đã có trên KOC App: TikTok 22.5K followers, Avg. Views 140K, Engagement 12.5%.</p>
+                </div>
+              </div>
+              <div class="d-flex gap-3">
+                <span class="badge badge-primary">TikTok</span>
+                <span class="badge" style="background: #fff1f2; color: #be123c;">Rate card: 3.000.000đ / video</span>
+              </div>
+            </div>
+          </section>
+
+          <div style="display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(300px, 1fr); gap: var(--space-6); align-items: start;">
+            <div class="page-shell">
+              <section class="section-card">
+                <div class="section-body">
+                  <h3 class="text-xl mb-4">Chỉ số chính</h3>
+                  <div class="metric-grid">
+                    <div class="metric-card">
+                      <div class="metric-label">TikTok Followers</div>
+                      <div class="metric-value">22.5K</div>
+                      <div class="metric-note">Đồng bộ theo KOC app</div>
+                    </div>
+                    <div class="metric-card">
+                      <div class="metric-label">Avg. Views</div>
+                      <div class="metric-value">140K</div>
+                      <div class="metric-note">Hiệu quả tốt với video phân tích thành phần</div>
+                    </div>
+                    <div class="metric-card">
+                      <div class="metric-label">Engagement</div>
+                      <div class="metric-value text-success">12.5%</div>
+                      <div class="metric-note">Cao hơn mức trung bình nhóm micro</div>
+                    </div>
+                    <div class="metric-card">
+                      <div class="metric-label">Tệp khán giả</div>
+                      <div class="metric-value">18-28</div>
+                      <div class="metric-note">Nữ quan tâm skincare, dược mỹ phẩm</div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="section-card">
+                <div class="section-body">
+                  <div class="d-flex justify-between align-center mb-4">
+                    <div>
+                      <h3 class="text-xl mb-1">Video nổi bật</h3>
+                      <p class="text-secondary">Bố cục và số liệu khớp với phần Portfolio trong KOC app.</p>
+                    </div>
+                    <span class="badge badge-primary">TikTok Portfolio</span>
+                  </div>
+                  <div class="portfolio-video-grid">
+                    <div class="video-thumb">
+                      <div class="video-badge">▶ 250K views</div>
+                    </div>
+                    <div class="video-thumb alt-pink">
+                      <div class="video-badge">▶ 105K views</div>
+                    </div>
+                    <div class="video-thumb alt-blue">
+                      <div class="video-badge">▶ 184K views</div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="section-card">
+                <div class="section-body">
+                  <h3 class="text-xl mb-4">Điểm mạnh phù hợp chiến dịch</h3>
+                  <div class="detail-list">
+                    <div class="detail-row">
+                      <div>
+                        <p class="fw-medium">Phong cách trình bày</p>
+                        <p class="text-sm text-secondary">Giải thích thành phần rõ ràng, có tính chuyên gia, tăng độ tin cậy cho ngành skincare.</p>
+                      </div>
+                      <span class="badge badge-success">Rất phù hợp</span>
+                    </div>
+                    <div class="detail-row">
+                      <div>
+                        <p class="fw-medium">Kinh nghiệm ngành hàng</p>
+                        <p class="text-sm text-secondary">Đã có case tương tự với dược mỹ phẩm và nội dung kiểm chứng claim.</p>
+                      </div>
+                      <span class="badge badge-success">Ưu tiên cao</span>
+                    </div>
+                    <div class="detail-row">
+                      <div>
+                        <p class="fw-medium">Rate card</p>
+                        <p class="text-sm text-secondary">3.000.000đ/video, phù hợp nhóm SME có ngân sách chất lượng cao.</p>
+                      </div>
+                      <span class="badge badge-warning">Cần cân ngân sách</span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <aside class="page-shell sticky-summary">
+              <section class="info-panel">
+                <h3 class="text-lg mb-4">Thông tin booking</h3>
+                <div class="detail-list">
+                  <div class="detail-row">
+                    <span class="text-sm text-secondary">Rate video</span>
+                    <span class="fw-medium">3.000.000đ</span>
+                  </div>
+                  <div class="detail-row">
+                    <span class="text-sm text-secondary">Nền tảng mạnh</span>
+                    <span class="fw-medium">TikTok</span>
+                  </div>
+                  <div class="detail-row">
+                    <span class="text-sm text-secondary">Hình thức phù hợp</span>
+                    <span class="fw-medium">Review chuyên sâu</span>
+                  </div>
+                  <div class="detail-row">
+                    <span class="text-sm text-secondary">Tình trạng</span>
+                    <span class="fw-medium text-success">Đang nhận booking</span>
+                  </div>
+                </div>
+              </section>
+
+              <section class="info-panel">
+                <h3 class="text-lg mb-4">Gợi ý cho SME</h3>
+                <div class="detail-list">
+                  <div class="asset-card">
+                    <p class="fw-medium mb-1">Phù hợp chiến dịch skincare</p>
+                    <p class="text-sm text-secondary">Tăng niềm tin nhờ chuyên môn và tone voice khoa học.</p>
+                  </div>
+                  <div class="asset-card">
+                    <p class="fw-medium mb-1">Nên brief rõ claim được phép nói</p>
+                    <p class="text-sm text-secondary">Giúp giảm revision và tránh tranh chấp nội dung.</p>
+                  </div>
+                  <div class="asset-card">
+                    <p class="fw-medium mb-1">Nên dùng escrow</p>
+                    <p class="text-sm text-secondary">Giữ an toàn giao dịch trước khi KOC nộp bản final.</p>
+                  </div>
+                </div>
+              </section>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

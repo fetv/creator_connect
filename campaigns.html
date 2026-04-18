@@ -4,17 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Creator Connect | Quản lý Chiến dịch</title>
-  
   <link rel="stylesheet" href="assets/css/variables.css">
   <link rel="stylesheet" href="assets/css/global.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/layouts.css">
 </head>
 <body>
-
   <div class="dashboard-layout">
-    
-    <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sidebar-header">
         <h2 class="text-xl gradient-text">Creator Connect</h2>
@@ -29,7 +25,7 @@
         </a>
         <a href="messages.html" class="menu-item"><span style="font-size: 1.25rem;">💬</span> Tin nhắn & Hợp đồng</a>
       </nav>
-      <div style="padding: var(--space-4); border-top: 1px solid var(--primary-100); margin-top: auto; cursor: pointer;" onclick="showToast('Tính năng Quản lý Tài khoản (Settings) đang được cập nhật', 'warning')">
+      <div style="padding: var(--space-4); border-top: 1px solid var(--primary-100); margin-top: auto; cursor: pointer;" onclick="showToast('Tính năng Quản lý Tài khoản đang được cập nhật', 'warning')">
         <div class="d-flex align-center gap-3">
           <div class="avatar avatar-sm bg-primary" style="background: var(--primary-100);"></div>
           <div>
@@ -40,10 +36,7 @@
       </div>
     </aside>
 
-    <!-- Main Content -->
     <main class="main-content">
-      
-      <!-- Header -->
       <header class="top-header">
         <h2 class="text-lg fw-medium">Chiến dịch của bạn</h2>
         <div class="d-flex align-center gap-4">
@@ -52,15 +45,12 @@
         </div>
       </header>
 
-      <!-- Content Area -->
       <div class="content-area">
-        
         <div class="d-flex justify-between align-center mb-6">
           <div class="d-flex gap-2 filter-tabs">
-            <button class="btn btn-sm btn-primary filter-btn">Tất cả</button>
-            <button class="btn btn-sm btn-ghost filter-btn">Đang tuyển (2)</button>
-            <button class="btn btn-sm btn-ghost filter-btn">Đang chạy (4)</button>
-            <button class="btn btn-sm btn-ghost filter-btn">Đã hoàn thành</button>
+            <button class="btn btn-sm btn-primary filter-btn">Tất cả (2)</button>
+            <button class="btn btn-sm btn-ghost filter-btn">Đang chạy (1)</button>
+            <button class="btn btn-sm btn-ghost filter-btn">Đã hoàn thành (1)</button>
           </div>
           <div style="width: 300px;">
              <input type="text" class="form-control" placeholder="Tìm kiếm chiến dịch...">
@@ -84,52 +74,37 @@
                  <tr>
                    <td>
                      <p class="fw-medium text-primary">Chiến dịch Review Mỹ Phẩm Hè</p>
-                     <p class="text-xs text-secondary">Hạn chót: 30/05/2026</p>
+                     <p class="text-xs text-secondary">Hạn chót: 30/05/2026 • KPI: 500K views • TikTok</p>
                    </td>
                    <td>Skincare</td>
                    <td class="fw-medium">15,000,000đ</td>
                    <td>5/10 người</td>
-                   <td><span class="badge badge-primary">Đang tuyển</span></td>
-                   <td class="text-right">
-                     <button class="btn btn-outline btn-sm">Xem chi tiết</button>
-                   </td>
-                 </tr>
-                 <tr>
-                   <td>
-                     <p class="fw-medium text-primary">Quảng bá Lẩu Nướng King BBQ</p>
-                     <p class="text-xs text-secondary">Hạn chót: 15/05/2026</p>
-                   </td>
-                   <td>Ẩm thực / F&B</td>
-                   <td class="fw-medium">8,000,000đ</td>
-                   <td>3/3 người</td>
                    <td><span class="badge badge-warning">Đang chạy</span></td>
                    <td class="text-right">
-                     <button class="btn btn-outline btn-sm">Xem tiến độ</button>
+                     <a href="campaign_detail.html" class="btn btn-outline btn-sm">Xem tiến độ</a>
                    </td>
                  </tr>
                  <tr>
                    <td>
                      <p class="fw-medium text-primary">Sạc dự phòng 20000mAh Anker</p>
-                     <p class="text-xs text-secondary">Hạn chót: 01/05/2026</p>
+                     <p class="text-xs text-secondary">Hạn chót: 01/05/2026 • KPI: 1.2K clicks • TikTok + Shopee Video</p>
                    </td>
                    <td>Công nghệ</td>
                    <td class="fw-medium">5,000,000đ</td>
                    <td>5/5 người</td>
                    <td><span class="badge badge-success">Đã hoàn thành</span></td>
                    <td class="text-right">
-                     <button class="btn btn-ghost btn-sm">Báo cáo</button>
+                     <a href="campaign_detail.html" class="btn btn-ghost btn-sm">Báo cáo</a>
                    </td>
                  </tr>
                </tbody>
              </table>
           </div>
         </div>
-
       </div>
     </main>
   </div>
 
-  <!-- Modal Tạo Chiến Dịch -->
   <div class="modal-overlay" id="createCampaignModal">
     <div class="modal">
       <div class="modal-header">
