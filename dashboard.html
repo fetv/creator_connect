@@ -1,19 +1,21 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Creator Connect | Dashboard Quản Lý</title>
-  
+
   <link rel="stylesheet" href="assets/css/variables.css">
   <link rel="stylesheet" href="assets/css/global.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/layouts.css">
 </head>
+
 <body>
 
   <div class="dashboard-layout">
-    
+
     <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sidebar-header">
@@ -24,12 +26,13 @@
         <a href="search.html" class="menu-item"><span style="font-size: 1.25rem;">🔍</span> Khám phá KOC/KOL</a>
         <a href="campaigns.html" class="menu-item"><span style="font-size: 1.25rem;">📁</span> Quản lý Chiến dịch</a>
         <a href="escrow.html" class="menu-item d-flex justify-between">
-           <div><span style="font-size: 1.25rem;">💳</span> Ví tạm giữ</div>
-           <span class="badge badge-warning">Cần duyệt</span>
+          <div><span style="font-size: 1.25rem;">💳</span> Ví tạm giữ</div>
+          <span class="badge badge-warning">Cần duyệt</span>
         </a>
         <a href="messages.html" class="menu-item"><span style="font-size: 1.25rem;">💬</span> Tin nhắn & Hợp đồng</a>
       </nav>
-      <div style="padding: var(--space-4); border-top: 1px solid var(--primary-100); margin-top: auto; cursor: pointer;" onclick="showToast('Tính năng Quản lý Tài khoản (Settings) đang được cập nhật', 'warning')">
+      <div style="padding: var(--space-4); border-top: 1px solid var(--primary-100); margin-top: auto; cursor: pointer;"
+        onclick="showToast('Tính năng Quản lý Tài khoản (Settings) đang được cập nhật', 'warning')">
         <div class="d-flex align-center gap-3">
           <div class="avatar avatar-sm bg-primary" style="background: var(--primary-100);"></div>
           <div>
@@ -42,27 +45,32 @@
 
     <!-- Main Content -->
     <main class="main-content">
-      
+
       <!-- Header -->
       <header class="top-header">
         <h2 class="text-lg fw-medium">Tổng quan hệ thống</h2>
         <div class="d-flex align-center gap-4">
-          <button class="btn btn-ghost" style="padding: var(--space-2);">🔔 <span class="badge badge-primary" style="position: absolute; top: 12px; margin-left: -8px; width: 10px; height: 10px; padding: 0;"></span></button>
-          <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="createCampaignModal">+ Tạo Chiến Dịch Mới</button>
+          <button class="btn btn-ghost" style="padding: var(--space-2);">🔔 <span class="badge badge-primary"
+              style="position: absolute; top: 12px; margin-left: -8px; width: 10px; height: 10px; padding: 0;"></span></button>
+          <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="createCampaignModal">+ Tạo Chiến Dịch
+            Mới</button>
         </div>
       </header>
 
       <!-- Content Area -->
       <div class="content-area">
-        
+
         <!-- Summary Stats Grid -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-6); margin-bottom: var(--space-8);">
+        <div
+          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-6); margin-bottom: var(--space-8);">
           <!-- Stat Box 1 -->
-          <div class="card" style="padding: var(--space-5); background: var(--gradient-primary); color: white; border: none;">
-            <p class="text-sm fw-medium mb-1" style="opacity: 0.9;">Tổng chi phí chiến dịch (Tháng này)</p>
+          <div class="card"
+            style="padding: var(--space-5); background: var(--gradient-primary); color: white; border: none;">
+            <p class="text-sm fw-medium mb-1" style="opacity: 0.9;">Tổng số dư hiện tại</p>
             <h2 class="text-3xl mb-2">24,500,000đ</h2>
             <div class="d-flex justify-between align-center text-sm">
-              <span class="badge" style="background: rgba(255,255,255,0.2); color: white;">↑ 12% so với tháng trước</span>
+              <span class="badge" style="background: rgba(255,255,255,0.2); color: white;">↑ 12% so với tháng
+                trước</span>
             </div>
           </div>
 
@@ -89,22 +97,42 @@
         <div class="card mb-6" style="padding: var(--space-6);">
           <div class="d-flex justify-between align-center mb-4">
             <h3 class="text-xl fw-medium">Phân tích Hiệu suất</h3>
-            <select class="form-control" style="width: 150px; padding: var(--space-2);"><option>7 ngày qua</option><option>Tháng này</option></select>
+            <select class="form-control" style="width: 150px; padding: var(--space-2);">
+              <option>7 ngày qua</option>
+              <option>Tháng này</option>
+            </select>
           </div>
           <!-- Fake Chart Bar/Lines using CSS -->
-          <div style="height: 250px; display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-4); padding-top: var(--space-4); border-bottom: 1px solid var(--primary-100); border-left: 1px solid var(--primary-100);">
-             <div style="width: 100%; height: 40%; background: var(--primary-200); border-radius: 4px 4px 0 0; transition: height 0.5s;"></div>
-             <div style="width: 100%; height: 60%; background: var(--primary-300); border-radius: 4px 4px 0 0; transition: height 0.5s;"></div>
-             <div style="width: 100%; height: 35%; background: var(--primary-200); border-radius: 4px 4px 0 0; transition: height 0.5s;"></div>
-             <div style="width: 100%; height: 80%; background: var(--gradient-primary); border-radius: 4px 4px 0 0; transition: height 0.5s; position: relative;">
-               <div style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%); background: var(--text-primary); color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold;">Đỉnh</div>
-             </div>
-             <div style="width: 100%; height: 50%; background: var(--primary-400); border-radius: 4px 4px 0 0; transition: height 0.5s;"></div>
-             <div style="width: 100%; height: 70%; background: var(--primary-500); border-radius: 4px 4px 0 0; transition: height 0.5s;"></div>
-             <div style="width: 100%; height: 90%; background: var(--gradient-vibrant); border-radius: 4px 4px 0 0; transition: height 0.5s;"></div>
+          <div
+            style="height: 250px; display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-4); padding-top: var(--space-4); border-bottom: 1px solid var(--primary-100); border-left: 1px solid var(--primary-100);">
+            <div
+              style="width: 100%; height: 40%; background: var(--primary-200); border-radius: 4px 4px 0 0; transition: height 0.5s;">
+            </div>
+            <div
+              style="width: 100%; height: 60%; background: var(--primary-300); border-radius: 4px 4px 0 0; transition: height 0.5s;">
+            </div>
+            <div
+              style="width: 100%; height: 35%; background: var(--primary-200); border-radius: 4px 4px 0 0; transition: height 0.5s;">
+            </div>
+            <div
+              style="width: 100%; height: 80%; background: var(--gradient-primary); border-radius: 4px 4px 0 0; transition: height 0.5s; position: relative;">
+              <div
+                style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%); background: var(--text-primary); color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold;">
+                Đỉnh</div>
+            </div>
+            <div
+              style="width: 100%; height: 50%; background: var(--primary-400); border-radius: 4px 4px 0 0; transition: height 0.5s;">
+            </div>
+            <div
+              style="width: 100%; height: 70%; background: var(--primary-500); border-radius: 4px 4px 0 0; transition: height 0.5s;">
+            </div>
+            <div
+              style="width: 100%; height: 90%; background: var(--gradient-vibrant); border-radius: 4px 4px 0 0; transition: height 0.5s;">
+            </div>
           </div>
-          <div style="display: flex; justify-content: space-between; margin-top: var(--space-2); color: var(--text-tertiary); font-size: var(--text-xs);">
-             <span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span>
+          <div
+            style="display: flex; justify-content: space-between; margin-top: var(--space-2); color: var(--text-tertiary); font-size: var(--text-xs);">
+            <span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span>
           </div>
         </div>
 
@@ -131,7 +159,8 @@
                 <tr>
                   <td>
                     <div class="d-flex align-center gap-3">
-                      <div class="avatar avatar-sm" style="background: linear-gradient(45deg, #fbc2eb 0%, #a18cd1 100%);"></div>
+                      <div class="avatar avatar-sm"
+                        style="background: linear-gradient(45deg, #fbc2eb 0%, #a18cd1 100%);"></div>
                       <div>
                         <p class="fw-medium">Thanh Trúc</p>
                         <p class="text-xs text-secondary">food.reviewer</p>
@@ -148,7 +177,8 @@
                 <tr>
                   <td>
                     <div class="d-flex align-center gap-3">
-                      <div class="avatar avatar-sm" style="background: linear-gradient(135deg, #0ea5e9, #38bdf8);"></div>
+                      <div class="avatar avatar-sm" style="background: linear-gradient(135deg, #0ea5e9, #38bdf8);">
+                      </div>
                       <div>
                         <p class="fw-medium">Đức Dược Sĩ</p>
                         <p class="text-xs text-secondary">duc.skincare</p>
@@ -165,7 +195,8 @@
                 <tr>
                   <td>
                     <div class="d-flex align-center gap-3">
-                      <div class="avatar avatar-sm" style="background: linear-gradient(45deg, #84fab0 0%, #8fd3f4 100%);"></div>
+                      <div class="avatar avatar-sm"
+                        style="background: linear-gradient(45deg, #84fab0 0%, #8fd3f4 100%);"></div>
                       <div>
                         <p class="fw-medium">Hải Nguyễn</p>
                         <p class="text-xs text-secondary">hai.tech</p>
@@ -202,16 +233,25 @@
           <div class="d-flex gap-4">
             <div class="form-group" style="flex: 1;">
               <label class="form-label">Ngành hàng</label>
-              <select class="form-control"><option>Thời trang</option><option>Mỹ phẩm</option><option>Công nghệ</option></select>
+              <select class="form-control">
+                <option>Thời trang</option>
+                <option>Mỹ phẩm</option>
+                <option>Công nghệ</option>
+              </select>
             </div>
             <div class="form-group" style="flex: 1;">
               <label class="form-label">Nền tảng yêu cầu</label>
-              <select class="form-control"><option>TikTok</option><option>Facebook Reels</option><option>Shopee Video</option></select>
+              <select class="form-control">
+                <option>TikTok</option>
+                <option>Facebook Reels</option>
+                <option>Shopee Video</option>
+              </select>
             </div>
           </div>
           <div class="form-group">
             <label class="form-label">Mô tả Brief & Yêu cầu công việc</label>
-            <textarea class="form-control" rows="4" placeholder="Viết các yêu cầu chi tiết về kịch bản, lời thoại, hashtag..."></textarea>
+            <textarea class="form-control" rows="4"
+              placeholder="Viết các yêu cầu chi tiết về kịch bản, lời thoại, hashtag..."></textarea>
           </div>
           <div class="form-group">
             <label class="form-label">Ngân sách (Chưa bao gồm Ví tạm giữ)</label>
@@ -221,14 +261,18 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-ghost modal-close">Hủy</button>
-        <button class="btn btn-primary modal-close" onclick="showToast('Đã xuất bản chiến dịch thành công!', 'success')">Xuất bản Chiến dịch</button>
+        <button class="btn btn-primary modal-close"
+          onclick="showToast('Đã xuất bản chiến dịch thành công!', 'success')">Xuất bản Chiến dịch</button>
       </div>
     </div>
   </div>
 
   <style>
-    .hover-bg-light:hover { background-color: var(--bg-surface-hover); }
+    .hover-bg-light:hover {
+      background-color: var(--bg-surface-hover);
+    }
   </style>
   <script src="assets/js/main.js"></script>
 </body>
+
 </html>

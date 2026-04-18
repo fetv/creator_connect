@@ -187,13 +187,23 @@
           </div>
           <div style="margin-bottom:6px;">
             <label style="font-size:11px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:6px;">Mật khẩu *</label>
-            <input type="password" id="k1-pw" class="mobile-input" placeholder="Ít nhất 8 ký tự" oninput="kocStrength(this.value)">
+            <div style="position:relative;">
+              <input type="password" id="k1-pw" class="mobile-input" placeholder="Ít nhất 8 ký tự" oninput="kocStrength(this.value)" style="padding-right:44px;">
+              <button type="button" tabindex="-1" onclick="togglePw('k1-pw','koc-reg-eye1')" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-tertiary);padding:4px;display:flex;align-items:center;">
+                <svg id="koc-reg-eye1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
             <div class="strength-bar"><div class="strength-fill" id="koc-str-fill"></div></div>
             <p id="koc-str-label" style="font-size:10px; color:var(--text-tertiary); margin-top:4px;">Nhập mật khẩu</p>
           </div>
           <div style="margin-bottom:14px;">
             <label style="font-size:11px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:6px;">Xác nhận mật khẩu *</label>
-            <input type="password" id="k1-pw2" class="mobile-input" placeholder="Nhập lại mật khẩu">
+            <div style="position:relative;">
+              <input type="password" id="k1-pw2" class="mobile-input" placeholder="Nhập lại mật khẩu" style="padding-right:44px;">
+              <button type="button" tabindex="-1" onclick="togglePw('k1-pw2','koc-reg-eye2')" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-tertiary);padding:4px;display:flex;align-items:center;">
+                <svg id="koc-reg-eye2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
           </div>
           <div style="margin-bottom:14px;">
             <label style="font-size:11px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:6px;">Ngày sinh</label>
@@ -542,6 +552,19 @@
     if (otp.length < 6) { showToast('Vui lòng nhập đủ 6 chữ số OTP!', 'warning'); return; }
     if (!document.getElementById('koc-terms').checked) { showToast('Vui lòng đồng ý điều khoản!', 'warning'); return; }
     goRegView('rv-success');
+  }
+
+  function togglePw(inputId, eyeId) {
+    const inp = document.getElementById(inputId);
+    const eye = document.getElementById(eyeId);
+    if (!inp) return;
+    const isHidden = inp.type === 'password';
+    inp.type = isHidden ? 'text' : 'password';
+    if (eye) {
+      eye.innerHTML = isHidden
+        ? '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>'
+        : '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+    }
   }
 </script>
 </body>

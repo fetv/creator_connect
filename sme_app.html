@@ -84,27 +84,29 @@
         <!-- View 0: Login -->
         <div id="view-sme-login" class="mobile-view active" style="background: var(--bg-surface); display: flex; flex-direction: column;">
            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: var(--space-6);">
-             <div class="text-center mb-8">
-               <h1 class="text-4xl mb-2 fw-bold gradient-text">Creator Connect</h1>
-               <p class="text-sm text-secondary">Nền tảng Quản lý KOC/KOL (SME)</p>
+             <div class="text-center mb-6">
+               <div style="width:64px;height:64px;background:var(--gradient-primary);border-radius:18px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 8px 24px rgba(91,91,232,0.3);">🏢</div>
+               <h1 class="text-2xl mb-1 fw-bold gradient-text">SME Portal</h1>
+               <p class="text-sm text-secondary">Quản lý KOC/KOL cho Nhãn hàng</p>
              </div>
              
              <div class="form-group mb-4">
                <label class="form-label">Tài khoản Email</label>
                <input type="email" class="form-control" placeholder="admin@example.com">
              </div>
-             <div class="form-group mb-6">
+             <div class="form-group mb-5">
                <label class="form-label">Mật khẩu</label>
-               <input type="password" class="form-control" placeholder="••••••••">
+               <div style="position:relative;">
+                 <input type="password" id="sme-login-pw" class="form-control" placeholder="••••••••" style="padding-right:44px;">
+                 <button type="button" tabindex="-1" onclick="togglePw('sme-login-pw','sme-eye-1')" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-tertiary);padding:4px;display:flex;align-items:center;">
+                   <svg id="sme-eye-1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                 </button>
+               </div>
              </div>
              <button id="btn-sme-login" class="btn btn-primary" style="width: 100%; box-shadow: var(--shadow-primary);">Đăng Nhập Quản Trị</button>
-              
-              <div style="margin-top: var(--space-4); display:flex; flex-direction:column; gap: var(--space-3);">
-                <p class="text-center text-sm text-secondary">Hỗ trợ đối tác: <a href="#" class="text-primary fw-bold">Liên hệ Zalo</a></p>
-                <div style="border-top: 1px dashed var(--primary-100); padding-top: var(--space-3); text-align: center;">
-                  <p class="text-sm text-secondary">Chưa có tài khoản? <a href="register_sme_app.html" class="fw-bold" style="color: var(--primary-600);">Đăng ký SME App →</a></p>
-                </div>
-              </div>
+             <div style="margin-top: var(--space-4); text-align: center;">
+               <p class="text-sm text-secondary">Chưa có tài khoản? <a href="register_sme_app.html" class="fw-bold" style="color: var(--primary-600);">Đăng ký SME App →</a></p>
+             </div>
            </div>
         </div>
 
@@ -184,7 +186,7 @@
            </div>
 
            <!-- Scrollable KOC List -->
-           <div style="flex: 1; overflow-y: auto; padding: var(--space-3) var(--space-4); display: flex; flex-direction: column; gap: var(--space-3);">
+           <div style="flex: 1; overflow-y: auto; padding: var(--space-4) var(--space-4); display: flex; flex-direction: column; gap: var(--space-3);">
 
              <p class="text-xs text-secondary">Tìm thấy <strong>24 KOC/KOL</strong> phù hợp</p>
 
@@ -213,14 +215,20 @@
                    <p class="text-xs text-secondary">Eng. Rate</p>
                  </div>
                  <div style="background: var(--primary-50); border-radius: 8px; padding: 6px 4px; text-align: center;">
-                   <p class="fw-bold text-sm" style="color: var(--escrow-color);">1.5Mđ</p>
+                   <p class="fw-bold text-sm" style="color: var(--escrow-color);">1.5M</p>
                    <p class="text-xs text-secondary">Giá/Video</p>
                  </div>
                </div>
+               <!-- Platforms -->
+               <div class="d-flex gap-1 mb-2" style="align-items:center;">
+                 <span style="font-size:10px;color:var(--text-tertiary);margin-right:2px;">Nền tảng:</span>
+                 <span title="TikTok" style="width:20px;height:20px;border-radius:4px;background:#000;display:inline-flex;align-items:center;justify-content:center;font-size:11px;">🎵</span>
+                 <span title="Facebook" style="width:20px;height:20px;border-radius:4px;background:#1877F2;display:inline-flex;align-items:center;justify-content:center;font-size:11px;">📘</span>
+                 <span title="Instagram" style="width:20px;height:20px;border-radius:4px;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366);display:inline-flex;align-items:center;justify-content:center;font-size:11px;">📷</span>
+               </div>
                <div class="d-flex gap-2 mb-3" style="flex-wrap: wrap;">
-                 <span style="background: #fff3e0; color: #e65100; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 600;">#TikTok</span>
-                 <span style="background: #e3f2fd; color: #1565c0; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 600;">#Facebook</span>
                  <span style="background: var(--primary-50); color: var(--primary-700); font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 600;">#Food</span>
+                 <span style="background: #e8f5e9; color: #2e7d32; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 600;">#Lifestyle</span>
                </div>
                <div class="d-flex gap-2">
                  <button class="btn btn-outline btn-sm" style="flex: 1; font-size: 11px;" onclick="event.stopPropagation(); showToast('Đã lưu vào yêu thích!', 'success')">⭐ Lưu</button>
@@ -253,9 +261,15 @@
                    <p class="text-xs text-secondary">Eng. Rate</p>
                  </div>
                  <div style="background: var(--primary-50); border-radius: 8px; padding: 6px 4px; text-align: center;">
-                   <p class="fw-bold text-sm" style="color: var(--escrow-color);">3Mđ</p>
+                   <p class="fw-bold text-sm" style="color: var(--escrow-color);">3M</p>
                    <p class="text-xs text-secondary">Giá/Video</p>
                  </div>
+               </div>
+               <!-- Platforms -->
+               <div class="d-flex gap-1 mb-2" style="align-items:center;">
+                 <span style="font-size:10px;color:var(--text-tertiary);margin-right:2px;">Nền tảng:</span>
+                 <span title="TikTok" style="width:20px;height:20px;border-radius:4px;background:#000;display:inline-flex;align-items:center;justify-content:center;font-size:11px;">🎵</span>
+                 <span title="Facebook" style="width:20px;height:20px;border-radius:4px;background:#1877F2;display:inline-flex;align-items:center;justify-content:center;font-size:11px;">📘</span>
                </div>
                <div class="d-flex gap-2 mb-3" style="flex-wrap: wrap;">
                  <span style="background: #fff3e0; color: #e65100; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 600;">#TikTok</span>
@@ -292,14 +306,20 @@
                    <p class="text-xs text-secondary">Eng. Rate</p>
                  </div>
                  <div style="background: var(--primary-50); border-radius: 8px; padding: 6px 4px; text-align: center;">
-                   <p class="fw-bold text-sm" style="color: var(--escrow-color);">5Mđ</p>
+                   <p class="fw-bold text-sm" style="color: var(--escrow-color);">5M</p>
                    <p class="text-xs text-secondary">Giá/Video</p>
                  </div>
                </div>
+               <!-- Platforms -->
+               <div class="d-flex gap-1 mb-2" style="align-items:center;">
+                 <span style="font-size:10px;color:var(--text-tertiary);margin-right:2px;">Nền tảng:</span>
+                 <span title="YouTube" style="width:20px;height:20px;border-radius:4px;background:#FF0000;display:inline-flex;align-items:center;justify-content:center;font-size:11px;">▶️</span>
+                 <span title="TikTok" style="width:20px;height:20px;border-radius:4px;background:#000;display:inline-flex;align-items:center;justify-content:center;font-size:11px;">🎵</span>
+                 <span title="Facebook" style="width:20px;height:20px;border-radius:4px;background:#1877F2;display:inline-flex;align-items:center;justify-content:center;font-size:11px;">📘</span>
+               </div>
                <div class="d-flex gap-2 mb-3" style="flex-wrap: wrap;">
-                 <span style="background: #e8f5e9; color: #2e7d32; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 600;">#YouTube</span>
-                 <span style="background: #fff3e0; color: #e65100; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 600;">#TikTok</span>
                  <span style="background: var(--primary-50); color: var(--primary-700); font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 600;">#Tech</span>
+                 <span style="background: #e8f5e9; color: #2e7d32; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 600;">#Gadgets</span>
                </div>
                <div class="d-flex gap-2">
                  <button class="btn btn-outline btn-sm" style="flex: 1; font-size: 11px;" onclick="showToast('Đã lưu vào yêu thích!', 'success')">⭐ Lưu</button>
@@ -479,6 +499,19 @@
 
   <script src="assets/js/main.js?v=20260417d"></script>
   <script>
+    function togglePw(inputId, eyeId) {
+      const inp = document.getElementById(inputId);
+      const eye = document.getElementById(eyeId);
+      if (!inp) return;
+      const isHidden = inp.type === 'password';
+      inp.type = isHidden ? 'text' : 'password';
+      if (eye) {
+        eye.innerHTML = isHidden
+          ? '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>'
+          : '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+      }
+    }
+  </script>
     // Auto-login if redirected from registration page
     (function() {
       const params = new URLSearchParams(window.location.search);
