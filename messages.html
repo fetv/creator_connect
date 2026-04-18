@@ -21,9 +21,21 @@
         <a href="dashboard.html" class="menu-item"><span style="font-size: 1.25rem;">📊</span> Dashboard</a>
         <a href="search.html" class="menu-item"><span style="font-size: 1.25rem;">🔍</span> Khám phá KOC/KOL</a>
         <a href="campaigns.html" class="menu-item"><span style="font-size: 1.25rem;">📁</span> Quản lý Chiến dịch</a>
-        <a href="escrow.html" class="menu-item"><span style="font-size: 1.25rem;">💳</span> Ví tạm giữ</a>
+        <a href="escrow.html" class="menu-item d-flex justify-between">
+           <div><span style="font-size: 1.25rem;">💳</span> Ví tạm giữ</div>
+           <span class="badge badge-warning">Cần duyệt</span>
+        </a>
         <a href="messages.html" class="menu-item active"><span style="font-size: 1.25rem;">💬</span> Tin nhắn & Hợp đồng</a>
       </nav>
+      <div style="padding: var(--space-4); border-top: 1px solid var(--primary-100); margin-top: auto; cursor: pointer;" onclick="showToast('Tính năng Quản lý Tài khoản (Settings) đang được cập nhật', 'warning')">
+        <div class="d-flex align-center gap-3">
+          <div class="avatar avatar-sm bg-primary" style="background: var(--primary-100);"></div>
+          <div>
+            <p class="text-sm fw-semibold">SME Admin</p>
+            <p class="text-xs text-secondary">Tài khoản Premium</p>
+          </div>
+        </div>
+      </div>
     </aside>
 
     <main class="main-content" style="padding: var(--space-4);">

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creator Connect | Đăng ký SME App</title>
+  <meta name="description" content="Tạo tài khoản SME App trên Creator Connect – quản lý chiến dịch KOC/KOL ngay trên điện thoại.">
+
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/mobile.css">
+
+  <style>
+    body { background: var(--bg-main); }
+
+    /* ── Dot Stepper (horizontal, compact for mobile) ── */
+    .dot-stepper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 24px;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--primary-100); transition: all 0.3s; }
+    .dot.active { background: var(--primary-500); transform: scale(1.3); }
+    .dot.done { background: var(--success-500); }
+    .dot-line { flex: 1; max-width: 36px; height: 2px; background: var(--primary-100); }
+    .dot-line.done { background: var(--success-500); }
+
+    /* ── Slide animation between steps ── */
+    .reg-view { display: none; flex-direction: column; height: 100%; }
+    .reg-view.active { display: flex; animation: fadeIn 0.25s ease; }
+
+    /* ── Category chips ── */
+    .chip-group { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 600;
+      border: 1.5px solid var(--primary-200);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+      background: var(--bg-surface);
+      user-select: none;
+    }
+    .chip.selected {
+      background: var(--primary-500);
+      color: white;
+      border-color: var(--primary-500);
+    }
+
+    /* ── Password strength ── */
+    .strength-bar { height: 4px; border-radius: 99px; background: var(--primary-50); margin-top: 6px; }
+    .strength-fill { height: 100%; border-radius: 99px; width: 0; transition: all 0.4s; }
+
+    /* ── Success animation ── */
+    @keyframes successPop { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .success-blob {
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--success-500), #34d399);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem;
+      margin: 0 auto 20px;
+      box-shadow: 0 8px 30px rgba(16,185,129,0.35);
+      animation: successPop 0.6s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    /* OTP input group */
+    .otp-group { display: flex; gap: 8px; justify-content: center; }
+    .otp-input {
+      width: 48px; height: 56px;
+      border-radius: var(--radius-lg);
+      border: 2px solid var(--primary-200);
+      text-align: center;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--primary-700);
+      background: var(--bg-surface);
+      transition: all 0.2s;
+    }
+    .otp-input:focus { outline: none; border-color: var(--primary-500); box-shadow: 0 0 0 3px var(--primary-50); }
+  </style>
+</head>
+<body>
+
+<div class="simulator-container">
+
+  <!-- Side Description -->
+  <div class="text-center" style="margin-right: var(--space-10); max-width: 280px;">
+    <h1 class="text-3xl mb-4 gradient-text">SME App<br>Đăng Ký</h1>
+    <p class="text-secondary mb-6">Quản lý toàn bộ chiến dịch KOC/KOL ngay trên điện thoại – nhanh chóng, mọi lúc mọi nơi.</p>
+    <div style="display:flex; flex-direction:column; gap:12px; text-align:left;">
+      <div style="background:white; border-radius:12px; padding:12px 16px; box-shadow:0 2px 8px rgba(91,91,232,0.1); display:flex; align-items:center; gap:12px;">
+        <span style="font-size:22px;">📲</span>
+        <div>
+          <p class="text-sm fw-semibold">Tạo chiến dịch trong 2 phút</p>
+          <p class="text-xs text-secondary">Giao diện tối giản, thao tác nhanh</p>
+        </div>
+      </div>
+      <div style="background:white; border-radius:12px; padding:12px 16px; box-shadow:0 2px 8px rgba(91,91,232,0.1); display:flex; align-items:center; gap:12px;">
+        <span style="font-size:22px;">🔔</span>
+        <div>
+          <p class="text-sm fw-semibold">Thông báo real-time</p>
+          <p class="text-xs text-secondary">Biết ngay khi KOC ứng tuyển</p>
+        </div>
+      </div>
+      <div style="background:white; border-radius:12px; padding:12px 16px; box-shadow:0 2px 8px rgba(91,91,232,0.1); display:flex; align-items:center; gap:12px;">
+        <span style="font-size:22px;">💳</span>
+        <div>
+          <p class="text-sm fw-semibold">Thanh toán an toàn</p>
+          <p class="text-xs text-secondary">Ví Escrow ngay trong app</p>
+        </div>
+      </div>
+    </div>
+    <a href="index.html" class="btn btn-outline" style="margin-top: 24px; width:100%;">⬅ Về trang chủ</a>
+  </div>
+
+  <!-- Phone Frame -->
+  <div class="mobile-frame">
+    <div class="mobile-notch"></div>
+
+    <div class="mobile-content">
+
+      <!-- ── VIEW 1: Welcome/Chọn loại TK ── -->
+      <div id="rv-welcome" class="reg-view active" style="background:var(--bg-surface);">
+        <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:var(--space-6);">
+          <!-- Brand -->
+          <div class="text-center" style="margin-bottom: 32px;">
+            <div style="width:72px; height:72px; background:var(--gradient-primary); border-radius:20px; margin:0 auto 16px; display:flex; align-items:center; justify-content:center; font-size:32px; box-shadow:0 8px 24px rgba(91,91,232,0.3);">🏢</div>
+            <h1 class="text-2xl fw-bold gradient-text">SME Portal</h1>
+            <p class="text-sm text-secondary mt-1">Creator Connect dành cho Nhãn hàng</p>
+          </div>
+
+          <h3 class="text-md fw-bold mb-4" style="text-align:center;">Bạn đăng nhập với tư cách gì?</h3>
+
+          <!-- Role Selection -->
+          <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:32px;">
+            <button onclick="selectRole('owner')" id="role-owner"
+              style="background:var(--primary-50); border:2px solid var(--primary-400); border-radius:var(--radius-xl); padding:16px; display:flex; align-items:center; gap:16px; text-align:left; cursor:pointer; transition:all 0.2s;">
+              <span style="font-size:28px; flex-shrink:0;">👔</span>
+              <div>
+                <p class="text-sm fw-bold" style="color:var(--primary-700); margin-bottom:2px;">Chủ doanh nghiệp / Giám đốc</p>
+                <p class="text-xs text-secondary">Toàn quyền quản lý tài khoản & ngân sách</p>
+              </div>
+            </button>
+            <button onclick="selectRole('marketer')" id="role-marketer"
+              style="background:var(--bg-surface); border:2px solid var(--primary-100); border-radius:var(--radius-xl); padding:16px; display:flex; align-items:center; gap:16px; text-align:left; cursor:pointer; transition:all 0.2s;">
+              <span style="font-size:28px; flex-shrink:0;">📊</span>
+              <div>
+                <p class="text-sm fw-bold" style="margin-bottom:2px;">Nhân viên Marketing</p>
+                <p class="text-xs text-secondary">Quản lý chiến dịch, xem báo cáo</p>
+              </div>
+            </button>
+          </div>
+
+          <button class="btn btn-primary" style="width:100%; border-radius:var(--radius-full); font-size:15px; padding:14px; box-shadow:var(--shadow-primary);" onclick="goRegView('rv-step1')">
+            Tạo tài khoản mới →
+          </button>
+          <p class="text-center text-sm text-secondary mt-4">Đã có tài khoản? <a href="sme_app.html" class="fw-bold">Đăng nhập</a></p>
+        </div>
+      </div>
+
+      <!-- ── VIEW 2: Thông tin cá nhân ── -->
+      <div id="rv-step1" class="reg-view" style="background:var(--bg-surface);">
+        <!-- Header -->
+        <div style="padding:48px 20px 16px; border-bottom:1px solid var(--primary-50); flex-shrink:0; display:flex; align-items:center; gap:12px;">
+          <button onclick="goRegView('rv-welcome')" style="background:var(--bg-surface-hover); border:none; border-radius:50%; width:36px; height:36px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; flex-shrink:0;">←</button>
+          <div style="flex:1;">
+            <h2 style="font-size:16px; font-weight:700; margin:0;">Tạo Tài Khoản SME</h2>
+            <p style="font-size:11px; color:var(--text-tertiary); margin:0;">Bước 1 / 3 – Thông tin cá nhân</p>
+          </div>
+        </div>
+        <!-- Dot Stepper -->
+        <div class="dot-stepper" style="padding:16px 20px 0;">
+          <div class="dot active" id="sd1"></div>
+          <div class="dot-line" id="sl1"></div>
+          <div class="dot" id="sd2"></div>
+          <div class="dot-line" id="sl2"></div>
+          <div class="dot" id="sd3"></div>
+        </div>
+
+        <!-- Scrollable body -->
+        <div style="flex:1; overflow-y:auto; padding:16px 20px 24px;">
+          <div style="margin-bottom:14px;">
+            <label style="font-size:11px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:6px;">Họ và tên *</label>
+            <input type="text" id="s1-name" class="mobile-input" placeholder="Nguyễn Văn A">
+          </div>
+          <div style="margin-bottom:14px;">
+            <label style="font-size:11px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:6px;">Email công ty *</label>
+            <input type="email" id="s1-email" class="mobile-input" placeholder="contact@company.com">
+          </div>
+          <div style="margin-bottom:14px;">
+            <label style="font-size:11px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:6px;">Số điện thoại *</label>
+            <input type="tel" id="s1-phone" class="mobile-input" placeholder="0901 234 567">
+          </div>
+          <div style="margin-bottom:6px;">
+            <label style="font-size:11px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:6px;">Mật khẩu *</label>
+            <input type="password" id="s1-pw" class="mobile-input" placeholder="Ít nhất 8 ký tự" oninput="calcStrength(this.value)">
+            <div class="strength-bar"><div class="strength-fill" id="sme-str-fill"></div></div>
+            <p id="sme-str-label" style="font-size:10px; color:var(--text-tertiary); margin-top:4px;">Nhập mật khẩu</p>
+          </div>
+          <div style="margin-bottom:14px;">
+            <label style="font-size:11px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:6px;">Xác nhận mật khẩu *</label>
+            <input type="password" id="s1-pw2" class="mobile-input" placeholder="Nhập lại mật khẩu">
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="padding:14px 20px 24px; border-top:1px solid var(--primary-50); flex-shrink:0;">
+          <button class="btn btn-primary" style="width:100%; border-radius:var(--radius-full); padding:14px; font-weight:700;" onclick="s1Next()">
+            Tiếp theo →
+          </button>
+        </div>
+      </div>
+
+      <!-- ── VIEW 3: Thông tin doanh nghiệp ── -->
+      <div id="rv-step2" class="reg-view" style="background:var(--bg-surface);">
+        <div style="padding:48px 20px 16px; border-bottom:1px solid var(--primary-50); flex-shrink:0; display:flex; align-items:center; gap:12px;">
+          <button onclick="goRegView('rv-step1')" style="background:var(--bg-surface-hover); border:none; border-radius:50%; width:36px; height:36px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; flex-shrink:0;">←</button>
+          <div style="flex:1;">
+            <h2 style="font-size:16px; font-weight:700; margin:0;">Thông tin Doanh nghiệp</h2>
+            <p style="font-size:11px; color:var(--text-tertiary); margin:0;">Bước 2 / 3</p>
+          </div>
+        </div>
+        <div class="dot-stepper" style="padding:16px 20px 0;">
+          <div class="dot done" id="sd1b"></div>
+          <div class="dot-line done" id="sl1b"></div>
+          <div class="dot active" id="sd2b"></div>
+          <div class="dot-line" id="sl2b"></div>
+          <div class="dot" id="sd3b"></div>
+        </div>
+
+        <div style="flex:1; overflow-y:auto; padding:16px 20px 24px;">
+          <div style="margin-bottom:14px;">
+            <label style="font-size:11px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:6px;">Tên công ty / Thương hiệu *</label>
+            <input type="text" id="s2-company" class="mobile-input" placeholder="Công ty TNHH ABC">
+          </div>
+          <div style="margin-bottom:14px;">
+            <label style="font-size:11px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:6px;">Ngành hàng *</label>
+            <select id="s2-industry" class="mobile-input" style="appearance:auto;">
+              <option value="">-- Chọn ngành hàng --</option>
+              <option>Dược mỹ phẩm / Skincare</option>
+              <option>Ẩm thực / F&B</option>
+              <option>Thời trang & Lifestyle</option>
+              <option>Công nghệ & Điện tử</option>
+              <option>Giáo dục & Đào tạo</option>
+              <option>Sức khoẻ & Thể thao</option>
+              <option>Khác</option>
+            </select>
+          </div>
+          <div style="margin-bottom:14px;">
+            <label style="font-size:11px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:6px;">Nền tảng KOC ưu tiên</label>
+            <div class="chip-group" id="platform-chips">
+              <div class="chip" onclick="toggleChip(this)">🎵 TikTok</div>
+              <div class="chip" onclick="toggleChip(this)">📷 Instagram</div>
+              <div class="chip" onclick="toggleChip(this)">📘 Facebook</div>
+              <div class="chip" onclick="toggleChip(this)">▶️ YouTube</div>
+              <div class="chip" onclick="toggleChip(this)">🛒 Shopee</div>
+            </div>
+          </div>
+          <div style="margin-bottom:0;">
+            <label style="font-size:11px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:6px;">Ngân sách Marketing / tháng</label>
+            <select id="s2-budget" class="mobile-input" style="appearance:auto;">
+              <option value="">-- Chọn khoảng ngân sách --</option>
+              <option>Dưới 10 triệu</option>
+              <option>10 – 50 triệu</option>
+              <option>50 – 200 triệu</option>
+              <option>Trên 200 triệu</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="padding:14px 20px 24px; border-top:1px solid var(--primary-50); flex-shrink:0;">
+          <button class="btn btn-primary" style="width:100%; border-radius:var(--radius-full); padding:14px; font-weight:700;" onclick="s2Next()">
+            Tiếp theo →
+          </button>
+        </div>
+      </div>
+
+      <!-- ── VIEW 4: Xác thực số điện thoại ── -->
+      <div id="rv-step3" class="reg-view" style="background:var(--bg-surface);">
+        <div style="padding:48px 20px 16px; border-bottom:1px solid var(--primary-50); flex-shrink:0; display:flex; align-items:center; gap:12px;">
+          <button onclick="goRegView('rv-step2')" style="background:var(--bg-surface-hover); border:none; border-radius:50%; width:36px; height:36px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; flex-shrink:0;">←</button>
+          <div style="flex:1;">
+            <h2 style="font-size:16px; font-weight:700; margin:0;">Xác thực Số điện thoại</h2>
+            <p style="font-size:11px; color:var(--text-tertiary); margin:0;">Bước 3 / 3</p>
+          </div>
+        </div>
+        <div class="dot-stepper" style="padding:16px 20px 0;">
+          <div class="dot done"></div>
+          <div class="dot-line done"></div>
+          <div class="dot done"></div>
+          <div class="dot-line done"></div>
+          <div class="dot active"></div>
+        </div>
+
+        <div style="flex:1; overflow-y:auto; padding:24px 20px;">
+          <div class="text-center" style="margin-bottom:28px;">
+            <div style="font-size:48px; margin-bottom:12px;">📲</div>
+            <h3 style="font-size:18px; font-weight:700; margin-bottom:8px;">Nhập mã xác thực OTP</h3>
+            <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">Chúng tôi đã gửi mã OTP gồm 6 chữ số đến số điện thoại của bạn.</p>
+            <p style="font-size:13px; font-weight:700; color:var(--primary-600); margin-top:6px;">0901 234 ***</p>
+          </div>
+
+          <div class="otp-group" id="otp-group">
+            <input class="otp-input" type="text" maxlength="1" oninput="otpNext(this,0)">
+            <input class="otp-input" type="text" maxlength="1" oninput="otpNext(this,1)">
+            <input class="otp-input" type="text" maxlength="1" oninput="otpNext(this,2)">
+            <input class="otp-input" type="text" maxlength="1" oninput="otpNext(this,3)">
+            <input class="otp-input" type="text" maxlength="1" oninput="otpNext(this,4)">
+            <input class="otp-input" type="text" maxlength="1" oninput="otpNext(this,5)">
+          </div>
+
+          <p id="otp-countdown" style="text-align:center; font-size:12px; color:var(--text-tertiary); margin-top:20px;">Gửi lại mã sau <span id="otp-timer" style="font-weight:700; color:var(--primary-600);">60s</span></p>
+
+          <div style="margin-top:24px;">
+            <label style="display:flex; align-items:flex-start; gap:10px; cursor:pointer;">
+              <input type="checkbox" id="sme-terms" style="margin-top:3px; accent-color:var(--primary-500); width:16px; height:16px;">
+              <span style="font-size:12px; color:var(--text-secondary); line-height:1.5;">Tôi đồng ý với <a href="#" style="color:var(--primary-600);">Điều khoản dịch vụ</a> và <a href="#" style="color:var(--primary-600);">Chính sách bảo mật</a>.</span>
+            </label>
+          </div>
+        </div>
+
+        <div style="padding:14px 20px 24px; border-top:1px solid var(--primary-50); flex-shrink:0;">
+          <button class="btn btn-primary" style="width:100%; border-radius:var(--radius-full); padding:14px; font-weight:700;" onclick="submitSMEApp()">
+            ✅ Xác nhận & Hoàn tất
+          </button>
+        </div>
+      </div>
+
+      <!-- ── VIEW 5: Success ── -->
+      <div id="rv-success" class="reg-view" style="background:var(--bg-surface);">
+        <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:32px 24px; text-align:center;">
+          <div class="success-blob">✓</div>
+          <h2 style="font-size:22px; font-weight:700; margin-bottom:10px;">Đăng ký thành công!</h2>
+          <p style="font-size:14px; color:var(--text-secondary); line-height:1.6; margin-bottom:28px;">Tài khoản SME của bạn đã được tạo thành công. Hãy bắt đầu chiến dịch đầu tiên!</p>
+
+          <div style="background:var(--primary-50); border-radius:var(--radius-xl); padding:16px 20px; margin-bottom:24px; width:100%; text-align:left;">
+            <p style="font-size:11px; font-weight:700; color:var(--primary-700); margin-bottom:8px;">🎁 Ưu đãi chào mừng</p>
+            <p style="font-size:13px; color:var(--text-secondary);">Dùng thử <strong>Growth Plan miễn phí 14 ngày</strong> không cần thẻ tín dụng.</p>
+          </div>
+
+          <button class="btn btn-primary" style="width:100%; border-radius:var(--radius-full); padding:14px; font-size:15px; font-weight:700; box-shadow:var(--shadow-primary);" onclick="window.location.href='sme_app.html?registered=1'">
+            🚀 Vào ứng dụng ngay
+          </button>
+          <a href="sme_app.html" style="margin-top:14px; font-size:13px; color:var(--primary-500);">Hoặc quay lại đăng nhập</a>
+        </div>
+      </div>
+
+      <!-- Placeholder for main app view after success -->
+      <div id="rv-main" class="reg-view" style="background:var(--bg-main);">
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center;">
+          <div style="font-size:48px; margin-bottom:16px;">🎉</div>
+          <h3 style="font-size:18px; font-weight:700; margin-bottom:8px;">Chào mừng đến SME App!</h3>
+          <p style="font-size:13px; color:var(--text-secondary);">Tài khoản của bạn đã sẵn sàng.</p>
+          <a href="sme_app.html" class="btn btn-primary" style="margin-top:24px; border-radius:var(--radius-full); padding:12px 28px;">Mở SME App →</a>
+        </div>
+      </div>
+
+    </div><!-- /mobile-content -->
+  </div><!-- /mobile-frame -->
+</div>
+
+<div class="toast-container" id="toast-container"></div>
+<script src="assets/js/main.js"></script>
+<script>
+  function goRegView(id) {
+    document.querySelectorAll('.reg-view').forEach(v => v.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function selectRole(role) {
+    ['owner','marketer'].forEach(r => {
+      const el = document.getElementById('role-' + r);
+      el.style.background = r === role ? 'var(--primary-50)' : 'var(--bg-surface)';
+      el.style.borderColor = r === role ? 'var(--primary-400)' : 'var(--primary-100)';
+    });
+  }
+
+  function toggleChip(el) {
+    el.classList.toggle('selected');
+  }
+
+  function calcStrength(pw) {
+    let s = 0;
+    if (pw.length >= 8) s++;
+    if (/[A-Z]/.test(pw)) s++;
+    if (/[0-9]/.test(pw)) s++;
+    if (/[^A-Za-z0-9]/.test(pw)) s++;
+    const fill = document.getElementById('sme-str-fill');
+    const label = document.getElementById('sme-str-label');
+    const ls = [
+      {w:'25%',c:'#ef4444',t:'Yếu'},
+      {w:'50%',c:'#f59e0b',t:'Trung bình'},
+      {w:'75%',c:'#3b82f6',t:'Khá mạnh'},
+      {w:'100%',c:'#10b981',t:'Mạnh ✓'}
+    ];
+    const lv = ls[Math.min(s-1,3)] || {w:'0%',c:'#e2e8f0',t:'Nhập mật khẩu'};
+    fill.style.width = lv.w; fill.style.background = lv.c;
+    label.textContent = lv.t; label.style.color = lv.c;
+  }
+
+  function s1Next() {
+    const n = document.getElementById('s1-name').value.trim();
+    const e = document.getElementById('s1-email').value.trim();
+    const ph = document.getElementById('s1-phone').value.trim();
+    const pw = document.getElementById('s1-pw').value;
+    const pw2 = document.getElementById('s1-pw2').value;
+    if (!n || !e || !ph || !pw) { showToast('Vui lòng điền đầy đủ thông tin!', 'warning'); return; }
+    if (pw !== pw2) { showToast('Mật khẩu không khớp!', 'error'); return; }
+    goRegView('rv-step2');
+  }
+
+  function s2Next() {
+    const c = document.getElementById('s2-company').value.trim();
+    const i = document.getElementById('s2-industry').value;
+    if (!c || !i) { showToast('Vui lòng nhập tên công ty và chọn ngành!', 'warning'); return; }
+    goRegView('rv-step3');
+    startOTPTimer();
+  }
+
+  let otpTimer;
+  function startOTPTimer() {
+    let t = 60;
+    clearInterval(otpTimer);
+    otpTimer = setInterval(() => {
+      t--;
+      document.getElementById('otp-timer').textContent = t + 's';
+      if (t <= 0) { clearInterval(otpTimer); document.getElementById('otp-countdown').innerHTML = '<a href="#" onclick="startOTPTimer()" style="color:var(--primary-600); font-size:12px;">Gửi lại mã OTP</a>'; }
+    }, 1000);
+  }
+
+  function otpNext(inp, idx) {
+    inp.value = inp.value.replace(/[^0-9]/g,'');
+    const inputs = document.querySelectorAll('.otp-input');
+    if (inp.value && idx < 5) inputs[idx+1].focus();
+  }
+
+  function submitSMEApp() {
+    const otp = [...document.querySelectorAll('.otp-input')].map(i => i.value).join('');
+    if (otp.length < 6) { showToast('Vui lòng nhập đủ 6 chữ số OTP!', 'warning'); return; }
+    if (!document.getElementById('sme-terms').checked) { showToast('Vui lòng đồng ý điều khoản dịch vụ!', 'warning'); return; }
+    goRegView('rv-success');
+  }
+</script>
+</body>
+</html>

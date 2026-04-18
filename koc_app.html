@@ -43,7 +43,9 @@
              </div>
              <button id="btn-koc-login" class="btn btn-primary" style="width: 100%; box-shadow: var(--shadow-primary);">Đăng Nhập</button>
              
-             <p class="text-center text-sm mt-6 text-secondary">Chưa có tài khoản? <a href="#" class="text-primary fw-bold">Đăng ký KOC</a></p>
+             <div style="margin-top: var(--space-4); display:flex; flex-direction:column; gap: var(--space-3);">
+               <p class="text-center text-sm mt-2 text-secondary">Chưa có tài khoản? <a href="register_koc_app.html" class="text-primary fw-bold">Đăng ký ngay →</a></p>
+             </div>
            </div>
         </div>
 
@@ -876,5 +878,18 @@
   </div>
 
   <script src="assets/js/main.js?v=20260417c"></script>
+  <script>
+    // Auto-login if redirected from registration page
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('registered') === '1') {
+        setTimeout(() => {
+          const loginBtn = document.getElementById('btn-koc-login');
+          if (loginBtn) loginBtn.click();
+          showToast('Chào mừng KOC mới! Hồ sơ của bạn đã sẵn sàng 🌟', 'success');
+        }, 600);
+      }
+    })();
+  </script>
 </body>
 </html>

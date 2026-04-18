@@ -95,12 +95,12 @@ ul, ol {
 .gap-4 { gap: var(--space-4); }
 
 /* Flexbox Helpers */
-.d-flex { display: flex; }
-.flex-column { flex-direction: column; }
-.align-center { align-items: center; }
-.justify-center { justify-content: center; }
-.justify-between { justify-content: space-between; }
-.justify-end { justify-content: flex-end; }
+.d-flex { display: flex !important; }
+.flex-column { flex-direction: column !important; }
+.align-center { align-items: center !important; }
+.justify-center { justify-content: center !important; }
+.justify-between { justify-content: space-between !important; }
+.justify-end { justify-content: flex-end !important; }
 
 /* Effects */
 .glass-panel {

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creator Connect | Đăng ký SME</title>
+  <meta name="description" content="Tạo tài khoản SME miễn phí trên Creator Connect – nền tảng kết nối nhãn hàng với KOC/KOL hàng đầu Việt Nam.">
+
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/layouts.css">
+
+  <style>
+    /* ── Progress Stepper ── */
+    .stepper {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: var(--space-8);
+    }
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+      flex: 1;
+    }
+    .step-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-bold);
+      background: var(--bg-surface-hover);
+      color: var(--text-tertiary);
+      border: 2px solid var(--primary-100);
+      transition: all var(--transition-normal);
+      z-index: 1;
+    }
+    .step.active .step-circle {
+      background: var(--gradient-primary);
+      color: white;
+      border-color: var(--primary-500);
+      box-shadow: 0 4px 12px rgba(91,91,232,0.35);
+    }
+    .step.done .step-circle {
+      background: var(--success-500);
+      color: white;
+      border-color: var(--success-500);
+    }
+    .step-label {
+      font-size: var(--text-xs);
+      color: var(--text-tertiary);
+      font-weight: var(--font-weight-medium);
+      white-space: nowrap;
+    }
+    .step.active .step-label { color: var(--primary-600); font-weight: var(--font-weight-semibold); }
+    .step.done .step-label { color: var(--success-500); }
+    .step-line {
+      height: 2px;
+      flex: 1;
+      background: var(--primary-100);
+      margin-top: -22px;
+      z-index: 0;
+    }
+    .step-line.done { background: var(--success-500); }
+
+    /* ── Form Steps ── */
+    .form-step { display: none; }
+    .form-step.active { display: block; animation: fadeIn 0.3s ease; }
+
+    /* ── Input with icon ── */
+    .input-icon-wrap {
+      position: relative;
+    }
+    .input-icon-wrap .icon {
+      position: absolute;
+      left: var(--space-4);
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+      pointer-events: none;
+    }
+    .input-icon-wrap .form-control { padding-left: 2.75rem; }
+
+    /* ── Password strength bar ── */
+    .strength-bar { height: 4px; border-radius: var(--radius-full); background: var(--bg-surface-hover); margin-top: 6px; overflow: hidden; }
+    .strength-fill { height: 100%; border-radius: var(--radius-full); width: 0%; transition: all 0.4s ease; }
+
+    /* ── Plan Cards ── */
+    .plan-card {
+      border: 2px solid var(--primary-100);
+      border-radius: var(--radius-xl);
+      padding: var(--space-5);
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      position: relative;
+    }
+    .plan-card:hover { border-color: var(--primary-400); box-shadow: 0 4px 16px rgba(91,91,232,0.12); }
+    .plan-card.selected {
+      border-color: var(--primary-500);
+      background: var(--primary-50);
+      box-shadow: 0 4px 20px rgba(91,91,232,0.18);
+    }
+    .plan-card input[type="radio"] { display: none; }
+    .plan-badge {
+      position: absolute;
+      top: -10px;
+      right: var(--space-4);
+      background: var(--gradient-vibrant);
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: var(--radius-full);
+    }
+
+    /* ── Success ── */
+    #step-success { text-align: center; padding: var(--space-4) 0; }
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--success-500), #34d399);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      margin: 0 auto var(--space-6);
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+      animation: successPop 0.6s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes successPop {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-layout">
+
+    <!-- ── Hero / Brand Panel ── -->
+    <div class="auth-hero">
+      <div class="text-center" style="position: relative; z-index: 10; max-width: 380px; padding: var(--space-8);">
+        <h1 class="text-4xl mb-4 animate-fade-in" style="font-weight:700;">Creator Connect</h1>
+        <p class="text-lg fw-medium animate-fade-in" style="animation-delay:.2s; opacity:.9;">
+          Nền tảng kết nối Nhãn hàng ↔ KOC/KOL thông minh nhất Việt Nam
+        </p>
+
+        <div class="glass-panel" style="margin-top:var(--space-8); padding:var(--space-6); border-radius:var(--radius-xl); text-align:left;">
+          <h3 class="mb-4 text-lg">Lý do doanh nghiệp chọn chúng tôi</h3>
+          <ul style="display:flex; flex-direction:column; gap:var(--space-4);">
+            <li style="display:flex; align-items:flex-start; gap:var(--space-3);">
+              <span style="font-size:1.4rem; flex-shrink:0;">🎯</span>
+              <div>
+                <p class="fw-semibold text-sm" style="color:white; margin-bottom:2px;">Tìm đúng KOC trong 5 phút</p>
+                <p style="font-size:12px; opacity:.75;">Lọc theo ngành, followers, ER, rate card.</p>
+              </div>
+            </li>
+            <li style="display:flex; align-items:flex-start; gap:var(--space-3);">
+              <span style="font-size:1.4rem; flex-shrink:0;">🔐</span>
+              <div>
+                <p class="fw-semibold text-sm" style="color:white; margin-bottom:2px;">Thanh toán 100% an toàn</p>
+                <p style="font-size:12px; opacity:.75;">Ví tạm giữ Escrow, tiền chỉ giải ngân khi bàn giao xong.</p>
+              </div>
+            </li>
+            <li style="display:flex; align-items:flex-start; gap:var(--space-3);">
+              <span style="font-size:1.4rem; flex-shrink:0;">📑</span>
+              <div>
+                <p class="fw-semibold text-sm" style="color:white; margin-bottom:2px;">E-Contract tự động</p>
+                <p style="font-size:12px; opacity:.75;">Hợp đồng điện tử có giá trị pháp lý, ký trong 30 giây.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Ratings -->
+        <div style="margin-top:var(--space-6); display:flex; align-items:center; justify-content:center; gap:var(--space-3);">
+          <div style="display:flex; gap:2px; color:#fbbf24; font-size:18px;">★★★★★</div>
+          <p style="font-size:13px; opacity:.85;">4.9/5 từ 300+ doanh nghiệp</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Registration Form Panel ── -->
+    <div class="auth-form-container" style="max-width:560px; padding:var(--space-6) var(--space-8); overflow-y:auto;">
+      <div class="auth-form-wrapper" style="max-width:480px;">
+
+        <!-- Back link -->
+        <a href="index.html" class="d-flex align-center gap-2 text-sm text-secondary mb-6" style="text-decoration:none; width:fit-content;">
+          ← Quay lại Đăng nhập
+        </a>
+
+        <h2 class="text-2xl mb-1">Tạo tài khoản SME</h2>
+        <p class="text-secondary mb-6" style="font-size:14px;">Miễn phí hoàn toàn – không cần thẻ ngân hàng.</p>
+
+        <!-- Stepper -->
+        <div class="stepper" id="stepper">
+          <div class="step active" id="step-dot-1">
+            <div class="step-circle">1</div>
+            <span class="step-label">Tài khoản</span>
+          </div>
+          <div class="step-line" id="line-1"></div>
+          <div class="step" id="step-dot-2">
+            <div class="step-circle">2</div>
+            <span class="step-label">Doanh nghiệp</span>
+          </div>
+          <div class="step-line" id="line-2"></div>
+          <div class="step" id="step-dot-3">
+            <div class="step-circle">3</div>
+            <span class="step-label">Gói dịch vụ</span>
+          </div>
+        </div>
+
+        <!-- ── STEP 1: Account Info ── -->
+        <div class="form-step active" id="step-1">
+          <div class="form-group">
+            <label class="form-label" for="reg-name">Họ và tên người đại diện <span style="color:var(--danger-500)">*</span></label>
+            <div class="input-icon-wrap">
+              <span class="icon">👤</span>
+              <input type="text" id="reg-name" class="form-control" placeholder="Nguyễn Văn A" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-email">Email doanh nghiệp <span style="color:var(--danger-500)">*</span></label>
+            <div class="input-icon-wrap">
+              <span class="icon">✉️</span>
+              <input type="email" id="reg-email" class="form-control" placeholder="contact@company.com" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-phone">Số điện thoại <span style="color:var(--danger-500)">*</span></label>
+            <div class="input-icon-wrap">
+              <span class="icon">📱</span>
+              <input type="tel" id="reg-phone" class="form-control" placeholder="0901 234 567" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-password">Mật khẩu <span style="color:var(--danger-500)">*</span></label>
+            <div class="input-icon-wrap">
+              <span class="icon">🔒</span>
+              <input type="password" id="reg-password" class="form-control" placeholder="Ít nhất 8 ký tự" oninput="checkStrength(this.value)" required>
+            </div>
+            <div class="strength-bar">
+              <div class="strength-fill" id="strength-fill"></div>
+            </div>
+            <p id="strength-label" class="text-xs" style="color:var(--text-tertiary); margin-top:2px;">Nhập mật khẩu để xem độ mạnh</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-confirm">Xác nhận mật khẩu <span style="color:var(--danger-500)">*</span></label>
+            <div class="input-icon-wrap">
+              <span class="icon">🔒</span>
+              <input type="password" id="reg-confirm" class="form-control" placeholder="Nhập lại mật khẩu" required>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" style="width:100%; margin-top:var(--space-4);" onclick="goStep(2)">
+            Tiếp theo →
+          </button>
+
+          <p class="text-center text-sm text-secondary mt-4">
+            Đã có tài khoản? <a href="index.html">Đăng nhập</a>
+          </p>
+        </div>
+
+        <!-- ── STEP 2: Business Info ── -->
+        <div class="form-step" id="step-2">
+          <div class="form-group">
+            <label class="form-label" for="reg-company">Tên công ty / Thương hiệu <span style="color:var(--danger-500)">*</span></label>
+            <div class="input-icon-wrap">
+              <span class="icon">🏢</span>
+              <input type="text" id="reg-company" class="form-control" placeholder="Công ty TNHH ABC" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-tax">Mã số thuế doanh nghiệp</label>
+            <div class="input-icon-wrap">
+              <span class="icon">🪪</span>
+              <input type="text" id="reg-tax" class="form-control" placeholder="0123456789">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-industry">Ngành hàng chính <span style="color:var(--danger-500)">*</span></label>
+            <select id="reg-industry" class="form-control">
+              <option value="">-- Chọn ngành hàng --</option>
+              <option>Dược mỹ phẩm / Skincare</option>
+              <option>Ẩm thực / F&B</option>
+              <option>Thời trang & Lifestyle</option>
+              <option>Công nghệ & Điện tử</option>
+              <option>Giáo dục & Đào tạo</option>
+              <option>Sức khoẻ & Thể thao</option>
+              <option>Bất động sản</option>
+              <option>Khác</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-budget">Ngân sách Marketing / tháng</label>
+            <select id="reg-budget" class="form-control">
+              <option value="">-- Chọn khoảng ngân sách --</option>
+              <option>Dưới 10 triệu đồng</option>
+              <option>10 – 50 triệu đồng</option>
+              <option>50 – 200 triệu đồng</option>
+              <option>Trên 200 triệu đồng</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Website / Fanpage (Tuỳ chọn)</label>
+            <div class="input-icon-wrap">
+              <span class="icon">🌐</span>
+              <input type="url" class="form-control" placeholder="https://yourcompany.vn">
+            </div>
+          </div>
+
+          <div style="display:flex; gap:var(--space-3); margin-top:var(--space-4);">
+            <button class="btn btn-outline" style="flex:1;" onclick="goStep(1)">← Quay lại</button>
+            <button class="btn btn-primary" style="flex:2;" onclick="goStep(3)">Tiếp theo →</button>
+          </div>
+        </div>
+
+        <!-- ── STEP 3: Plan Selection ── -->
+        <div class="form-step" id="step-3">
+          <p class="text-secondary text-sm mb-5">Chọn gói dịch vụ phù hợp. Bạn có thể nâng cấp bất kỳ lúc nào.</p>
+
+          <div style="display:flex; flex-direction:column; gap:var(--space-3); margin-bottom:var(--space-6);">
+            <!-- Free Plan -->
+            <label class="plan-card selected" id="plan-free" onclick="selectPlan('free')">
+              <input type="radio" name="plan" value="free" checked>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-2);">
+                <h4 class="text-md fw-bold">🎁 Starter — Miễn phí</h4>
+                <span class="text-xl fw-bold" style="color:var(--primary-600);">0đ</span>
+              </div>
+              <ul class="text-sm text-secondary" style="list-style:none; padding:0; display:flex; flex-direction:column; gap:4px;">
+                <li>✓ 3 chiến dịch / tháng</li>
+                <li>✓ Tìm kiếm KOC cơ bản</li>
+                <li>✓ Ví tạm giữ Escrow</li>
+                <li style="color:var(--text-tertiary);">✗ E-Contract tự động</li>
+              </ul>
+            </label>
+
+            <!-- Growth Plan -->
+            <label class="plan-card" id="plan-growth" onclick="selectPlan('growth')">
+              <div class="plan-badge">Phổ biến nhất</div>
+              <input type="radio" name="plan" value="growth">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-2);">
+                <h4 class="text-md fw-bold">🚀 Growth</h4>
+                <div class="text-right">
+                  <span class="text-xl fw-bold" style="color:var(--primary-600);">1.990.000đ</span>
+                  <span class="text-xs text-secondary">/tháng</span>
+                </div>
+              </div>
+              <ul class="text-sm text-secondary" style="list-style:none; padding:0; display:flex; flex-direction:column; gap:4px;">
+                <li>✓ Không giới hạn chiến dịch</li>
+                <li>✓ Tìm kiếm KOC nâng cao (lọc ER, giá)</li>
+                <li>✓ Ví Escrow + E-Contract</li>
+                <li>✓ Dashboard phân tích ROI</li>
+              </ul>
+            </label>
+
+            <!-- Enterprise Plan -->
+            <label class="plan-card" id="plan-enterprise" onclick="selectPlan('enterprise')">
+              <input type="radio" name="plan" value="enterprise">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-2);">
+                <h4 class="text-md fw-bold">💎 Enterprise</h4>
+                <span class="text-sm fw-semibold" style="color:var(--escrow-color);">Liên hệ báo giá</span>
+              </div>
+              <ul class="text-sm text-secondary" style="list-style:none; padding:0; display:flex; flex-direction:column; gap:4px;">
+                <li>✓ Tất cả tính năng Growth</li>
+                <li>✓ Quản lý Account riêng</li>
+                <li>✓ API tích hợp hệ thống</li>
+                <li>✓ SLA 99.9% uptime</li>
+              </ul>
+            </label>
+          </div>
+
+          <label style="display:flex; align-items:flex-start; gap:var(--space-3); cursor:pointer; margin-bottom:var(--space-4);">
+            <input type="checkbox" id="agree-terms" style="margin-top:3px; accent-color:var(--primary-500);" required>
+            <span class="text-sm text-secondary">Tôi đồng ý với <a href="#">Điều khoản dịch vụ</a> và <a href="#">Chính sách bảo mật</a> của Creator Connect.</span>
+          </label>
+
+          <div style="display:flex; gap:var(--space-3);">
+            <button class="btn btn-outline" style="flex:1;" onclick="goStep(2)">← Quay lại</button>
+            <button class="btn btn-primary" style="flex:2; box-shadow:var(--shadow-primary);" onclick="submitRegister()">
+              🎉 Tạo tài khoản ngay
+            </button>
+          </div>
+        </div>
+
+        <!-- ── STEP Success ── -->
+        <div class="form-step" id="step-success">
+          <div class="success-icon">✓</div>
+          <h2 class="text-2xl mb-3">Đăng ký thành công!</h2>
+          <p class="text-secondary mb-6">Tài khoản SME của bạn đã được tạo. Hãy đăng nhập để bắt đầu chiến dịch đầu tiên.</p>
+          <div style="background:var(--primary-50); border-radius:var(--radius-xl); padding:var(--space-4); margin-bottom:var(--space-6); text-align:left;">
+            <p class="text-sm fw-semibold mb-3" style="color:var(--primary-700);">📧 Kiểm tra Email</p>
+            <p class="text-sm text-secondary">Chúng tôi đã gửi email xác nhận tới địa chỉ của bạn. Vui lòng xác nhận trước khi đăng nhập.</p>
+          </div>
+          <a href="dashboard.html" class="btn btn-primary" style="width:100%; box-shadow:var(--shadow-primary);">
+            Vào Dashboard ngay →
+          </a>
+          <p class="text-center text-sm text-tertiary mt-4">hoặc <a href="index.html">quay lại trang đăng nhập</a></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    let currentStep = 1;
+
+    function goStep(n) {
+      // Basic validation for step 1
+      if (currentStep === 1 && n === 2) {
+        const name = document.getElementById('reg-name').value.trim();
+        const email = document.getElementById('reg-email').value.trim();
+        const phone = document.getElementById('reg-phone').value.trim();
+        const pw = document.getElementById('reg-password').value;
+        const confirm = document.getElementById('reg-confirm').value;
+        if (!name || !email || !phone || !pw) { showToast('Vui lòng điền đầy đủ thông tin bắt buộc.', 'warning'); return; }
+        if (pw !== confirm) { showToast('Mật khẩu xác nhận không khớp!', 'error'); return; }
+      }
+      if (currentStep === 2 && n === 3) {
+        const company = document.getElementById('reg-company').value.trim();
+        const industry = document.getElementById('reg-industry').value;
+        if (!company || !industry) { showToast('Vui lòng chọn ngành hàng và tên công ty.', 'warning'); return; }
+      }
+
+      document.getElementById('step-' + currentStep).classList.remove('active');
+      document.getElementById('step-dot-' + currentStep)?.classList.remove('active');
+      document.getElementById('step-dot-' + currentStep)?.classList.add('done');
+      if (currentStep > 1) document.getElementById('line-' + (currentStep - 1))?.classList.add('done');
+
+      currentStep = n;
+      const el = document.getElementById(currentStep === 4 ? 'step-success' : 'step-' + currentStep);
+      el.classList.add('active');
+
+      if (currentStep <= 3) {
+        document.getElementById('step-dot-' + currentStep)?.classList.add('active');
+        if (currentStep > 1) document.getElementById('line-' + (currentStep - 1))?.classList.add('done');
+      }
+    }
+
+    function selectPlan(plan) {
+      ['free','growth','enterprise'].forEach(p => {
+        document.getElementById('plan-' + p).classList.toggle('selected', p === plan);
+      });
+    }
+
+    function submitRegister() {
+      if (!document.getElementById('agree-terms').checked) {
+        showToast('Vui lòng đồng ý với Điều khoản dịch vụ.', 'warning');
+        return;
+      }
+      document.getElementById('step-3').classList.remove('active');
+      document.getElementById('step-dot-3').classList.remove('active');
+      document.getElementById('step-dot-3').classList.add('done');
+      document.getElementById('line-2').classList.add('done');
+      document.getElementById('step-success').classList.add('active');
+    }
+
+    function checkStrength(pw) {
+      let score = 0;
+      if (pw.length >= 8) score++;
+      if (/[A-Z]/.test(pw)) score++;
+      if (/[0-9]/.test(pw)) score++;
+      if (/[^A-Za-z0-9]/.test(pw)) score++;
+
+      const fill = document.getElementById('strength-fill');
+      const label = document.getElementById('strength-label');
+      const levels = [
+        { w: '25%', color: '#ef4444', text: 'Yếu – thêm chữ hoa & số' },
+        { w: '50%', color: '#f59e0b', text: 'Trung bình' },
+        { w: '75%', color: '#3b82f6', text: 'Khá mạnh' },
+        { w: '100%', color: '#10b981', text: 'Mạnh ✓' },
+      ];
+      const lvl = levels[Math.min(score - 1, 3)] || { w: '0%', color: '#e2e8f0', text: 'Nhập mật khẩu để xem độ mạnh' };
+      fill.style.width = lvl.w;
+      fill.style.background = lvl.color;
+      label.textContent = lvl.text;
+      label.style.color = lvl.color;
+    }
+  </script>
+</body>
+</html>

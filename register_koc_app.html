@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creator Connect | Đăng ký KOL/KOC App</title>
+  <meta name="description" content="Đăng ký làm KOC/KOL trên Creator Connect – nhận jobs thương hiệu, kiếm thu nhập, quản lý hợp đồng.">
+
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/mobile.css">
+
+  <style>
+    body { background: var(--bg-main); }
+
+    /* Dot stepper */
+    .dot-stepper { display:flex; align-items:center; justify-content:center; gap:0; padding:14px 20px 0; }
+    .dot { width:10px; height:10px; border-radius:50%; background:var(--primary-100); transition:all 0.3s; }
+    .dot.active { background:var(--accent-500); transform:scale(1.3); }
+    .dot.done { background:var(--success-500); }
+    .dot-line { flex:1; max-width:32px; height:2px; background:var(--primary-100); }
+    .dot-line.done { background:var(--success-500); }
+
+    /* Views */
+    .reg-view { display:none; flex-direction:column; height:100%; }
+    .reg-view.active { display:flex; animation:fadeIn 0.25s ease; }
+
+    /* Chip */
+    .chip-group { display:flex; flex-wrap:wrap; gap:8px; }
+    .chip { padding:6px 14px; border-radius:var(--radius-full); font-size:12px; font-weight:600; border:1.5px solid var(--primary-200); color:var(--text-secondary); cursor:pointer; transition:all 0.2s; background:var(--bg-surface); user-select:none; }
+    .chip.selected { background:var(--accent-500); color:white; border-color:var(--accent-500); }
+
+    /* Social connect card */
+    .social-connect-btn {
+      display:flex; align-items:center; gap:14px;
+      background:var(--bg-surface);
+      border:1.5px solid var(--primary-100);
+      border-radius:var(--radius-xl);
+      padding:14px 16px;
+      cursor:pointer;
+      transition:all 0.2s;
+      margin-bottom:10px;
+      text-align:left;
+    }
+    .social-connect-btn.connected { border-color:var(--success-500); background:#f0fdf4; }
+    .social-connect-btn .connect-icon { width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
+
+    /* Stat input */
+    .stat-input-row { display:flex; gap:8px; }
+    .stat-input-row > div { flex:1; }
+
+    /* OTP */
+    .otp-group { display:flex; gap:8px; justify-content:center; }
+    .otp-input { width:46px; height:54px; border-radius:var(--radius-lg); border:2px solid var(--primary-200); text-align:center; font-size:22px; font-weight:700; color:var(--accent-500); background:var(--bg-surface); transition:all 0.2s; }
+    .otp-input:focus { outline:none; border-color:var(--accent-500); box-shadow:0 0 0 3px rgba(236,72,153,0.1); }
+
+    /* Password strength */
+    .strength-bar { height:4px; border-radius:99px; background:var(--primary-50); margin-top:6px; }
+    .strength-fill { height:100%; border-radius:99px; width:0; transition:all 0.4s; }
+
+    /* Success */
+    @keyframes successPop { from { transform:scale(0); opacity:0; } to { transform:scale(1); opacity:1; } }
+    .success-blob { width:88px; height:88px; border-radius:50%; background:linear-gradient(135deg,var(--accent-500),var(--primary-500)); display:flex; align-items:center; justify-content:center; font-size:2.5rem; margin:0 auto 20px; box-shadow:0 8px 30px rgba(236,72,153,0.3); animation:successPop 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+
+    /* Tier card */
+    .tier-card { border:2px solid var(--primary-100); border-radius:var(--radius-xl); padding:14px 16px; cursor:pointer; transition:all 0.2s; position:relative; margin-bottom:10px; }
+    .tier-card:hover { border-color:var(--accent-500); }
+    .tier-card.selected { border-color:var(--accent-500); background:linear-gradient(135deg,rgba(236,72,153,0.05),rgba(91,91,232,0.05)); }
+    .tier-card input[type="radio"] { display:none; }
+
+    /* animated gradient bg for hero */
+    .koc-hero-bg {
+      background: linear-gradient(135deg, var(--accent-500) 0%, var(--primary-500) 100%);
+      position:relative; overflow:hidden;
+    }
+    .koc-hero-bg::before {
+      content:''; position:absolute; width:200px; height:200px; border-radius:50%;
+      background:rgba(255,255,255,0.08); top:-60px; right:-40px;
+    }
+    .koc-hero-bg::after {
+      content:''; position:absolute; width:140px; height:140px; border-radius:50%;
+      background:rgba(255,255,255,0.06); bottom:-40px; left:-30px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="simulator-container">
+
+  <!-- Side Description -->
+  <div class="text-center" style="margin-right:var(--space-10); max-width:280px;">
+    <h1 class="text-3xl mb-4" style="background:linear-gradient(135deg,var(--accent-500),var(--primary-500)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; font-weight:700;">KOL/KOC App<br>Đăng Ký</h1>
+    <p class="text-secondary mb-6">Biến đam mê sáng tạo thành thu nhập thực sự với hàng trăm thương hiệu hàng đầu.</p>
+
+    <div style="display:flex; flex-direction:column; gap:12px; text-align:left;">
+      <div style="background:white; border-radius:12px; padding:12px 16px; box-shadow:0 2px 8px rgba(236,72,153,0.1); display:flex; align-items:center; gap:12px;">
+        <span style="font-size:22px;">💼</span>
+        <div>
+          <p class="text-sm fw-semibold">Nhận jobs chất lượng</p>
+          <p class="text-xs text-secondary">Từ các thương hiệu lớn phù hợp niche</p>
+        </div>
+      </div>
+      <div style="background:white; border-radius:12px; padding:12px 16px; box-shadow:0 2px 8px rgba(236,72,153,0.1); display:flex; align-items:center; gap:12px;">
+        <span style="font-size:22px;">💰</span>
+        <div>
+          <p class="text-sm fw-semibold">Thanh toán đúng hạn 100%</p>
+          <p class="text-xs text-secondary">Ví Escrow bảo vệ quyền lợi của bạn</p>
+        </div>
+      </div>
+      <div style="background:white; border-radius:12px; padding:12px 16px; box-shadow:0 2px 8px rgba(236,72,153,0.1); display:flex; align-items:center; gap:12px;">
+        <span style="font-size:22px;">📊</span>
+        <div>
+          <p class="text-sm fw-semibold">Portfolio chuyên nghiệp</p>
+          <p class="text-xs text-secondary">Auto-sync thống kê từ mạng xã hội</p>
+        </div>
+      </div>
+    </div>
+
+    <a href="koc_app.html" class="btn btn-outline" style="margin-top:24px; width:100%;">⬅ Về KOC App</a>
+  </div>
+
+  <!-- Phone Frame -->
+  <div class="mobile-frame">
+    <div class="mobile-notch"></div>
+
+    <div class="mobile-content">
+
+      <!-- ── VIEW: Welcome ── -->
+      <div id="rv-welcome" class="reg-view active koc-hero-bg" style="justify-content:flex-end;">
+        <div style="position:relative; z-index:1; padding:40px 24px 32px; color:white;">
+          <div style="font-size:52px; margin-bottom:16px; text-align:center;">🌟</div>
+          <h1 style="font-size:26px; font-weight:800; margin-bottom:8px; text-align:center;">Trở thành KOC/KOL</h1>
+          <p style="font-size:13px; opacity:.85; text-align:center; line-height:1.6; margin-bottom:28px;">Hàng trăm job nghề từ thương hiệu lớn đang chờ bạn. Đăng ký miễn phí ngay!</p>
+
+          <div style="background:rgba(255,255,255,0.15); backdrop-filter:blur(8px); border-radius:var(--radius-xl); padding:16px; margin-bottom:24px; display:flex; gap:4px; justify-content:space-around;">
+            <div style="text-align:center;">
+              <p style="font-size:22px; font-weight:800; color:white;">500+</p>
+              <p style="font-size:11px; opacity:.8;">Thương hiệu</p>
+            </div>
+            <div style="width:1px; background:rgba(255,255,255,0.3);"></div>
+            <div style="text-align:center;">
+              <p style="font-size:22px; font-weight:800; color:white;">8K+</p>
+              <p style="font-size:11px; opacity:.8;">KOC đang dùng</p>
+            </div>
+            <div style="width:1px; background:rgba(255,255,255,0.3);"></div>
+            <div style="text-align:center;">
+              <p style="font-size:22px; font-weight:800; color:white;">15M+</p>
+              <p style="font-size:11px; opacity:.8;">Giá trị hợp đồng</p>
+            </div>
+          </div>
+
+          <button onclick="goRegView('rv-step1')" style="width:100%; padding:15px; background:white; color:var(--accent-500); border:none; border-radius:var(--radius-full); font-size:15px; font-weight:800; cursor:pointer; box-shadow:0 4px 20px rgba(0,0,0,0.2);">
+            🚀 Đăng ký miễn phí
+          </button>
+          <p style="text-align:center; margin-top:16px; font-size:13px; opacity:.85;">Đã có tài khoản? <a href="koc_app.html" style="color:white; font-weight:700; text-decoration:underline;">Đăng nhập</a></p>
+        </div>
+      </div>
+
+      <!-- ── VIEW: Step 1 – Thông tin cơ bản ── -->
+      <div id="rv-step1" class="reg-view" style="background:var(--bg-surface);">
+        <div style="padding:48px 20px 14px; border-bottom:1px solid var(--primary-50); flex-shrink:0; display:flex; align-items:center; gap:12px;">
+          <button onclick="goRegView('rv-welcome')" style="background:var(--bg-surface-hover); border:none; border-radius:50%; width:36px; height:36px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; flex-shrink:0;">←</button>
+          <div>
+            <h2 style="font-size:16px; font-weight:700; margin:0;">Tạo Hồ Sơ KOC</h2>
+            <p style="font-size:11px; color:var(--text-tertiary); margin:0;">Bước 1 / 4</p>
+          </div>
+        </div>
+        <div class="dot-stepper">
+          <div class="dot active"></div><div class="dot-line"></div>
+          <div class="dot"></div><div class="dot-line"></div>
+          <div class="dot"></div><div class="dot-line"></div>
+          <div class="dot"></div>
+        </div>
+        <div style="flex:1; overflow-y:auto; padding:16px 20px 24px;">
+          <div style="margin-bottom:14px;">
+            <label style="font-size:11px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:6px;">Tên hiển thị (Nickname) *</label>
+            <input type="text" id="k1-name" class="mobile-input" placeholder="VD: Đức Dược Sĩ">
+          </div>
+          <div style="margin-bottom:14px;">
+            <label style="font-size:11px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:6px;">Email *</label>
+            <input type="email" id="k1-email" class="mobile-input" placeholder="you@email.com">
+          </div>
+          <div style="margin-bottom:14px;">
+            <label style="font-size:11px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:6px;">Số điện thoại *</label>
+            <input type="tel" id="k1-phone" class="mobile-input" placeholder="0901 234 567">
+          </div>
+          <div style="margin-bottom:6px;">
+            <label style="font-size:11px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:6px;">Mật khẩu *</label>
+            <input type="password" id="k1-pw" class="mobile-input" placeholder="Ít nhất 8 ký tự" oninput="kocStrength(this.value)">
+            <div class="strength-bar"><div class="strength-fill" id="koc-str-fill"></div></div>
+            <p id="koc-str-label" style="font-size:10px; color:var(--text-tertiary); margin-top:4px;">Nhập mật khẩu</p>
+          </div>
+          <div style="margin-bottom:14px;">
+            <label style="font-size:11px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:6px;">Xác nhận mật khẩu *</label>
+            <input type="password" id="k1-pw2" class="mobile-input" placeholder="Nhập lại mật khẩu">
+          </div>
+          <div style="margin-bottom:14px;">
+            <label style="font-size:11px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:6px;">Ngày sinh</label>
+            <input type="date" id="k1-dob" class="mobile-input">
+          </div>
+          <div style="margin-bottom:0;">
+            <label style="font-size:11px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:6px;">Giới tính</label>
+            <div style="display:flex; gap:8px;">
+              <label style="flex:1; display:flex; align-items:center; gap:8px; background:var(--bg-surface-hover); padding:10px 12px; border-radius:var(--radius-lg); cursor:pointer;">
+                <input type="radio" name="koc-gender" value="female" style="accent-color:var(--accent-500);"> <span style="font-size:13px;">Nữ</span>
+              </label>
+              <label style="flex:1; display:flex; align-items:center; gap:8px; background:var(--bg-surface-hover); padding:10px 12px; border-radius:var(--radius-lg); cursor:pointer;">
+                <input type="radio" name="koc-gender" value="male" style="accent-color:var(--accent-500);"> <span style="font-size:13px;">Nam</span>
+              </label>
+              <label style="flex:1; display:flex; align-items:center; gap:8px; background:var(--bg-surface-hover); padding:10px 12px; border-radius:var(--radius-lg); cursor:pointer;">
+                <input type="radio" name="koc-gender" value="other" style="accent-color:var(--accent-500);"> <span style="font-size:13px;">Khác</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div style="padding:14px 20px 24px; border-top:1px solid var(--primary-50); flex-shrink:0;">
+          <button style="width:100%; padding:14px; background:linear-gradient(135deg,var(--accent-500),var(--primary-500)); color:white; border:none; border-radius:var(--radius-full); font-size:15px; font-weight:700; cursor:pointer; box-shadow:0 4px 16px rgba(236,72,153,0.3);" onclick="k1Next()">Tiếp theo →</button>
+        </div>
+      </div>
+
+      <!-- ── VIEW: Step 2 – Niche & Platform ── -->
+      <div id="rv-step2" class="reg-view" style="background:var(--bg-surface);">
+        <div style="padding:48px 20px 14px; border-bottom:1px solid var(--primary-50); flex-shrink:0; display:flex; align-items:center; gap:12px;">
+          <button onclick="goRegView('rv-step1')" style="background:var(--bg-surface-hover); border:none; border-radius:50%; width:36px; height:36px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; flex-shrink:0;">←</button>
+          <div>
+            <h2 style="font-size:16px; font-weight:700; margin:0;">Chuyên môn & Kênh</h2>
+            <p style="font-size:11px; color:var(--text-tertiary); margin:0;">Bước 2 / 4</p>
+          </div>
+        </div>
+        <div class="dot-stepper">
+          <div class="dot done"></div><div class="dot-line done"></div>
+          <div class="dot active"></div><div class="dot-line"></div>
+          <div class="dot"></div><div class="dot-line"></div>
+          <div class="dot"></div>
+        </div>
+        <div style="flex:1; overflow-y:auto; padding:16px 20px 24px;">
+          <div style="margin-bottom:18px;">
+            <label style="font-size:11px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:10px;">Lĩnh vực sáng tạo của bạn * <span style="font-weight:400; color:var(--text-tertiary);">(Chọn nhiều)</span></label>
+            <div class="chip-group">
+              <div class="chip" onclick="toggleChip(this)">💄 Skincare / Làm đẹp</div>
+              <div class="chip" onclick="toggleChip(this)">🍜 Ẩm thực</div>
+              <div class="chip" onclick="toggleChip(this)">👗 Thời trang</div>
+              <div class="chip" onclick="toggleChip(this)">💻 Công nghệ</div>
+              <div class="chip" onclick="toggleChip(this)">🏋️ Fitness</div>
+              <div class="chip" onclick="toggleChip(this)">✈️ Du lịch</div>
+              <div class="chip" onclick="toggleChip(this)">📚 Giáo dục</div>
+              <div class="chip" onclick="toggleChip(this)">🎮 Gaming</div>
+              <div class="chip" onclick="toggleChip(this)">🏠 Nội thất</div>
+              <div class="chip" onclick="toggleChip(this)">👶 Mẹ & Bé</div>
+            </div>
+          </div>
+          <div style="margin-bottom:18px;">
+            <label style="font-size:11px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:10px;">Nền tảng hoạt động * <span style="font-weight:400; color:var(--text-tertiary);">(Chọn nhiều)</span></label>
+            <div class="chip-group">
+              <div class="chip" onclick="toggleChip(this)">🎵 TikTok</div>
+              <div class="chip" onclick="toggleChip(this)">📷 Instagram</div>
+              <div class="chip" onclick="toggleChip(this)">📘 Facebook</div>
+              <div class="chip" onclick="toggleChip(this)">▶️ YouTube</div>
+              <div class="chip" onclick="toggleChip(this)">🛒 Shopee Video</div>
+            </div>
+          </div>
+          <div style="margin-bottom:0;">
+            <label style="font-size:11px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:6px;">Chức danh / Bio ngắn</label>
+            <input type="text" class="mobile-input" placeholder="VD: Chuyên gia Da liễu | Skincare Reviewer">
+          </div>
+        </div>
+        <div style="padding:14px 20px 24px; border-top:1px solid var(--primary-50); flex-shrink:0;">
+          <button style="width:100%; padding:14px; background:linear-gradient(135deg,var(--accent-500),var(--primary-500)); color:white; border:none; border-radius:var(--radius-full); font-size:15px; font-weight:700; cursor:pointer; box-shadow:0 4px 16px rgba(236,72,153,0.3);" onclick="goRegView('rv-step3')">Tiếp theo →</button>
+        </div>
+      </div>
+
+      <!-- ── VIEW: Step 3 – Social connect & Stats ── -->
+      <div id="rv-step3" class="reg-view" style="background:var(--bg-surface);">
+        <div style="padding:48px 20px 14px; border-bottom:1px solid var(--primary-50); flex-shrink:0; display:flex; align-items:center; gap:12px;">
+          <button onclick="goRegView('rv-step2')" style="background:var(--bg-surface-hover); border:none; border-radius:50%; width:36px; height:36px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; flex-shrink:0;">←</button>
+          <div>
+            <h2 style="font-size:16px; font-weight:700; margin:0;">Kết nối Mạng Xã Hội</h2>
+            <p style="font-size:11px; color:var(--text-tertiary); margin:0;">Bước 3 / 4 – Tự động sync dữ liệu</p>
+          </div>
+        </div>
+        <div class="dot-stepper">
+          <div class="dot done"></div><div class="dot-line done"></div>
+          <div class="dot done"></div><div class="dot-line done"></div>
+          <div class="dot active"></div><div class="dot-line"></div>
+          <div class="dot"></div>
+        </div>
+
+        <div style="flex:1; overflow-y:auto; padding:16px 20px 24px;">
+          <p style="font-size:12px; color:var(--text-secondary); margin-bottom:16px; line-height:1.5;">Kết nối trực tiếp hoặc nhập thủ công thông số của bạn. Dữ liệu sẽ được dùng để ghép job phù hợp nhất.</p>
+
+          <div class="social-connect-btn connected" id="btn-tiktok" onclick="toggleConnect('btn-tiktok','tiktok-stats')">
+            <div class="connect-icon" style="background:#000;">🎵</div>
+            <div style="flex:1;">
+              <p style="font-size:13px; font-weight:700; margin-bottom:2px;">TikTok</p>
+              <p style="font-size:11px; color:var(--success-500);">✓ Đã kết nối — @ducduocsi</p>
+            </div>
+          </div>
+          <div id="tiktok-stats" style="background:var(--bg-surface-hover); border-radius:var(--radius-lg); padding:12px 14px; margin-top:-4px; margin-bottom:12px;">
+            <div class="stat-input-row">
+              <div>
+                <label style="font-size:10px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:4px;">Followers</label>
+                <input type="text" class="mobile-input" value="22,500" style="font-size:13px; padding:8px 12px;">
+              </div>
+              <div>
+                <label style="font-size:10px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:4px;">Avg. Views</label>
+                <input type="text" class="mobile-input" value="140K" style="font-size:13px; padding:8px 12px;">
+              </div>
+              <div>
+                <label style="font-size:10px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:4px;">Engage %</label>
+                <input type="text" class="mobile-input" value="12.5%" style="font-size:13px; padding:8px 12px;">
+              </div>
+            </div>
+          </div>
+
+          <div class="social-connect-btn" id="btn-instagram" onclick="toggleConnect('btn-instagram','ig-stats')">
+            <div class="connect-icon" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);">📷</div>
+            <div style="flex:1;">
+              <p style="font-size:13px; font-weight:700; margin-bottom:2px;">Instagram</p>
+              <p style="font-size:11px; color:var(--text-tertiary);">Nhấn để kết nối hoặc nhập thủ công</p>
+            </div>
+            <span style="font-size:12px; color:var(--primary-600); font-weight:600;">+ Thêm</span>
+          </div>
+          <div id="ig-stats" style="display:none; background:var(--bg-surface-hover); border-radius:var(--radius-lg); padding:12px 14px; margin-top:-4px; margin-bottom:12px;">
+            <div class="stat-input-row">
+              <div>
+                <label style="font-size:10px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:4px;">Followers</label>
+                <input type="text" class="mobile-input" placeholder="8K" style="font-size:13px; padding:8px 12px;">
+              </div>
+              <div>
+                <label style="font-size:10px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:4px;">Avg. Reach</label>
+                <input type="text" class="mobile-input" placeholder="12K" style="font-size:13px; padding:8px 12px;">
+              </div>
+              <div>
+                <label style="font-size:10px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:4px;">Engage %</label>
+                <input type="text" class="mobile-input" placeholder="18%" style="font-size:13px; padding:8px 12px;">
+              </div>
+            </div>
+          </div>
+
+          <div class="social-connect-btn" id="btn-facebook" onclick="toggleConnect('btn-facebook','fb-stats')">
+            <div class="connect-icon" style="background:#1877F2;">📘</div>
+            <div style="flex:1;">
+              <p style="font-size:13px; font-weight:700; margin-bottom:2px;">Facebook / Fanpage</p>
+              <p style="font-size:11px; color:var(--text-tertiary);">Nhấn để kết nối hoặc nhập thủ công</p>
+            </div>
+            <span style="font-size:12px; color:var(--primary-600); font-weight:600;">+ Thêm</span>
+          </div>
+          <div id="fb-stats" style="display:none; background:var(--bg-surface-hover); border-radius:var(--radius-lg); padding:12px 14px; margin-top:-4px; margin-bottom:12px;">
+            <div class="stat-input-row">
+              <div>
+                <label style="font-size:10px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:4px;">Followers</label>
+                <input type="text" class="mobile-input" placeholder="15K" style="font-size:13px; padding:8px 12px;">
+              </div>
+              <div>
+                <label style="font-size:10px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:4px;">Avg. Reach</label>
+                <input type="text" class="mobile-input" placeholder="30K" style="font-size:13px; padding:8px 12px;">
+              </div>
+              <div>
+                <label style="font-size:10px; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:4px;">Engage %</label>
+                <input type="text" class="mobile-input" placeholder="9%" style="font-size:13px; padding:8px 12px;">
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="padding:14px 20px 24px; border-top:1px solid var(--primary-50); flex-shrink:0;">
+          <button style="width:100%; padding:14px; background:linear-gradient(135deg,var(--accent-500),var(--primary-500)); color:white; border:none; border-radius:var(--radius-full); font-size:15px; font-weight:700; cursor:pointer; box-shadow:0 4px 16px rgba(236,72,153,0.3);" onclick="goRegView('rv-step4')">Tiếp theo →</button>
+        </div>
+      </div>
+
+      <!-- ── VIEW: Step 4 – OTP + Điều khoản ── -->
+      <div id="rv-step4" class="reg-view" style="background:var(--bg-surface);">
+        <div style="padding:48px 20px 14px; border-bottom:1px solid var(--primary-50); flex-shrink:0; display:flex; align-items:center; gap:12px;">
+          <button onclick="goRegView('rv-step3')" style="background:var(--bg-surface-hover); border:none; border-radius:50%; width:36px; height:36px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; flex-shrink:0;">←</button>
+          <div>
+            <h2 style="font-size:16px; font-weight:700; margin:0;">Xác thực & Hoàn tất</h2>
+            <p style="font-size:11px; color:var(--text-tertiary); margin:0;">Bước 4 / 4</p>
+          </div>
+        </div>
+        <div class="dot-stepper">
+          <div class="dot done"></div><div class="dot-line done"></div>
+          <div class="dot done"></div><div class="dot-line done"></div>
+          <div class="dot done"></div><div class="dot-line done"></div>
+          <div class="dot active"></div>
+        </div>
+        <div style="flex:1; overflow-y:auto; padding:24px 20px;">
+          <div class="text-center" style="margin-bottom:24px;">
+            <div style="font-size:44px; margin-bottom:12px;">📲</div>
+            <h3 style="font-size:17px; font-weight:700; margin-bottom:8px;">Nhập mã OTP</h3>
+            <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">Mã xác thực 6 chữ số đã gửi đến số điện thoại của bạn.</p>
+          </div>
+          <div class="otp-group">
+            <input class="otp-input" type="text" maxlength="1" oninput="kocOtp(this,0)">
+            <input class="otp-input" type="text" maxlength="1" oninput="kocOtp(this,1)">
+            <input class="otp-input" type="text" maxlength="1" oninput="kocOtp(this,2)">
+            <input class="otp-input" type="text" maxlength="1" oninput="kocOtp(this,3)">
+            <input class="otp-input" type="text" maxlength="1" oninput="kocOtp(this,4)">
+            <input class="otp-input" type="text" maxlength="1" oninput="kocOtp(this,5)">
+          </div>
+          <p id="koc-otp-wrap" style="text-align:center; font-size:12px; color:var(--text-tertiary); margin-top:16px;">Gửi lại sau <span id="koc-otp-timer" style="font-weight:700; color:var(--accent-500);">60s</span></p>
+
+          <div style="background:linear-gradient(135deg, rgba(236,72,153,0.05), rgba(91,91,232,0.05)); border:1px dashed var(--accent-500); border-radius:var(--radius-xl); padding:14px 16px; margin-top:20px; margin-bottom:16px;">
+            <p style="font-size:11px; font-weight:700; color:var(--accent-500); margin-bottom:6px;">🎁 Ưu đãi đăng ký lần đầu</p>
+            <p style="font-size:12px; color:var(--text-secondary); line-height:1.5;">Hoàn thành đăng ký trong hôm nay – nhận ngay <strong>Badge "KOC Mới Nổi"</strong> giúp profile của bạn được đẩy lên top kết quả tìm kiếm của nhãn hàng!</p>
+          </div>
+
+          <label style="display:flex; align-items:flex-start; gap:10px; cursor:pointer;">
+            <input type="checkbox" id="koc-terms" style="margin-top:3px; accent-color:var(--accent-500); width:16px; height:16px;">
+            <span style="font-size:12px; color:var(--text-secondary); line-height:1.5;">Tôi đồng ý với <a href="#" style="color:var(--accent-500);">Điều khoản KOC</a> và <a href="#" style="color:var(--accent-500);">Chính sách bảo mật</a> của Creator Connect.</span>
+          </label>
+        </div>
+
+        <div style="padding:14px 20px 24px; border-top:1px solid var(--primary-50); flex-shrink:0;">
+          <button style="width:100%; padding:14px; background:linear-gradient(135deg,var(--accent-500),var(--primary-500)); color:white; border:none; border-radius:var(--radius-full); font-size:15px; font-weight:700; cursor:pointer; box-shadow:0 4px 16px rgba(236,72,153,0.3);" onclick="submitKOC()">
+            ✨ Tạo Hồ Sơ KOC
+          </button>
+        </div>
+      </div>
+
+      <!-- ── VIEW: Success ── -->
+      <div id="rv-success" class="reg-view" style="background:var(--bg-surface);">
+        <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:32px 24px; text-align:center;">
+          <div class="success-blob">🌟</div>
+          <h2 style="font-size:22px; font-weight:700; margin-bottom:10px;">Chào mừng KOC mới!</h2>
+          <p style="font-size:14px; color:var(--text-secondary); line-height:1.6; margin-bottom:24px;">Hồ sơ của bạn đã được tạo thành công. Hãy khám phá các job nghề ngay!</p>
+
+          <div style="display:flex; gap:12px; width:100%; margin-bottom:24px;">
+            <div style="flex:1; background:linear-gradient(135deg,rgba(236,72,153,0.1),rgba(91,91,232,0.1)); border-radius:var(--radius-xl); padding:14px; text-align:center;">
+              <p style="font-size:22px; font-weight:800; color:var(--primary-600);">0</p>
+              <p style="font-size:11px; color:var(--text-secondary);">Job đang chờ</p>
+            </div>
+            <div style="flex:1; background:linear-gradient(135deg,rgba(16,185,129,0.1),rgba(52,211,153,0.1)); border-radius:var(--radius-xl); padding:14px; text-align:center;">
+              <p style="font-size:22px; font-weight:800; color:var(--success-500);">0đ</p>
+              <p style="font-size:11px; color:var(--text-secondary);">Ví của bạn</p>
+            </div>
+            <div style="flex:1; background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(251,191,36,0.1)); border-radius:var(--radius-xl); padding:14px; text-align:center;">
+              <p style="font-size:22px; font-weight:800; color:var(--warning-500);">⭐</p>
+              <p style="font-size:11px; color:var(--text-secondary);">KOC Mới Nổi</p>
+            </div>
+          </div>
+
+          <button style="width:100%; padding:14px; background:linear-gradient(135deg,var(--accent-500),var(--primary-500)); color:white; border:none; border-radius:var(--radius-full); font-size:15px; font-weight:700; cursor:pointer; box-shadow:0 4px 16px rgba(236,72,153,0.3); margin-bottom:12px;" onclick="window.location.href='koc_app.html?registered=1'">
+            🚀 Xem Job nghề ngay
+          </button>
+          <a href="koc_app.html" style="font-size:13px; color:var(--accent-500);">Hoặc quay lại đăng nhập</a>
+        </div>
+      </div>
+
+      <!-- Placeholder main -->
+      <div id="rv-main-app" class="reg-view" style="background:var(--bg-main);">
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center;">
+          <div style="font-size:48px; margin-bottom:16px;">🎉</div>
+          <h3 style="font-size:18px; font-weight:700; margin-bottom:8px;">Sẵn sàng!</h3>
+          <p style="font-size:13px; color:var(--text-secondary); margin-bottom:24px;">Hành trình KOC của bạn bắt đầu từ đây.</p>
+          <a href="koc_app.html" class="btn" style="border-radius:var(--radius-full); padding:12px 28px; background:linear-gradient(135deg,var(--accent-500),var(--primary-500)); color:white; font-weight:700;">Mở KOC App →</a>
+        </div>
+      </div>
+
+    </div><!-- /mobile-content -->
+  </div><!-- /mobile-frame -->
+</div>
+
+<div class="toast-container" id="toast-container"></div>
+<script src="assets/js/main.js"></script>
+<script>
+  function goRegView(id) {
+    document.querySelectorAll('.reg-view').forEach(v => v.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function toggleChip(el) { el.classList.toggle('selected'); }
+
+  function toggleConnect(btnId, statsId) {
+    const btn = document.getElementById(btnId);
+    const stats = document.getElementById(statsId);
+    const isConnected = btn.classList.toggle('connected');
+    if (statsId) {
+      stats.style.display = isConnected ? 'block' : 'none';
+      btn.querySelector('span') && (btn.querySelector('span').textContent = isConnected ? '✓ Đã thêm' : '+ Thêm');
+    }
+  }
+
+  function kocStrength(pw) {
+    let s = 0;
+    if (pw.length >= 8) s++;
+    if (/[A-Z]/.test(pw)) s++;
+    if (/[0-9]/.test(pw)) s++;
+    if (/[^A-Za-z0-9]/.test(pw)) s++;
+    const fill = document.getElementById('koc-str-fill');
+    const label = document.getElementById('koc-str-label');
+    const ls = [{w:'25%',c:'#ef4444',t:'Yếu'},{w:'50%',c:'#f59e0b',t:'Trung bình'},{w:'75%',c:'#3b82f6',t:'Khá mạnh'},{w:'100%',c:'#10b981',t:'Mạnh ✓'}];
+    const lv = ls[Math.min(s-1,3)] || {w:'0%',c:'#e2e8f0',t:'Nhập mật khẩu'};
+    fill.style.width = lv.w; fill.style.background = lv.c; label.textContent = lv.t; label.style.color = lv.c;
+  }
+
+  function k1Next() {
+    const n = document.getElementById('k1-name').value.trim();
+    const e = document.getElementById('k1-email').value.trim();
+    const ph = document.getElementById('k1-phone').value.trim();
+    const pw = document.getElementById('k1-pw').value;
+    const pw2 = document.getElementById('k1-pw2').value;
+    if (!n || !e || !ph || !pw) { showToast('Vui lòng điền đầy đủ thông tin!', 'warning'); return; }
+    if (pw !== pw2) { showToast('Mật khẩu không khớp!', 'error'); return; }
+    goRegView('rv-step2');
+  }
+
+  function kocOtp(inp, idx) {
+    inp.value = inp.value.replace(/[^0-9]/g,'');
+    const inputs = document.querySelectorAll('#rv-step4 .otp-input');
+    if (inp.value && idx < 5) inputs[idx+1].focus();
+  }
+
+  let kocOtpInterval;
+  // Start timer when step4 loads
+  const originalGoRegView = goRegView;
+  function goRegView(id) {
+    document.querySelectorAll('.reg-view').forEach(v => v.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    if (id === 'rv-step4') startKocOtpTimer();
+  }
+
+  function startKocOtpTimer() {
+    let t = 60;
+    clearInterval(kocOtpInterval);
+    document.getElementById('koc-otp-timer').textContent = t + 's';
+    document.getElementById('koc-otp-wrap').innerHTML = `Gửi lại sau <span id="koc-otp-timer" style="font-weight:700;color:var(--accent-500);">60s</span>`;
+    kocOtpInterval = setInterval(() => {
+      t--;
+      const el = document.getElementById('koc-otp-timer');
+      if (el) el.textContent = t + 's';
+      if (t <= 0) {
+        clearInterval(kocOtpInterval);
+        document.getElementById('koc-otp-wrap').innerHTML = `<a href="#" onclick="startKocOtpTimer()" style="color:var(--accent-500); font-size:12px; font-weight:600;">Gửi lại mã OTP</a>`;
+      }
+    }, 1000);
+  }
+
+  function submitKOC() {
+    const otp = [...document.querySelectorAll('#rv-step4 .otp-input')].map(i => i.value).join('');
+    if (otp.length < 6) { showToast('Vui lòng nhập đủ 6 chữ số OTP!', 'warning'); return; }
+    if (!document.getElementById('koc-terms').checked) { showToast('Vui lòng đồng ý điều khoản!', 'warning'); return; }
+    goRegView('rv-success');
+  }
+</script>
+</body>
+</html>
